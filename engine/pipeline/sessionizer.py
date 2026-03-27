@@ -21,7 +21,7 @@ class Session:
         """Total time in seconds from first to last event."""
         if len(self.events) < 2:
             return 0.0
-        times = [datetime.fromisoformat(e.timestamp) for e in self.events]
+        times = [e.timestamp for e in self.events]
         return (max(times) - min(times)).total_seconds()
 
     @property
@@ -62,14 +62,11 @@ def sessionize(events: List[CanonicalEvent], gap_seconds: float = 1800) -> List[
     for key, evts in grouped.items():
         # Step 2: Sort by timestamp
         evts.sort(key=lambda e: e.timestamp)
-
-        # Step 3: Split into sessions based on time gap
         current: List[CanonicalEvent] = [evts[0]]
 
         for i in range(1, len(evts)):
-            t_prev = datetime.fromisoformat(evts[i - 1].timestamp)
-            t_curr = datetime.fromisoformat(evts[i].timestamp)
-            gap = (t_curr - t_prev).total_seconds()
+            # No fromisoformat needed — already datetime
+            gap = (evts[i].timestamp - evts[i - 1].timestamp).total_seconds()
 
             if gap > gap_seconds:
                 # Gap too large — save current session, start new one
