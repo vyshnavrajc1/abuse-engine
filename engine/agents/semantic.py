@@ -413,6 +413,7 @@ if __name__ == "__main__":
         "volume_medium_threshold": 10,
         "volume_high_threshold": 20,
     }
+    
 
     agent = SemanticGuardAgent("spec.yaml", dummy_owner_resolver, config)
 

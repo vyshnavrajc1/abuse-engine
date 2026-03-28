@@ -13,7 +13,7 @@ What this module provides
      window, and per-window details for downstream alerting.
 
 2. build_spatio_temporal_graph()
-   Assembles the full agentic pipeline:
+   Assembles the base pipeline:
        validate → score → severity → END
                 ↘ skip → END
 
@@ -22,6 +22,13 @@ What this module provides
    • Accepts raw events (online or batch).
    • Wraps them in AgentState and runs the graph.
    • Exposes train_baseline() and start_scheduled_retraining().
+   • NEW: Accepts an optional LLMConfig to activate the Gemini reasoning layer,
+     which extends the graph to:
+         validate → score → severity → llm_analysis → END
+     The llm_analysis node uses LangChain + Gemini with three tools
+     (IP reputation, threat intel, feature explainer) to produce a structured
+     verdict (confirmed_threat / likely_fp / uncertain) stored in
+     state.metadata["llm_analysis"].
 """
 
 from __future__ import annotations
@@ -44,6 +51,14 @@ from agent_framework import (
 from model_registry import ModelRegistry, WindowFeatureExtractor
 from models import AgentResult, AgentState, CanonicalEvent, Severity
 from sliding_window import SlidingWindowManager
+
+# Optional: LLM reasoning layer (requires langchain-google-genai)
+try:
+    from llm_agent_node import LLMConfig, build_agentic_spatio_temporal_graph as _build_agentic
+    _LLM_AVAILABLE = True
+except ImportError:
+    _LLM_AVAILABLE = False
+    LLMConfig = None  # type: ignore
 
 logger = logging.getLogger(__name__)
 
@@ -239,33 +254,67 @@ class SpatioTemporalPipeline:
     the agent graph.  This is the object you instantiate once per service and
     call on every batch of incoming events.
 
-    Typical usage
-    -------------
+    Typical usage (base pipeline — IsolationForest only)
+    -----------------------------------------------------
     pipeline = SpatioTemporalPipeline()
+    pipeline.train_baseline(baseline_events)
+
+    state = pipeline.process(events)
+    result = state.results[-1]
+    print(result.risk_score, result.flags)
+
+    Agentic usage (IsolationForest + Gemini LLM reasoning)
+    -------------------------------------------------------
+    from llm_agent_node import LLMConfig
+
+    pipeline = SpatioTemporalPipeline(
+        llm_config=LLMConfig(api_key="YOUR_GEMINI_KEY"),
+        # or set GEMINI_API_KEY env var and pass LLMConfig() with no key
+    )
     pipeline.train_baseline(baseline_events)
     pipeline.start_scheduled_retraining(
         data_provider=my_db_fetch_fn,
         interval_hours=24,
     )
 
-    # On every incoming batch (or periodically from a stream):
-    state = pipeline.process(events)
+    state  = pipeline.process(events)
     result = state.results[-1]
     print(result.risk_score, result.flags)
+
+    # LLM verdict (only present when risk >= LLMConfig.high_risk_threshold)
+    llm = state.metadata.get("llm_analysis", {})
+    print(llm.get("verdict"), llm.get("reasoning"))
+    print("Recommended actions:", llm.get("recommended_actions"))
     """
 
     def __init__(
         self,
         config: Optional[SpatioTemporalConfig] = None,
         registry: Optional[ModelRegistry] = None,
+        llm_config=None,   # LLMConfig | None — pass to enable Gemini reasoning layer
     ):
         self.config   = config   or SpatioTemporalConfig()
         self.registry = registry or ModelRegistry.instance(
             model_path=self.config.model_path,
             contamination=self.config.contamination,
         )
-        self._graph    = build_spatio_temporal_graph(self.config, self.registry)
         self._extractor = WindowFeatureExtractor()
+
+        if llm_config is not None and _LLM_AVAILABLE:
+            # Full agentic graph: validate→score→severity→llm_analysis→END
+            self._graph = _build_agentic(
+                llm_config=llm_config,
+                spatio_config=self.config,
+                registry=self.registry,
+            )
+            logger.info("SpatioTemporalPipeline: Gemini LLM reasoning node ENABLED.")
+        else:
+            if llm_config is not None and not _LLM_AVAILABLE:
+                logger.warning(
+                    "llm_config supplied but llm_agent_node.py / langchain-google-genai "
+                    "is not importable — falling back to base pipeline without LLM."
+                )
+            self._graph = build_spatio_temporal_graph(self.config, self.registry)
 
     # ------------------------------------------------------------------
     # Inference
