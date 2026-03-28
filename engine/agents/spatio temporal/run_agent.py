@@ -53,7 +53,9 @@ from typing import List
 # ---------------------------------------------------------------------------
 # ★  SET YOUR GEMINI API KEY HERE  ★
 # ---------------------------------------------------------------------------
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyC5dy5rKZ5M4Pra1gxc6pFMxs9kjXMrq8o")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY environment variable not set")
 # ---------------------------------------------------------------------------
 
 logging.basicConfig(
