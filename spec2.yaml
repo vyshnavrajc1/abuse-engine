@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Synthetic API
+  version: '1.0'
+paths:
+  /api/users/{id}:
+    get:
+      operationId: get_api_users_id
+      tags:
+      - single_object
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        x-owner: true
+      security:
+      - BearerAuth: []
+      x-expected-rate: medium
+    put:
+      operationId: put_api_users_id
+      tags:
+      - mutation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        x-owner: true
+      security:
+      - BearerAuth: []
+      x-expected-rate: low
+  /api/users:
+    get:
+      operationId: get_api_users
+      tags:
+      - collection
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      security:
+      - BearerAuth: []
+      x-expected-rate: high
+  /api/search:
+    get:
+      operationId: get_api_search
+      tags:
+      - search
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      security:
+      - BearerAuth: []
+      x-expected-rate: medium
+  /api/admin/stats:
+    get:
+      operationId: get_api_admin_stats
+      tags:
+      - admin
+      parameters: []
+      security:
+      - BearerAuth: []
+      x-expected-rate: low

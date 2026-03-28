@@ -1,0 +1,7551 @@
+[
+  {
+    "timestamp": "2026-03-12T21:27:36.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_51aaa5fd",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:07:53.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_02f69cdf",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_100",
+      "limit": "val_22"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:37:12.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2d4a1c28",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_76",
+      "limit": "val_75"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:31.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_28bf38ed",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:21.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_adddddc9",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "340"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:06:32.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_57d9c7ad",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_79"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:54:13.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_db45042c",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:51.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6dbd6c06",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "319"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:39:43.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_be199619",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:57:21.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_75776793",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "376"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:31:03.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ff95a64d",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "391"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:16.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_dad8cde8",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_51",
+      "limit": "val_43"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:32:14.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b580f2a4",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_25"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:25:27.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_347ba717",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:05:24.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_95b345c9",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_44"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:31:57.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e05bb236",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:10.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2cc11560",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:01:39.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5d6833cb",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_97",
+      "limit": "val_80"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:21.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4eebc627",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "305"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:47:26.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bc757516",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:08:43.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8afbabe2",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_15",
+      "limit": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:49:10.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b4ba5ca9",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:42:50.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cd7f55fc",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:49:21.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a27f442a",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:38:22.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b2824380",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:36:31.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_380fc849",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_43",
+      "limit": "val_48"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:25.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_035245d5",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "371"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:22.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cfb5f81c",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:30:47.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_118721a2",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "333"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:17:24.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cb38ab9b",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "491"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:52:35.168207",
+    "ip": "10.0.0.1",
+    "user_id": "user_1",
+    "tenant_id": "tenant1",
+    "session_id": "sess_48323dc5",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_30",
+      "limit": "val_13"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:35:12.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_42d78e2e",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_87",
+      "limit": "val_41"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:42:40.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6a528008",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_78"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:42:34.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4016e6a6",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "51"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:14:18.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_efb54db1",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_23",
+      "limit": "val_100"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:53:15.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4c51fec2",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "139"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:58:30.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c934cfc6",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:48.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_372f9be7",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:14:52.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c01748fd",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:13:08.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_eec735d9",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:29:29.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f114c3f9",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "251"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:13:56.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_840aef9b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_95",
+      "limit": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:31:29.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d0f748b4",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_24"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:46:10.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2e49a05a",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_98",
+      "limit": "val_52"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:50.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_79ae7acc",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_2",
+      "limit": "val_86"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:59:24.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1707f142",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:32.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_393be39a",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "147"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:57:13.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_86d4bb00",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "470"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:07:54.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_55b0977e",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:46:52.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6ab8c4f2",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_20"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:02:05.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ac98fe96",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_36"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:21.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6d87e7d5",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:21:30.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_18248b4d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:52:22.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_344284f5",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "476"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:50:39.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9c830c15",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:37:10.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_986f8030",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_82",
+      "limit": "val_38"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:46:02.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4cf8f315",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:34:45.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7a2354e5",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_91",
+      "limit": "val_9"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:44.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_68c381bb",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_40",
+      "limit": "val_24"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:05:39.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3eb0177c",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:47.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2a93f8ce",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_71",
+      "limit": "val_81"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:26.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5d9c0e57",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_89"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:49.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_37150e45",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:10.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2d023e49",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_69",
+      "limit": "val_49"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:21.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ea0dc732",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:56:40.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1ca63395",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:24:56.168207",
+    "ip": "10.0.0.1",
+    "user_id": "user_1",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a1136d3f",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "42"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:29:01.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_270a6c5b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_48",
+      "limit": "val_41"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:04:54.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f777b383",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:34.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f11aa124",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:56:20.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7ec84a44",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_44"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:40.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e0fdd16a",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "335"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:34.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_af25d5ba",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:22:22.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_292049ed",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_85",
+      "limit": "val_16"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:25:47.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f8054824",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "152"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:54:27.168207",
+    "ip": "10.0.0.5",
+    "user_id": "user_5",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e2c383f3",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "446"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:19:59.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_88c08285",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "452"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:47:48.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6b9051d3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_61"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:25:31.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a14f91b6",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "119"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:39.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b903345d",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "74"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:29:02.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8231da1c",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:16:35.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c2ce41f8",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_73"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:04:53.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_df796e7c",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "85"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:31:19.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1b9434f6",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_74",
+      "limit": "val_87"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:29:14.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3757ab09",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_98",
+      "limit": "val_97"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:31:13.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_54ff7e6d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:55:39.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_487310c9",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_50"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:24:10.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_105738f5",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:10.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d6f5d4eb",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_40"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:52:09.168207",
+    "ip": "10.0.0.3",
+    "user_id": "user_3",
+    "tenant_id": "tenant1",
+    "session_id": "sess_71bf9052",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_40"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:37.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_dd108af0",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_69"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:20.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a333c6f4",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:48:08.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_aedf9457",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_5"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:58.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9a9528be",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "36"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:02.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bc130d59",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:14:37.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f3311090",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_36",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:12.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e1b12a2b",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:35.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6a7503d1",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "111"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:45:54.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1c023817",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:44:56.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4731111c",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "319"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:07:16.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a499a288",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:11.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9ebdcb93",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "477"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:21:12.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_86ac3b5e",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:01:31.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_64401312",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:07:47.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_08ff718a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_65"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:01:34.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8e43acc2",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:45:37.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_471ef482",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:30:50.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9bf7d4af",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_7",
+      "limit": "val_2"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:23:16.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2aa707f3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_43"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:59.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_48181a97",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "452"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:42.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_028b557e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_57"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:59:36.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_80f79d72",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_35",
+      "limit": "val_40"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:13.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_371f5177",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:55:05.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bae21ffd",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:14:26.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0072567f",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "442"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:44.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a41734aa",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:36:23.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a0db62c9",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_2",
+      "limit": "val_28"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:21:24.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_574d7400",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_36",
+      "limit": "val_12"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:23.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4bc5b5a0",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:04:08.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_afee95ad",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:48.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4712c420",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "256"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:47:21.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cb0ceba6",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "338"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:06:31.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ddd9d514",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_4",
+      "limit": "val_12"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:59:47.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7eb659c0",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_21",
+      "limit": "val_43"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:28:15.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_270a1acd",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_93"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:34:20.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8f684bab",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "378"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:11.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b8a3ffa7",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "57"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:18:25.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a5a5d5aa",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:02:21.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_64bdbf5e",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_10",
+      "limit": "val_74"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:48.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bcb0ebdb",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_88",
+      "limit": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:22:53.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c338e63a",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_67",
+      "limit": "val_58"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:27.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4238e4ce",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_3",
+      "limit": "val_48"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:34:09.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2d1c6845",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_23",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:30.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a17e65c9",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_93"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:01:19.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_802a44c9",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_87",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:57:32.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f0d742a9",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:04.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_54973874",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "333"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:08:04.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6d744447",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "85"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:34:52.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_09e3914e",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "187"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:47.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_781f7fc6",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "330"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:33.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_327474e6",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "285"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:23.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_aecb9d6f",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_36"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:14.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_072b290d",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_84"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:28.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9157293c",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:45:57.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3678bfca",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_15"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:57:58.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f62c8a46",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:29:03.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ae847599",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:51:57.168207",
+    "ip": "10.0.0.0",
+    "user_id": "user_0",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4be37cf0",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:07:12.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_dff28a8e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_97"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:45:19.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e664263a",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:58:22.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8b70888d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_45",
+      "limit": "val_52"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:04:58.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f5840d23",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:02:39.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d73182d6",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:33:04.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c756066b",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_39"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:07.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_501829cc",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "7"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:24:05.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fc9c32cc",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "276"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:13:48.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ba703b9d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:39:34.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_969b0275",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_15",
+      "limit": "val_13"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:13:50.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_aa3ba140",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:57:28.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6fb920b2",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "229"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:02:57.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7c4ffb3d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_88",
+      "limit": "val_94"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:02:30.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ccaa0c31",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "199"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:08.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_620be937",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:36.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8b1691f0",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_61",
+      "limit": "val_15"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:36.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_04b1f18e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_57"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:28:05.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_df6f8e93",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "137"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:02:58.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_23ed8cfd",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_56",
+      "limit": "val_84"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:41.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_059e9dee",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:01:02.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2775f4be",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_54",
+      "limit": "val_69"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:27.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d56caecd",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:06:47.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a252a849",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_61"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:41:08.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5ef3600a",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "73"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:53:11.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b4a27720",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:48:07.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d9bb1322",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_95"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:03:25.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e6126c16",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "179"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:48.168207",
+    "ip": "10.0.0.5",
+    "user_id": "user_5",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d0e99cb6",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:00.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_83668f03",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:58.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_84312ec6",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_37"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:30:01.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a9c6957f",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:04.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ffd52daf",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:54.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cc6b2ddf",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:40.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_455e1d4a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_23"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:19:40.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6e18ce59",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_81",
+      "limit": "val_41"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:21:24.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d6125705",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_18",
+      "limit": "val_5"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:34:46.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bc3e6da4",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:10.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_21373fe6",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:18.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f51c2c24",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:40.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_81e1a15c",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "157"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:22:01.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_363c0778",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_53"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:47:01.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2f82d3e7",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "439"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:05:36.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_15618770",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_5"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:30:24.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fdf14b21",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_63",
+      "limit": "val_45"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:58.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ea1f6f03",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:25:20.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0e261153",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:12.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_64ad6b1e",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:26:20.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_51806590",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_37",
+      "limit": "val_3"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:37:52.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5b5efb69",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:42:25.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_29dfcf2f",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_12"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:10.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f591acbc",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_73"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:27:15.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_23c47fcb",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "312"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:19:15.168207",
+    "ip": "10.0.0.1",
+    "user_id": "user_1",
+    "tenant_id": "tenant1",
+    "session_id": "sess_88cf7ef4",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_91",
+      "limit": "val_9"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:01.168207",
+    "ip": "10.0.0.8",
+    "user_id": "user_8",
+    "tenant_id": "tenant1",
+    "session_id": "sess_640dcac5",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:18:52.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7f8d6488",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "379"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:44:36.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_46953d95",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_76",
+      "limit": "val_63"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:17:12.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e37448aa",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_80"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:30:33.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4695720e",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_24",
+      "limit": "val_67"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:55.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4a51bfe2",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "356"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:34:56.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cb401210",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "414"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:03.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1d8e578f",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_96",
+      "limit": "val_28"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:48:12.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fd7b5a1e",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_4",
+      "limit": "val_40"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:47.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a11fb5b5",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_10",
+      "limit": "val_44"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:11.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_911264e7",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_45"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:42:52.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0cf0d2bc",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_98"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:59:32.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c8860979",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_74",
+      "limit": "val_2"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:08.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cda4782b",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:49:09.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7f2073df",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "58"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:11:47.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fe4680ab",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_6"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:13.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6b6d62d5",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:45.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_dd1003f1",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:11:19.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ce3fab99",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_24",
+      "limit": "val_4",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:43:14.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c33a66f5",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "185"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:26:48.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_12d330fd",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "343"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:54:07.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1eca2ce4",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "296"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:26:12.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_804ebf77",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:33:40.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_febd1ab3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:58.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b290451d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_35",
+      "limit": "val_51"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:37:28.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0ce571ce",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_70",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:04:49.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5a466def",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_48"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:19:30.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0c532ac8",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:33:24.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_575d5e4c",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "79"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:53:52.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_38031e35",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_26"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:00:21.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_67770e77",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:43:23.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8aa4bb0d",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_95"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:37.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_682e26ae",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "286"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:55:42.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f85b2cfb",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_38"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:49:23.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3da60df8",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_17",
+      "limit": "val_95"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:57.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c1f22d7d",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_84"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:22:20.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5a191375",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:32.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bdabd1f7",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:53:10.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c4463346",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:02.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d1d23ce0",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:24:30.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_66623276",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:38:49.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_abd3e4c8",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "316"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:22:15.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f1acd432",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_77",
+      "limit": "val_78"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:00.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_aa9cdc0d",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_36"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:05:42.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_25d959d8",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_75"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:14:18.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e2f3e1e1",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:50.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_82e9e403",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_88",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:23:45.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2993db8a",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "419"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:55:52.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6a9c98e9",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_10"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:21:08.168207",
+    "ip": "10.0.0.8",
+    "user_id": "user_8",
+    "tenant_id": "tenant1",
+    "session_id": "sess_18dab2c9",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:47:34.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_aaaa9a1c",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_63"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:54:50.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c4371628",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:16:02.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9bf2496c",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:08:00.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e5f0c1b1",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "265"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:11:17.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4af4f9b0",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:51:41.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6984131c",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:57:20.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_acd23368",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:35.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_539bc731",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:50:38.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d181a132",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_83",
+      "limit": "val_8"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:10.168207",
+    "ip": "10.0.0.14",
+    "user_id": "user_14",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2ffbee88",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:44:34.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ba603de1",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:44:46.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_724a5a30",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "291"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:31:06.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3eaabe51",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "459"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:02:58.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8dd8e444",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "76"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:33:39.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f2fb48af",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:49:00.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fa315f0c",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_89"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:19:46.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8472ae5a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_7"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:05.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cc367af9",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "399"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:35.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b4d3a64a",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:01:39.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5dcb554b",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "491"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:01:06.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8f65904e",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:11.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3173240b",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "237"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:31:22.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ef023cd6",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "116"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:11:40.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f8b528da",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:25:03.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_09f6be38",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_82",
+      "limit": "val_38"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:16:52.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3c4b502f",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:40:36.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_060c5783",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_13",
+      "limit": "val_72"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:37:04.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0a5dd843",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_89"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:31:26.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bf11f850",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:25:44.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7772133b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_67",
+      "limit": "val_59"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:43:08.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c71bc21f",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:23:38.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_09767237",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "500"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:58:28.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3ed55626",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_46"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:20:57.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3a342bc8",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_41"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:19:49.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_96bba4f6",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_5"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:52:20.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_da8f839a",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:37:59.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_939ed76e",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_59",
+      "limit": "val_48"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:51.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3d80fda2",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_92",
+      "limit": "val_91"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:55:46.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_89c06a55",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "407"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:20.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0e6b21f6",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:17.168207",
+    "ip": "10.0.0.5",
+    "user_id": "user_5",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1970f8d1",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "426"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:22:53.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_eca2d4ac",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_22",
+      "limit": "val_85"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:16.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d7747593",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:55:09.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_deefc11a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_83"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:47:16.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5930c8b7",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:52:06.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3fa93872",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:26:11.168207",
+    "ip": "10.0.0.3",
+    "user_id": "user_3",
+    "tenant_id": "tenant1",
+    "session_id": "sess_081444c1",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_98"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:14:46.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e60fcbc2",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_32",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:02:33.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0e103754",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "439"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:10.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b4842093",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:53:03.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d8e51409",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_96",
+      "limit": "val_12"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:50:54.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9bb069db",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:16:05.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7201bb56",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:18:19.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_04d287ed",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:55:54.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_52b1b755",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:39:43.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_009ce4c6",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_5",
+      "limit": "val_75"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:57:06.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_dbfe53cc",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_61"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:23:53.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d9153762",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:43:23.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_73c4808b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_79",
+      "limit": "val_62"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:13:03.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fda3d308",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_37"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:13:56.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8b878f59",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "85"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:25.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c8eb5884",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_72"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:08:05.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9c26305e",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:40:07.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6c86ba6e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_9"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:55:22.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ae077d0f",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "377"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:55:00.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ea05a055",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:19.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b0ca4412",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_89",
+      "limit": "val_26"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:34:43.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_de532b34",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_59"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:33.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e946350f",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_64",
+      "limit": "val_96"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:45.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_52038c5d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:40:32.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6ab3e102",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_62",
+      "limit": "val_15"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:43:53.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d72e012d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:10:31.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_902ee20e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_46"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:13:21.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1ee6f32a",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:52:56.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c7f3772a",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_77",
+      "limit": "val_1"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:28.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f9077af4",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:53:21.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_631fdc30",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_92",
+      "limit": "val_37"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:02.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_95f2a66f",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_72"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:49:09.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ed9f9ca4",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_38"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:21:14.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_52fb17cc",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_70",
+      "limit": "val_95"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:42:40.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3a806a90",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:41:39.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bfe94508",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_14",
+      "limit": "val_93",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:29.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_307aeac5",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_22",
+      "limit": "val_52"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:43.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d3694d35",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:13:45.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_42521419",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_29"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:41:01.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1ff34213",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:51.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ad92f67d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_54",
+      "limit": "val_8"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:05:10.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_52aeff5d",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "151"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:06:25.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_57ea73ba",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "76"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:52:59.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f1db89d8",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_72"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:19.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d6accfb9",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:48:11.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e5d140a5",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_89",
+      "limit": "val_12"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:02:13.168207",
+    "ip": "10.0.0.3",
+    "user_id": "user_3",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b6de6489",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_45"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:22.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ff193c31",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_53",
+      "limit": "val_46"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:48.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_be66a5c4",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:20.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_309ab2aa",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:04.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1dd389e4",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_6",
+      "limit": "val_34"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:59:43.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_14538ac6",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:21:24.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e3a04e5b",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "463"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:23:43.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_945d0b1a",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "334"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:40:41.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1a585e77",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "198"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:47.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_20b7889c",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:25:41.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_92d61988",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_49",
+      "limit": "val_45"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:07.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3418c948",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_39",
+      "limit": "val_99"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:03:05.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_70908f08",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:49:44.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0ad86c71",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "253"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:45.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_42715c53",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_62",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:37:52.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_06fe9421",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:37:01.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_152d610d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_31",
+      "limit": "val_73"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:45:50.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_408298c9",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_8"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:13:43.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_477b3905",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:03:58.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_930d6fb7",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_19",
+      "limit": "val_38"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:43:18.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b0a4e9cd",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_28",
+      "limit": "val_85"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:23:40.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0f35c9d3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_81"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:45:37.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cd845973",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:15.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_715ffc70",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 404,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "578"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:51:55.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d1e61867",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_67"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:45.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_50af1007",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_49"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:53:28.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e3da76a6",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:13:26.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fecc6d38",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "60"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:50:39.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b8b0c732",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "251"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:09:45.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4b75c1f2",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:33:55.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_024ad439",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:45:16.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_972dfd3d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:32:12.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d342832e",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:51:12.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0c692858",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_34"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:46:48.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fd7ccc5a",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_24",
+      "limit": "val_100"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:24:55.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0fb0620e",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:51.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_663c575b",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:56:25.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_03fa0a44",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_85",
+      "limit": "val_78"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:22:13.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_414114a3",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_74",
+      "limit": "val_71"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:53:12.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0b7a93f4",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_85",
+      "limit": "val_67"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:32:04.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2c8eb1ce",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_95",
+      "limit": "val_6"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:17:39.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5607021c",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_94",
+      "limit": "val_9"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:02:54.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_25dedefd",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:37.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cfa7fbd4",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:22:55.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f7b580c4",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_82",
+      "limit": "val_48"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:40.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_452102b5",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "333"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:39:09.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3a726865",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "187"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:23:24.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3503187d",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "56"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:22:56.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_de1e7b69",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:30:35.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6818f4d3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_25"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:45:21.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_61e38dbf",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "431"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:56:29.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a30c0e2e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_31"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:57:32.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_33d9ed3b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_76",
+      "limit": "val_95"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:42:53.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_41c06462",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "416"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:44:42.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b297e693",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_73"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:27.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8d92bd0a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_24"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:15:33.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e22f385d",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "29"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:00.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_db8c08d1",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "427"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:02:39.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9ce29ede",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_26"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:41.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_34e1105c",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_49"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:23:26.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e327621c",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_29",
+      "limit": "val_46"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:28:07.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e48333a1",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:05:45.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_41cfd4a5",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "239"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:41:02.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e85897d0",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:37:16.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_096471e9",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "13"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:15:26.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d9257008",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:26:12.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_188ca6df",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_10",
+      "limit": "val_74",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:26.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_44f8c287",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "315"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:36:17.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5a249653",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:06:28.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_442f495e",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:36:21.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_efa2f4fb",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "436"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:23.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6be77b8b",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_81"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:22:38.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b9673174",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_64"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:51.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fe287fcb",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_52",
+      "limit": "val_98"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:46:43.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_44fc89a8",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "287"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:58:24.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0f23be23",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "116"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:30:57.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_33a28c66",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_65"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:06:03.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_27e49e6a",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "285"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:53:22.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3da238f1",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:54:30.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a5caed83",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:17:34.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fa85a638",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "393"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:19:46.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1c39dfdb",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_21"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:30:01.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_948935b1",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_26"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:24:42.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_05d46ab7",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_81"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:20:48.168207",
+    "ip": "10.0.0.9",
+    "user_id": "user_9",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2e832b8a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_71"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:11:18.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a96da6d0",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "317"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:20.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1005945b",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "117"
+    },
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:25:08.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_547471db",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:23:03.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e035b1f1",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:08:25.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e3e2e4f9",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "328"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:10:02.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b7dfcc20",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_94"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:14:48.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_089d0145",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:45.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_804010d2",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_90"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:15.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a361eaad",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "211"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:53:26.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_50ebd458",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:35:05.168207",
+    "ip": "10.0.0.14",
+    "user_id": "user_14",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2ee8a96c",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_27",
+      "limit": "val_76"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:01.168207",
+    "ip": "10.0.0.1",
+    "user_id": "user_1",
+    "tenant_id": "tenant1",
+    "session_id": "sess_35846305",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "42"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:55:09.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0cc55555",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "107"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:38.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a5ca9175",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_55"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:32.168207",
+    "ip": "10.0.0.3",
+    "user_id": "user_3",
+    "tenant_id": "tenant1",
+    "session_id": "sess_21751b75",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_3"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:24:40.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2e512901",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_23"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:23:47.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d49b9a71",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_63",
+      "limit": "val_93"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:21:23.168207",
+    "ip": "10.0.0.1",
+    "user_id": "user_1",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cbefdbb4",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:59:25.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_45c39b1f",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_78",
+      "limit": "val_92"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:20:14.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9efa2f0e",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_32"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:20.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b0a79b7a",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_17",
+      "limit": "val_96"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:55:03.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4d735b72",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_23"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:07.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_07ef8506",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "319"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:37:51.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e014db16",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_17",
+      "limit": "val_50"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:41:41.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_1acb3086",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_39"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:24:54.168207",
+    "ip": "10.0.0.3",
+    "user_id": "user_3",
+    "tenant_id": "tenant1",
+    "session_id": "sess_43f456ed",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_67",
+      "limit": "val_25"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:06.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e351ae24",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:41:15.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_02774cb3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_44"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:14:02.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_61ba3c73",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "314"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:28:48.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_76fb05d9",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "259"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:10.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2815b980",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_85"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:03:22.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0f82d52f",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_22"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:10:45.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3dbc4d7c",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "243"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:23:54.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_dd192840",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_12"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:30.168207",
+    "ip": "10.0.0.3",
+    "user_id": "user_3",
+    "tenant_id": "tenant1",
+    "session_id": "sess_9c5073d7",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_44",
+      "limit": "val_36"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:30:23.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f002b98d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_89",
+      "limit": "val_51"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:50:53.168207",
+    "ip": "10.0.0.19",
+    "user_id": "user_19",
+    "tenant_id": "tenant1",
+    "session_id": "sess_2213ca31",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:47:23.168207",
+    "ip": "10.0.0.4",
+    "user_id": "user_4",
+    "tenant_id": "tenant1",
+    "session_id": "sess_72312fb8",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:44:43.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_74774235",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_59",
+      "limit": "val_83"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:48:18.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5a51ed4b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_78",
+      "limit": "val_55"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:26:40.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_7937131a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_27"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:26:49.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_5d9ed906",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_34",
+      "limit": "val_27"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:12:24.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_984bd71d",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:02:19.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f09de7ba",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:22.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_43494eca",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 403,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "198"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:33:01.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bfe2e511",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:18:40.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_03e29467",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:13:38.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_35a8fd0d",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_15",
+      "limit": "val_34"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:47.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_6e3a191b",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:58:05.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_fbb30a46",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 404,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "528"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:46:20.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e513dadc",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:51:29.168207",
+    "ip": "10.0.0.17",
+    "user_id": "user_17",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e9ee11ec",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:30:30.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4a61c768",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:20:55.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_0ce016f1",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:10.168207",
+    "ip": "10.0.0.12",
+    "user_id": "user_12",
+    "tenant_id": "tenant1",
+    "session_id": "sess_682fef2f",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:18:58.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e934bc2c",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_52"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:45:47.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d12230a4",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:04:30.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_a00c9877",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_25",
+      "limit": "val_54"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:47:50.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_3f299d62",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_100"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:54:02.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_153e4aa4",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T20:56:05.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d960672b",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_52",
+      "limit": "val_87"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:44:29.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_74b394f5",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:22:14.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b6e9aa6a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_44",
+      "evil_1": "hack",
+      "evil_2": "hack",
+      "evil_3": "hack"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:28:05.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_4ae47ed6",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_7"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:59:57.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f1afa2e6",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_11",
+      "limit": "val_18"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:58:30.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d78ee78f",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_46"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:08:34.168207",
+    "ip": "10.0.0.16",
+    "user_id": "user_16",
+    "tenant_id": "tenant1",
+    "session_id": "sess_49472f6c",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "57"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:14:16.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_f18c87fa",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:07:59.168207",
+    "ip": "10.0.0.1",
+    "user_id": "user_1",
+    "tenant_id": "tenant1",
+    "session_id": "sess_579aa2dc",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_46",
+      "limit": "val_27"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:43:36.168207",
+    "ip": "10.0.0.13",
+    "user_id": "user_13",
+    "tenant_id": "tenant1",
+    "session_id": "sess_8cf587a2",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:23:23.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_25a7f61a",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_60"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:36:55.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d3b81caf",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_63",
+      "limit": "val_42"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:09:03.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_133af812",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_11"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:40:11.168207",
+    "ip": "10.0.0.2",
+    "user_id": "user_2",
+    "tenant_id": "tenant1",
+    "session_id": "sess_24544baa",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:27:56.168207",
+    "ip": "10.0.0.7",
+    "user_id": "user_7",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c44620ce",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_100",
+      "limit": "val_22"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:56:32.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_c871b55f",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:24:07.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_d7bf4fd3",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_6"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:07:40.168207",
+    "ip": "10.0.0.15",
+    "user_id": "user_15",
+    "tenant_id": "tenant1",
+    "session_id": "sess_ca6fc26d",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:17:33.168207",
+    "ip": "10.0.0.11",
+    "user_id": "user_11",
+    "tenant_id": "tenant1",
+    "session_id": "sess_e3763f8e",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "page": "val_66",
+      "limit": "val_69"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T21:08:52.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_cf7be6d7",
+    "endpoint": "/api/users/{id}",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {
+      "id": "311"
+    },
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:24:16.168207",
+    "ip": "10.0.0.10",
+    "user_id": "user_10",
+    "tenant_id": "tenant1",
+    "session_id": "sess_bb7790a7",
+    "endpoint": "/api/search",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {
+      "q": "val_67"
+    }
+  },
+  {
+    "timestamp": "2026-03-12T20:49:25.168207",
+    "ip": "10.0.0.6",
+    "user_id": "user_6",
+    "tenant_id": "tenant1",
+    "session_id": "sess_b4e0e5b0",
+    "endpoint": "/api/users/{id}",
+    "method": "PUT",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  },
+  {
+    "timestamp": "2026-03-12T21:09:59.168207",
+    "ip": "10.0.0.18",
+    "user_id": "user_18",
+    "tenant_id": "tenant1",
+    "session_id": "sess_75981934",
+    "endpoint": "/api/admin/stats",
+    "method": "GET",
+    "status_code": 200,
+    "user_agent": "Mozilla/5.0",
+    "path_params": {},
+    "query_params": {}
+  }
+]
