@@ -48,7 +48,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional
 
-from models import AgentState, Severity
+from schemas.agent_result import AgentState, Severity
 
 logger = logging.getLogger(__name__)
 
@@ -644,12 +644,13 @@ def build_agentic_spatio_temporal_graph(
     -------
     AgentGraph ready to call .run(AgentState(...))
     """
-    # Import here to avoid circular imports (this file is a sibling module)
-    from spatio_temporal_agent import (
+    # Import here to avoid circular imports at module load time.
+    # By the time this function is called, both modules are fully loaded.
+    from engine.agents.spatio_temporal.spatio_temporal_agent import (
         SpatioTemporalConfig,
         build_spatio_temporal_graph,
     )
-    from agent_framework import END
+    from engine.agents.spatio_temporal.agent_framework import END
 
     # Build the base graph (validate → score → severity → END  /  skip → END)
     graph = build_spatio_temporal_graph(spatio_config, registry)

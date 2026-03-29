@@ -32,7 +32,7 @@ import time
 from datetime import datetime
 from typing import Callable, Dict, List, Optional, Union
 
-from models import AgentState, AgentResult, Severity
+from schemas.agent_result import AgentState, AgentResult, Severity
 
 logger = logging.getLogger(__name__)
 

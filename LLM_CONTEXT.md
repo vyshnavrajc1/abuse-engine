@@ -523,3 +523,50 @@ abuse-engine/
 
 *Last updated: March 2026. Maintained by Jeff Emerson Mathew, NIT Puducherry.*  
 *Contact: jeff.emerson.mathew@gmail.com | Portfolio: aza3l.vercel.app*
+
+---
+
+# 11. Recent Progress & Validation (March 2026)
+
+## Summary of Recent Work
+
+- **System Health:** All agents (behavioral, semantic, spatiotemporal, coordinator) now pass syntax checks and smoke tests. End-to-end runs via `main.py` are stable.
+- **Behavioral Agent:** Now uses proper train/test split to avoid contamination. Validation script (`validate_behavioral.py`) supports research metrics and plotting.
+- **Semantic Agent:** Spec coverage expanded in `spec.yaml` for CICIDS2017. Confidence scores are nonzero for all test endpoints. No separate validate script (deterministic, rule-based; results integrated in combined validation).
+- **Spatiotemporal Agent:** LLM node wiring fixed; auto-activates if `GEMINI_API_KEY` is set. Schema adapter in place. Validation script (`validate_spatiotemporal.py`) supports plotting.
+- **Coordinator:** LLM reasoning layer added; outputs LLM-based explanations and fuses agent scores. All agent outputs now appear in final risk verdicts.
+- **Plotting:** `matplotlib` installed. Shared plotting utility (`plot_utils.py`) created. All validation scripts now support `--plot` and `--show` for ROC, PR, confusion matrix, and ablation bar charts. Plots saved to `figures/`.
+- **Cleanup:** Unused files (e.g., `spec2.yaml`) deleted. Codebase is clean and research-ready.
+
+## How to Run
+
+- **Full pipeline (risk scores, explainable output):**
+    ```bash
+    python main.py --max-events 50000
+    ```
+    - Prints per-event risk scores from all agents and coordinator, with LLM explanations if enabled.
+
+- **Validation & Plots:**
+    ```bash
+    python evaluation/validate_behavioral.py --plot
+    python evaluation/validate_spatiotemporal.py --plot
+    python evaluation/validate_combined.py --plot
+    ```
+    - Use `--show` to display plots interactively. Plots saved to `figures/`.
+
+## Agent Roles (Brief)
+
+- **Behavioral:** IsolationForest + rules on session features (rate, burst, entropy, etc.).
+- **Semantic:** Rule-based OpenAPI spec checker (ownership, enumeration, tampering, etc.).
+- **Spatiotemporal:** Graph-based features + IsolationForest + optional LLM for sequence/coordination anomalies.
+- **Coordinator:** Weighted fusion of all agent scores + LLM explanation.
+
+## Open Issues & Next Steps
+
+- [ ] Build `evaluation/validate_full_pipeline.py` for ablation table on CICIDS2017.
+- [ ] Build `scripts/convert_cicids.py` to map CICIDS flows to CanonicalEvent.
+- [ ] Add knowledge agent (human-in-the-loop attack retrieval) after research phase.
+- [ ] Further expand semantic rules/spec as needed for new datasets.
+
+---
+*This section auto-updated by Copilot (March 2026) to reflect all recent work, fixes, and plans discussed in the current context.*

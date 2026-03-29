@@ -18,6 +18,7 @@ import re
 import logging
 
 from schemas.event_schema import CanonicalEvent
+from schemas.agent_result import AgentResult, Severity
 
 logger = logging.getLogger(__name__)
 
@@ -182,7 +183,7 @@ class SemanticRuleEngine:
         probing_events = []
 
         for event in user_events:
-            endpoint = self.registry.get(event.endpoint, event.method)
+            endpoint = self.registry.get(event.request_path, event.http_method)
             if not endpoint:
                 continue
 
@@ -193,7 +194,7 @@ class SemanticRuleEngine:
                     object_access_sequence.append(obj_id)
                     unique_objects_per_endpoint[endpoint].add(obj_id)
 
-            if event.status_code in (403, 404) and obj_id:
+            if event.response_code in (403, 404) and obj_id:
                 probing_events.append({
                     'obj_id': obj_id,
                     'timestamp': event.timestamp
@@ -219,7 +220,7 @@ class SemanticRuleEngine:
         violations = 0
         total = 0
         for event in events:
-            endpoint = self.registry.get(event.endpoint, event.method)
+            endpoint = self.registry.get(event.request_path, event.http_method)
             if not endpoint or endpoint.type != 'single_object' or not endpoint.owner_field:
                 continue
             obj_id = event.path_params.get(endpoint.owner_field)
@@ -335,46 +336,60 @@ class SemanticGuardAgent:
         })
 
     def process_window(self, events: List[CanonicalEvent],
-                       window_start: datetime, window_end: datetime) -> Dict[str, Dict]:
+                       window_start: datetime, window_end: datetime) -> List[AgentResult]:
         """
         Process events in a time window.
-        Returns dict mapping user_id -> risk report.
+        Returns List[AgentResult] — one per user, with metadata["user_id"] set.
         """
-        # Filter events within window
         window_events = [e for e in events if window_start <= e.timestamp < window_end]
 
-        # Group by user
         user_events = defaultdict(list)
         for event in window_events:
             if event.user_id in self.admin_users:
                 continue
             user_events[event.user_id].append(event)
 
-        results = {}
+        results = []
         for user_id, evs in user_events.items():
-            # Use tenant_id from first event (assume consistent per user in window)
-            tenant_id = evs[0].tenant_id or 'default'
-            rule_scores = self.rule_engine.evaluate(evs, user_id, tenant_id)
+            rule_scores = self.rule_engine.evaluate(evs, user_id, "default")
 
-            total_weight = sum(self.weights.values())
-            if total_weight == 0:
-                total_weight = 1.0
-            overall = sum(rule_scores[rule] * self.weights.get(rule, 0) for rule in rule_scores) / total_weight
+            total_weight = sum(self.weights.values()) or 1.0
+            overall = sum(rule_scores[r] * self.weights.get(r, 0) for r in rule_scores) / total_weight
             overall = min(1.0, max(0.0, overall))
-
             confidence = self._compute_confidence(evs)
 
-            results[user_id] = {
-                'semantic_risk_score': overall,
-                'rule_breakdown': rule_scores,
-                'confidence': confidence
-            }
+            # Severity
+            if overall >= 0.8:
+                sev = Severity.HIGH
+            elif overall >= 0.6:
+                sev = Severity.MEDIUM
+            elif overall >= 0.3:
+                sev = Severity.LOW
+            else:
+                sev = Severity.INFO
+
+            flagged = [r for r, s in rule_scores.items() if s > 0.3]
+            explanation = (
+                f"User {user_id}: semantic risk {overall:.2f} "
+                f"(confidence {confidence:.2f}). "
+                + (f"Flagged rules: {', '.join(flagged)}." if flagged else "No rule violations detected.")
+            )
+
+            results.append(AgentResult(
+                agent="semantic",
+                risk_score=overall,
+                severity=sev,
+                flags=[f"semantic_{r}" for r in flagged],
+                explanation=explanation,
+                details={"rule_breakdown": rule_scores, "confidence": confidence},
+                metadata={"user_id": user_id},
+            ))
 
         return results
 
     def _compute_confidence(self, events: List[CanonicalEvent]) -> float:
         # Spec coverage: proportion of endpoint+method pairs present in registry
-        endpoints_in_events = set((e.endpoint, e.method) for e in events)
+        endpoints_in_events = set((e.request_path, e.http_method) for e in events)
         known_endpoints = set()
         for ep, meth in endpoints_in_events:
             if self.registry.get(ep, meth):

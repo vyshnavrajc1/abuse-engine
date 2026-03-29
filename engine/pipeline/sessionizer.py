@@ -12,7 +12,7 @@ class Session:
     30 minutes, it's considered a new session.
     """
     session_id: str
-    ip: str
+    source_ip: str
     user_id: str
     events: List[CanonicalEvent] = field(default_factory=list)
 
@@ -31,8 +31,8 @@ class Session:
 
     @property
     def endpoint_sequence(self) -> List[str]:
-        """Ordered list of endpoints the user visited."""
-        return [e.endpoint for e in self.events]
+        """Ordered list of request paths the user visited."""
+        return [e.request_path for e in self.events]
 
 
 def sessionize(events: List[CanonicalEvent], gap_seconds: float = 1800) -> List[Session]:
@@ -53,7 +53,7 @@ def sessionize(events: List[CanonicalEvent], gap_seconds: float = 1800) -> List[
     # Step 1: Group events by user identity
     grouped: Dict[str, List[CanonicalEvent]] = {}
     for e in events:
-        key = e.user_id or e.ip  # use user_id if available, otherwise IP
+        key = e.user_id or e.source_ip  # use user_id if available, otherwise IP
         grouped.setdefault(key, []).append(e)
 
     sessions = []
@@ -72,7 +72,7 @@ def sessionize(events: List[CanonicalEvent], gap_seconds: float = 1800) -> List[
                 # Gap too large — save current session, start new one
                 sessions.append(Session(
                     session_id=f"{key}_session_{session_counter}",
-                    ip=current[0].ip,
+                    source_ip=current[0].source_ip,
                     user_id=current[0].user_id or "",
                     events=current,
                 ))
@@ -85,7 +85,7 @@ def sessionize(events: List[CanonicalEvent], gap_seconds: float = 1800) -> List[
         if current:
             sessions.append(Session(
                 session_id=f"{key}_session_{session_counter}",
-                ip=current[0].ip,
+                source_ip=current[0].source_ip,
                 user_id=current[0].user_id or "",
                 events=current,
             ))

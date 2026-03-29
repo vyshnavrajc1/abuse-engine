@@ -1,8 +1,8 @@
 import math
+from typing import List, Optional
 import numpy as np
-from typing import List
 from sklearn.ensemble import IsolationForest
-from schemas.agent_result import AgentResult
+from schemas.agent_result import AgentResult, Severity
 from engine.pipeline.sessionizer import Session
 
 
@@ -28,13 +28,13 @@ def extract_features(session: Session) -> dict:
     avg_interval = sum(intervals) / len(intervals)
     std_interval = (sum((x - avg_interval) ** 2 for x in intervals) / len(intervals)) ** 0.5
 
-    endpoints = [e.endpoint for e in events]
+    endpoints = [e.request_path for e in events]
     freq = {}
     for ep in endpoints:
         freq[ep] = freq.get(ep, 0) + 1
     entropy = -sum((c / count) * math.log2(c / count) for c in freq.values())
 
-    errors = sum(1 for e in events if e.status_code >= 400)
+    errors = sum(1 for e in events if (e.response_code or 0) >= 400)
     error_rate = errors / count
 
     burst = 0
@@ -78,15 +78,55 @@ def features_to_vector(features: dict) -> list:
     ]
 
 
-def analyze(sessions: List[Session]) -> List[AgentResult]:
+def train_model(
+    sessions: List[Session],
+    contamination: float = 0.05,
+) -> IsolationForest:
+    """
+    Train a behavioral IsolationForest on baseline (benign) sessions.
+    Pass the returned model to analyze() to avoid train/test contamination.
+
+    Usage
+    -----
+        baseline_model = train_model(train_sessions)
+        results = analyze(test_sessions, model=baseline_model)
+    """
+    if not sessions:
+        raise ValueError("Need at least one session to train.")
+    feature_matrix = np.array([features_to_vector(extract_features(s)) for s in sessions])
+    model = IsolationForest(contamination=contamination, random_state=42, n_estimators=100)
+    model.fit(feature_matrix)
+    return model
+
+
+def analyze(
+    sessions: List[Session],
+    model: Optional[IsolationForest] = None,
+) -> List[AgentResult]:
+    """
+    Score sessions with the behavioral agent.
+
+    Parameters
+    ----------
+    sessions : List[Session]
+        Sessions to score.
+    model : IsolationForest, optional
+        Pre-trained model from train_model(). When supplied the function
+        scores only — no fitting occurs, eliminating train/test contamination.
+        When None (default), a fresh model is trained on `sessions` and then
+        scored — suitable for smoke tests but NOT for quantitative evaluation.
+    """
     if not sessions:
         return []
 
     all_features = [extract_features(s) for s in sessions]
     feature_matrix = np.array([features_to_vector(f) for f in all_features])
 
-    model = IsolationForest(contamination=0.3, random_state=42, n_estimators=100)
-    model.fit(feature_matrix)
+    if model is None:
+        # Unsupervised fallback: train and score on the same data.
+        # Acceptable for quick runs; use train_model() for real evaluation.
+        model = IsolationForest(contamination=0.3, random_state=42, n_estimators=100)
+        model.fit(feature_matrix)
 
     raw_scores = model.decision_function(feature_matrix)
     predictions = model.predict(feature_matrix)
@@ -117,11 +157,26 @@ def analyze(sessions: List[Session]) -> List[AgentResult]:
         if is_anomaly:
             flags.append("model_anomaly")
 
+        if risk_score >= 0.8:
+            sev = Severity.HIGH
+        elif risk_score >= 0.6:
+            sev = Severity.MEDIUM
+        elif risk_score >= 0.3:
+            sev = Severity.LOW
+        else:
+            sev = Severity.INFO
+
+        explanation = (
+            f"Session {session.session_id}: risk={risk_score:.2f}. "
+            + (f"Signals: {', '.join(flags)}." if flags else "No anomalous signals detected.")
+        )
+
         results.append(AgentResult(
             agent="behavioral",
             risk_score=risk_score,
+            severity=sev,
             flags=flags,
-            explanation=f"Session {session.session_id}: {', '.join(flags) or 'normal'}",
+            explanation=explanation,
             metadata={
                 **features,
                 "is_anomaly": is_anomaly,
