@@ -1,284 +1,209 @@
 """
-main.py – Abuse Engine: production runner
+APISentry Main Runner
 
-Runs all three agents on a batch of events and produces:
-  • Per-user risk scores with XAI explanations from each agent
-  • Coordinator final verdict (weighted risk score + assembled explanation)
+Entry point for Phase 1: Volume + Temporal + Auth agents on CICIDS 2017.
 
-For research validation metrics (F1, AUC, precision/recall, plots) use:
-  python evaluation/validate_spatiotemporal.py --save-results
-  python evaluation/validate_behavioral.py     --save-results
-  python evaluation/validate_combined.py       --save-results
+Usage:
+    python main.py \
+        --data datasets/processed/ \
+        --window 500 \
+        --max-records 50000 \
+        --output results/phase1.json \
+        --warmup-batches 10
 
-Usage
------
-  # Production mode — CICIDS2017 dataset (requires datasets/cicids_canonical.jsonl)
-  python main.py
-
-  # Quick test — synthetic mock logs (no dataset required)
-  python main.py --mock
-
-  # Limit events for a fast smoke test
-  python main.py --max-events 5000
+The pipeline:
+  1. Ingest CICIDS 2017 processed CSV(s) in sliding windows.
+  2. For each window → MetaAgentOrchestrator.run(batch).
+  3. Collect FusionVerdicts and evaluate against ground truth.
+     Evaluation is BATCH-LEVEL (majority label per batch), not per-record.
+  4. Save metrics to results/.
 """
 
+from __future__ import annotations
 import argparse
 import json
-import os
+import logging
 import sys
-from datetime import timedelta
+from datetime import datetime
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(PROJECT_ROOT))
+# ── path setup ──────────────────────────────────────────────────────────────
+sys.path.insert(0, str(Path(__file__).parent))
 
-from engine.ingestion.cicids_loader import load_cicids, DEFAULT_PATH
-from engine.normalization.normalizer import normalize
-from engine.pipeline.sessionizer import sessionize
-from engine.agents.behavioral import analyze as behavioral_analyze
-from engine.agents.semantic import SemanticGuardAgent
-from engine.agents.spatio_temporal.spatio_temporal_agent import (
-    SpatioTemporalPipeline,
-    SpatioTemporalConfig,
+from engine.coordinator.meta_agent import MetaAgentOrchestrator
+from engine.ingestion.cicids_ingestion import CICIDSIngestion
+from engine.memory.shared_memory import SharedMemory
+from evaluation.evaluator import Evaluator
+from schemas.models import FusionVerdict
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
+    datefmt="%H:%M:%S",
 )
-from engine.coordinator.coordinator import Coordinator, CoordinatorLLMConfig
-
-# Optional LLM layer — activates automatically when GEMINI_API_KEY is set
-try:
-    from engine.agents.spatio_temporal.llm_agent_node import LLMConfig as _LLMConfig
-    _LLM_AVAILABLE = True
-except ImportError:
-    _LLM_AVAILABLE = False
-    _LLMConfig = None
+logger = logging.getLogger("apisentry.main")
 
 
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
+def run(
+    data_path: str,
+    window_size: int = 500,
+    max_records: int = 0,
+    output_path: str = "results/phase1.json",
+    verbose: bool = False,
+    warmup_batches: int = 10,
+) -> None:
 
-VERDICT_ICON = {"normal": "✅", "suspicious": "⚠️ ", "attack": "🚨"}
+    if verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
 
+    logger.info("=" * 60)
+    logger.info("  APISentry Phase 1 — CICIDS 2017")
+    logger.info("  Agents: Volume | Temporal | Auth | MetaOrchestrator")
+    logger.info("  Evaluation: batch-level majority-label")
+    logger.info("  Warm-up batches (learn only): %d", warmup_batches)
+    logger.info("=" * 60)
 
-def _section(title: str) -> None:
-    print(f"\n{'═' * 65}")
-    print(f"  {title}")
-    print(f"{'═' * 65}")
+    # ── Setup ────────────────────────────────────────────────────────────────
+    memory = SharedMemory(window_seconds=60)
+    orchestrator = MetaAgentOrchestrator(memory)
+    ingestion = CICIDSIngestion(data_path, window_size=window_size, max_records=max_records)
+    evaluator = Evaluator()
 
+    verdicts_log = []
+    batch_num = 0
 
-def _print_agent_result(result) -> None:
-    icon = "🔴" if result.risk_score >= 0.7 else ("🟡" if result.risk_score >= 0.4 else "🟢")
-    print(f"    {icon} [{result.agent.upper()}] risk={result.risk_score:.3f}  "
-          f"severity={result.severity}  flags={result.flags}")
-    if result.explanation:
-        for line in result.explanation.split(" | "):
-            print(f"       {line}")
+    # ── Main loop ────────────────────────────────────────────────────────────
+    for batch in ingestion.batches():
+        batch_num += 1
+        logger.info("Batch %d | %d records", batch_num, len(batch))
 
+        verdict: FusionVerdict = orchestrator.run(batch)
 
-def _print_coordinator_result(r) -> None:
-    icon = VERDICT_ICON.get(r.verdict, "?")
-    print(f"\n  {icon} {r.user_id}")
-    print(f"    Verdict     : {r.verdict.upper()}")
-    print(f"    Final score : {r.final_score:.3f}   confidence={r.confidence:.2f}")
-    print(f"    Agents      : {r.agent_scores}")
-    print(f"    Flags       : {r.all_flags[:8]}")
-    print(f"    Explanation : {r.explanation[:200]}")
-    if r.llm_analysis:
-        la = r.llm_analysis
-        print(f"    🤖 LLM      : verdict={la.get('verdict')}  "
-              f"confidence={la.get('confidence', 0):.2f}  "
-              f"type={la.get('attack_type', '?')}  "
-              f"MITRE={la.get('mitre_technique', 'N/A')}")
-        reasoning = str(la.get("reasoning", ""))
-        if reasoning:
-            print(f"       Reasoning : {reasoning[:160]}")
+        # ── Evaluate using majority-label (skip warm-up batches) ─────────────
+        # Warm-up batches are still processed (agents build baselines) but
+        # they are not scored, since thresholds aren't yet calibrated.
+        in_warmup = batch_num <= warmup_batches
+        if not in_warmup:
+            evaluator.add_batch(verdict, batch)
 
+        # ── Logging ──────────────────────────────────────────────────────────
+        attack_count = sum(1 for r in batch if r.is_attack)
+        attack_ratio = attack_count / len(batch)
+        gt_label = "ATTACK" if attack_ratio > 0.5 else "BENIGN"
+        pred_label = "ATTACK" if verdict.is_attack else "CLEAN"
+        correct = (gt_label == "ATTACK") == verdict.is_attack
 
-# ---------------------------------------------------------------------------
-# Mock-log path (small built-in test)
-# ---------------------------------------------------------------------------
+        status_icon = "✓" if correct else "✗"
+        warmup_tag = " [WARMUP]" if in_warmup else ""
 
-def run_mock() -> None:
-    _section("MOCK MODE — datasets/mock_logs.json")
-    mock_path = PROJECT_ROOT / "datasets" / "mock_logs.json"
-    if not mock_path.exists():
-        print("  mock_logs.json not found — skipping mock mode.")
-        return
-
-    with open(mock_path) as f:
-        raw = json.load(f)
-    from engine.normalization.normalizer import normalize
-    events = normalize(raw)
-    print(f"  Loaded {len(events)} events from mock_logs.json")
-    _run_pipeline(events, train_events=None)
-
-
-# ---------------------------------------------------------------------------
-# Core pipeline  (shared by CICIDS mode and mock mode)
-# ---------------------------------------------------------------------------
-
-def _run_pipeline(test_events, train_events=None, max_users: int = 20) -> None:
-    # ── 1. Sessionize ──────────────────────────────────────────────────
-    sessions = sessionize(test_events)
-    print(f"  Sessionized into {len(sessions)} sessions")
-
-    # ── 2. Behavioral agent ────────────────────────────────────────────
-    _section("BEHAVIORAL AGENT")
-    behavioral_results = behavioral_analyze(sessions)
-    print(f"  Analyzed {len(behavioral_results)} sessions")
-    top_b = sorted(behavioral_results, key=lambda r: r.risk_score, reverse=True)[:5]
-    for r in top_b:
-        _print_agent_result(r)
-
-    # ── 3. Semantic agent ──────────────────────────────────────────────
-    _section("SEMANTIC AGENT")
-    semantic_config = {
-        "admin_users": [],
-        "weights": {
-            "ownership_violation": 0.4,
-            "enumeration": 0.2,
-            "volume_mismatch": 0.2,
-            "parameter_tampering": 0.1,
-            "probing": 0.1,
-        },
-        "volume_low_threshold": 5,
-        "volume_medium_threshold": 10,
-        "volume_high_threshold": 20,
-    }
-    semantic_agent = SemanticGuardAgent(
-        str(PROJECT_ROOT / "spec.yaml"),
-        lambda obj_id, tenant: None,
-        semantic_config,
-    )
-    from datetime import datetime
-    if test_events:
-        all_ts = [e.timestamp for e in test_events]
-        win_start = min(all_ts) - timedelta(minutes=1)
-        win_end   = max(all_ts) + timedelta(minutes=1)
-    else:
-        win_start = win_end = datetime.utcnow()
-
-    semantic_results = semantic_agent.process_window(test_events, win_start, win_end)
-    print(f"  Analyzed {len(semantic_results)} users")
-    top_s = sorted(semantic_results, key=lambda r: r.risk_score, reverse=True)[:5]
-    for r in top_s:
-        _print_agent_result(r)
-
-    # ── 4. Spatiotemporal agent ────────────────────────────────────────
-    _section("SPATIOTEMPORAL AGENT")
-    import tempfile, os
-    with tempfile.TemporaryDirectory() as tmpdir:
-        config = SpatioTemporalConfig(
-            model_path=os.path.join(tmpdir, "isolation_forest.joblib"),
-            contamination=0.05,
-        )
-        # Auto-enable Gemini LLM layer if API key is present
-        llm_cfg = None
-        if _LLM_AVAILABLE and os.environ.get("GEMINI_API_KEY"):
-            llm_cfg = _LLMConfig()
-            print("  Gemini LLM layer: ENABLED (GEMINI_API_KEY found)")
-        else:
-            print("  Gemini LLM layer: DISABLED (set GEMINI_API_KEY to enable)")
-        pipeline = SpatioTemporalPipeline(config=config, llm_config=llm_cfg)
-
-        if train_events and len(train_events) >= 50:
-            print(f"  Training on {len(train_events):,} baseline events …", end=" ", flush=True)
-            try:
-                pipeline.train_baseline(train_events)
-                print("done")
-            except ValueError as exc:
-                print(f"skipped ({exc})")
-
-        if pipeline.registry.is_ready:
-            state = pipeline.process(test_events)
-            spatio_result = next(
-                (r for r in state.results if r.agent == "spatio_temporal"), None
+        if verdict.is_attack or verbose or not correct:
+            logger.info(
+                "  %s %s → %s | gt=%s(%d%%) | %s | conf=%.2f%s",
+                status_icon,
+                pred_label,
+                verdict.threat_type.value,
+                gt_label,
+                int(attack_ratio * 100),
+                verdict.compound_signals[0] if verdict.compound_signals else "—",
+                verdict.confidence_score,
+                warmup_tag,
             )
-            if spatio_result:
-                _print_agent_result(spatio_result)
-            llm_analysis = state.metadata.get("llm_analysis")
-            if llm_analysis:
-                print(f"\n  🤖 LLM Analysis:")
-                print(f"     Verdict     : {llm_analysis.get('verdict', '?')}")
-                print(f"     Confidence  : {llm_analysis.get('confidence', 0):.2f}")
-                print(f"     Attack type : {llm_analysis.get('attack_type', 'unknown')}")
-                print(f"     MITRE       : {llm_analysis.get('mitre_technique', 'N/A')}")
-                print(f"     Reasoning   : {str(llm_analysis.get('reasoning', ''))[:200]}")
-                actions = llm_analysis.get("recommended_actions", [])
-                if actions:
-                    print(f"     Actions     : {actions[0]}")
-                print(f"     Tools used  : {llm_analysis.get('tool_calls_made', [])}")
-        else:
-            spatio_result = None
-            print("  Spatiotemporal agent skipped (model not trained).")
+            if verbose:
+                logger.debug(verdict.explanation)
 
-        # ── 5. Coordinator ─────────────────────────────────────────────
-        _section("COORDINATOR — FINAL VERDICTS")
-        # Auto-enable coordinator LLM enrichment if API key is present
-        coord_llm_cfg = None
-        if _LLM_AVAILABLE and os.environ.get("GEMINI_API_KEY"):
-            coord_llm_cfg = CoordinatorLLMConfig()
-            print("  Coordinator LLM reasoning: ENABLED")
-        coordinator  = Coordinator(llm_config=coord_llm_cfg)
-        all_per_user = behavioral_results + semantic_results
-        final        = coordinator.combine(all_per_user, spatio_result=spatio_result)
+        if not in_warmup:
+            verdicts_log.append({
+                "batch": batch_num,
+                "is_attack": verdict.is_attack,
+                "threat_type": verdict.threat_type.value,
+                "confidence": verdict.confidence_score,
+                "contributing_agents": verdict.contributing_agents,
+                "compound_signals": verdict.compound_signals,
+                "ground_truth_categories": list({r.attack_category for r in batch}),
+                "ground_truth_attack_ratio": round(attack_ratio, 3),
+                "majority_label": gt_label,
+                "correct": correct,
+            })
 
-        attacks    = [r for r in final if r.verdict == "attack"]
-        suspicious = [r for r in final if r.verdict == "suspicious"]
-        normal     = [r for r in final if r.verdict == "normal"]
+    # ── Evaluation ───────────────────────────────────────────────────────────
+    if evaluator._y_true:
+        result = evaluator.compute()
+        print("\n" + result.summary())
 
-        print(f"  Showing top {min(max_users, len(final))} users by risk score:\n")
-        for r in final[:max_users]:
-            _print_coordinator_result(r)
+        # Save results
+        output = Path(output_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "run_timestamp": datetime.utcnow().isoformat(),
+            "config": {
+                "data_path": str(data_path),
+                "window_size": window_size,
+                "max_records": max_records,
+                "warmup_batches": warmup_batches,
+                "evaluation_mode": "batch_majority_label",
+            },
+            "metrics": {
+                "precision":         result.precision,
+                "recall":            result.recall,
+                "f1":                result.f1,
+                "accuracy":          result.accuracy,
+                "total_batches":     result.total_samples,
+                "attack_batches":    result.true_attacks,
+                "detected_attacks":  result.detected_attacks,
+                "false_positives":   result.false_positives,
+                "false_negatives":   result.false_negatives,
+            },
+            "per_threat": result.per_threat,
+            "verdicts": verdicts_log,
+        }
+        with open(output, "w") as f:
+            json.dump(payload, f, indent=2)
+        logger.info("Results saved → %s", output)
+    else:
+        logger.warning("No records evaluated. Check data path or --warmup-batches value.")
 
-        # ── 6. Summary ─────────────────────────────────────────────────
-        _section("SUMMARY")
-        print(f"  🚨 Attacks    : {len(attacks)}")
-        print(f"  ⚠️  Suspicious : {len(suspicious)}")
-        print(f"  ✅ Normal     : {len(normal)}")
-        print(f"  Total users  : {len(final)}")
-        if attacks:
-            print(f"\n  Top attack explanations:")
-            for r in attacks[:3]:
-                print(f"    • {r.explanation[:160]}")
 
+# ── CLI ──────────────────────────────────────────────────────────────────────
 
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Abuse Engine — production runner")
-    parser.add_argument("--mock",       action="store_true",
-                        help="Use mock_logs.json instead of CICIDS2017")
-    parser.add_argument("--max-events", type=int, default=None,
-                        help="Cap number of test events (for quick runs)")
+def main():
+    parser = argparse.ArgumentParser(description="APISentry Phase 1 Runner")
+    parser.add_argument(
+        "--data",
+        default="datasets/processed/",
+        help="Path to CICIDS 2017 processed CSV(s)",
+    )
+    parser.add_argument(
+        "--window", type=int, default=500,
+        help="Records per batch window (default: 500)",
+    )
+    parser.add_argument(
+        "--max-records", type=int, default=0,
+        help="Limit total records (0 = all)",
+    )
+    parser.add_argument(
+        "--output",
+        default="results/phase1.json",
+        help="Output JSON for metrics",
+    )
+    parser.add_argument(
+        "--warmup-batches", type=int, default=10,
+        help="First N batches used only for baseline learning, not scored (default: 10)",
+    )
+    parser.add_argument(
+        "--verbose", "-v", action="store_true",
+        help="Enable debug logging and print all verdicts",
+    )
     args = parser.parse_args()
 
-    if args.mock:
-        run_mock()
-        return
-
-    # ── CICIDS2017 mode ────────────────────────────────────────────────
-    _section("ABUSE ENGINE — CICIDS2017 MODE")
-    dataset_path = DEFAULT_PATH
-    if not dataset_path.exists():
-        print(
-            f"ERROR: {dataset_path} not found.\n"
-            "Run:  python scripts/convert_cicids.py\n"
-            "Or use --mock for quick testing.",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-
-    print(f"  Loading {dataset_path} …")
-    train_events, test_events, _, _ = load_cicids(
-        dataset_path,
-        max_test=args.max_events,
+    run(
+        data_path=args.data,
+        window_size=args.window,
+        max_records=args.max_records,
+        output_path=args.output,
+        verbose=args.verbose,
+        warmup_batches=args.warmup_batches,
     )
-    print(f"  Train events : {len(train_events):>10,}  (Monday BENIGN baseline)")
-    print(f"  Test events  : {len(test_events):>10,}")
-
-    _run_pipeline(test_events, train_events=train_events)
 
 
 if __name__ == "__main__":
