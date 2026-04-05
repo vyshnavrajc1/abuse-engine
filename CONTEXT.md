@@ -74,6 +74,131 @@ abuse-engine/
 
 ## Architecture
 
+### Diagrams
+
+#### Research Prototype — Phase 1 (current implementation only)
+
+```mermaid
+flowchart TB
+    CSV["📄 CICIDS 2017\nProcessed CSV\n50k records · Phase 1"]
+    ING["CICIDSIngestion\nSliding window · 500 rec/batch"]
+
+    subgraph MEMORY["Shared Memory — in-process dicts"]
+        STM["STM\nSliding window counters"]
+        LTM["LTM\nPer-IP rate baselines"]
+        EB["Evidence Board\nCross-agent blackboard"]
+    end
+
+    subgraph TOOLREG["Tool Registry"]
+        TT["run_statistical_test\ndetect_periodicity\nquery_historical_baseline\npost / read evidence_board"]
+    end
+
+    subgraph POOL["Detection Agents — ThreadPoolExecutor (parallel)"]
+        VA["🔢 VolumeAgent\nOODA Loop · max 3 iterations\ndom_ratio · rate · latency guard\nDoS · DDoS · Scraping"]
+        TA["⏰ TemporalAgent\nOODA Loop · max 3 iterations\nFFT · KS-test · IAT resolution guard\nBot activity · Off-hours"]
+        AA["🔐 AuthAgent\nOODA Loop · max 3 iterations\nFailure streaks · success rate\nBrute force · Credential stuffing"]
+    end
+
+    LLM["🤖 Ollama qwen2.5:7b\nOptional — overrides per-agent verdict\nvia _llm_conclude · falls back on error"]
+
+    subgraph ORCH["MetaAgentOrchestrator"]
+        CSIG["Compound Signal Detection\ne.g. DoS + Bot Timing → Scraping Bot"]
+        WCF["Weighted Confidence Fusion\nattack threshold 0.60 · single-agent 0.80"]
+        MLLM["LLM Meta-Fusion — optional\n_llm_fuse · falls back on error"]
+        CSIG --> WCF --> MLLM
+    end
+
+    VERDICT["FusionVerdict\nis_attack · threat_type · confidence\ncompound_signals · explanation"]
+    EVAL["Evaluator\nBatch majority-label metrics"]
+    RESULTS["results/phase1.json\nAccuracy 92.22% · Precision 1.0\nRecall 0.923 · F1 0.96 · FPR 0%"]
+
+    CSV --> ING
+    ING -->|each batch| MEMORY
+    ING -->|each batch| POOL
+    MEMORY <-->|read / write STM + LTM| POOL
+    EB <-->|post / read| POOL
+    TOOLREG <-.->|dynamic tool calls| POOL
+    LLM -.->|conclude override| POOL
+    POOL -->|AgentFinding ×3| ORCH
+    LLM -.->|meta-fusion| MLLM
+    ORCH --> VERDICT --> EVAL --> RESULTS
+```
+
+#### Product Vision — Full System (future)
+
+```mermaid
+flowchart TB
+    subgraph INGEST["① Ingestion Layer"]
+        SRC1["AWS API Gateway"]
+        SRC2["Kong Gateway"]
+        SRC3["Nginx"]
+        KF["Kafka Stream\nReal-time"]
+    end
+
+    subgraph PARSE["② Parse & Enrich"]
+        LP["Universal Log Parser"]
+        FE["Feature Extractor\nrate counters · entropy · auth streaks"]
+        SS["Session Stitcher\nIP + UA + API Key"]
+    end
+
+    subgraph MEM3["③ Shared Memory — Three Tiers"]
+        REDIS["Redis — STM\nActive sessions · Evidence Board\nTTL 1h · latency <1ms"]
+        PG["PostgreSQL — LTM\nIP/key/endpoint baselines\nGeo profiles · latency <10ms"]
+        S3ST["S3/Parquet — Archive\n90-day log history\nModel training data"]
+    end
+
+    INTEL["④ ThreatIntelSyncer\nasync background task · runs hourly\nAbuseIPDB · AlienVault OTX\nFeodo Tracker · GreyNoise\n→ warms LTM reputation cache"]
+
+    subgraph AGENTS6["⑤ Detection Agents — parallel, trigger-based"]
+        VA2["🔢 VolumeAgent\nDoS · DDoS · Scraping\nIsolation Forest · EWMA · Z-score"]
+        TA2["⏰ TemporalAgent\nBot Periodicity · Off-hours\nFFT · KS-test · CUSUM"]
+        AA2["🔐 AuthAgent\nBrute Force · Credential Stuffing\nToken sharing · Key rotation"]
+        SA2["🔗 SequenceAgent\nBOLA · Enumeration · BFLA\nMarkov Chain · LSTM/GRU"]
+        PA2["📦 PayloadAgent\nSQLi · Path Traversal · XSS\nResponse size anomaly"]
+        GA2["🌍 GeoIPAgent\nImpossible Travel · VPN/Tor\nASN reputation · MaxMind GeoLite2"]
+        KA2["🧠 KnowledgeAgent\nActive threat memory\nCross-batch pattern synthesis\nConfidence-gated write · decay"]
+    end
+
+    subgraph TOOLS2["⑥ Tool Registry — extended"]
+        TR2["run_statistical_test · detect_periodicity\nlookup_geoip · query_ip_reputation\ncalculate_similarity · get_session_history\nquery_knowledge_base · update_knowledge_base"]
+    end
+
+    LLM2["🤖 LLM — GPU Server\nOllama / vLLM · qwen2.5:7b\nPer-agent conclude + MetaAgent fusion"]
+
+    subgraph META2["⑦ MetaAgentOrchestrator — LangGraph"]
+        MC2["Compound Signal Detection\n5+ compound rules"]
+        MF2["XGBoost Stacking Fusion\ntrained on agent confidence vectors"]
+        MR2["Conflict Resolution\n+ Active Re-investigation"]
+        ML2["LLM Authoritative Verdict"]
+        MC2 --> MF2 --> MR2 --> ML2
+    end
+
+    subgraph OUT2["⑧ Output & Enforcement"]
+        DASH2["Dashboard\nNext.js + D3.js"]
+        ALERT2["Alerts\nSlack · PagerDuty · Email"]
+        WAF2["WAF Rule Injection\nAWS WAF · Cloudflare\nlatency to block: 5–30s"]
+        BLCK["Redis Blocklist Sidecar\nGateway plugin lookup\n<1ms enforcement"]
+        TDB2["Threat DB\nCase history · Evidence chains"]
+    end
+
+    SRC1 & SRC2 & SRC3 & KF --> LP
+    LP --> FE --> SS
+    SS --> REDIS
+    INTEL -.->|warm cache hourly| PG
+    REDIS <-->|STM read/write| AGENTS6
+    PG <-->|LTM read/write| AGENTS6
+    S3ST -.->|training data| MF2
+    TOOLS2 <-.->|dynamic tool calls| AGENTS6
+    LLM2 -.->|per-agent verdict override| AGENTS6
+    KA2 <-->|query / update| AGENTS6
+    AGENTS6 -->|AgentFinding ×6| META2
+    LLM2 -.->|meta-fusion| ML2
+    META2 --> DASH2 & ALERT2 & TDB2
+    META2 --> WAF2 & BLCK
+```
+
+---
+
 ### Why Truly Agentic (not a pipeline)
 
 Most "multi-agent" systems are actually multi-model pipelines — fixed features → model → score. APISentry is different:
