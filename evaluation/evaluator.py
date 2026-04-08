@@ -102,6 +102,7 @@ class Evaluator:
     def __init__(self):
         self._y_true: List[int] = []           # 1=attack, 0=benign
         self._y_pred: List[int] = []           # 1=attack, 0=benign
+        self._y_prob: List[float] = []         # confidence scores (0-1)
         self._y_true_threat: List[str] = []    # ground-truth category
         self._y_pred_threat: List[str] = []    # predicted threat type
 
@@ -137,6 +138,7 @@ class Evaluator:
 
         self._y_true.append(int(majority_is_attack))
         self._y_pred.append(int(verdict.is_attack))
+        self._y_prob.append(verdict.confidence_score)
         self._y_true_threat.append(majority_category)
         # Normalise predicted threat label to match ground-truth casing
         # (e.g. ThreatType.DOS.value = "DOS" but ground truth is "DoS")
@@ -152,6 +154,7 @@ class Evaluator:
         """Legacy per-record evaluation. Prefer add_batch() for batch-level systems."""
         self._y_true.append(int(ground_truth_is_attack))
         self._y_pred.append(int(verdict.is_attack))
+        self._y_prob.append(verdict.confidence_score)
         self._y_true_threat.append(ground_truth_category)
         pred_label = verdict.threat_type.value if verdict.is_attack else "Benign"
         self._y_pred_threat.append(self._normalise_threat_label(pred_label))
@@ -190,6 +193,81 @@ class Evaluator:
             per_threat=per_threat,
             confusion=cm,
         )
+
+    def save_plots(self, output_dir: str | Path) -> None:
+        """
+        Generate and save Confusion Matrix, ROC, and PR curves.
+        """
+        import matplotlib.pyplot as plt
+        from pathlib import Path
+        from sklearn.metrics import (
+            ConfusionMatrixDisplay,
+            RocCurveDisplay,
+            PrecisionRecallDisplay,
+        )
+
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+
+        y_true = np.array(self._y_true)
+        y_pred = np.array(self._y_pred)
+        y_prob = np.array(self._y_prob)
+
+        # 1. Confusion Matrix
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ConfusionMatrixDisplay.from_predictions(
+            y_true, y_pred,
+            display_labels=["Benign", "Attack"],
+            cmap=plt.cm.Blues,
+            ax=ax
+        )
+        ax.set_title("Confusion Matrix")
+        plt.tight_layout()
+        plt.savefig(output_path / "confusion_matrix.png")
+        plt.close()
+
+        # 2. ROC Curve
+        if len(np.unique(y_true)) > 1:
+            fig, ax = plt.subplots(figsize=(8, 6))
+            RocCurveDisplay.from_predictions(y_true, y_prob, ax=ax)
+            ax.set_title("ROC Curve")
+            plt.grid(True, linestyle="--", alpha=0.6)
+            plt.tight_layout()
+            plt.savefig(output_path / "roc_curve.png")
+            plt.close()
+
+        # 3. Precision-Recall Curve
+        if len(np.unique(y_true)) > 1:
+            fig, ax = plt.subplots(figsize=(8, 6))
+            PrecisionRecallDisplay.from_predictions(y_true, y_prob, ax=ax)
+            ax.set_title("Precision-Recall Curve")
+            plt.grid(True, linestyle="--", alpha=0.6)
+            plt.tight_layout()
+            plt.savefig(output_path / "precision_recall_curve.png")
+            plt.close()
+
+        # 4. Per-Threat F1 Score (Bar Chart)
+        metrics = self._per_threat_metrics()
+        if metrics:
+            fig, ax = plt.subplots(figsize=(10, 6))
+            threats = list(metrics.keys())
+            f1_scores = [m["f1"] for m in metrics.values()]
+            
+            bars = ax.bar(threats, f1_scores, color='skyblue')
+            ax.set_title("F1 Score by Threat Category")
+            ax.set_ylabel("F1 Score")
+            ax.set_ylim(0, 1.1)
+            plt.xticks(rotation=45, ha='right')
+            
+            # Add value labels
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2., height + 0.02,
+                        f'{height:.2f}', ha='center', va='bottom')
+
+            plt.tight_layout()
+            plt.savefig(output_path / "per_threat_f1.png")
+            plt.close()
 
     def _per_threat_metrics(self) -> Dict[str, Dict[str, float]]:
         """Per ground-truth threat-type precision/recall/F1."""

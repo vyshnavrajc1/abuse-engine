@@ -173,6 +173,10 @@ def run(
         with open(output, "w") as f:
             json.dump(payload, f, indent=2)
         logger.info("Results saved → %s", output)
+
+        # Save plots
+        evaluator.save_plots(output.parent)
+        logger.info("Plots saved → %s/", output.parent)
     else:
         logger.warning("No records evaluated. Check data path or --warmup-batches value.")
 
