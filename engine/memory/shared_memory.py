@@ -117,6 +117,32 @@ class LongTermMemory:
             vals = self._ip_rates[ip]
             return (sum(vals) / len(vals)) if vals else None
 
+    # ── IAT reference pool (used by TemporalAgent KS-test) ──────────────
+
+    _MIN_IAT_REFERENCE = 200   # minimum samples before the reference is used
+    _MAX_IAT_REFERENCE = 2000  # cap to keep memory bounded
+
+    def add_iat_samples(self, samples: List[float]) -> None:
+        """Accumulate inter-arrival time samples for the KS-test reference pool."""
+        with self._lock:
+            if not hasattr(self, "_iat_reference"):
+                self._iat_reference: List[float] = []
+            combined = self._iat_reference + [s for s in samples if s > 0]
+            if len(combined) > self._MAX_IAT_REFERENCE:
+                step = max(1, len(combined) // self._MAX_IAT_REFERENCE)
+                combined = combined[::step]
+            self._iat_reference = combined
+
+    def get_iat_reference(self) -> List[float]:
+        """Return accumulated IAT reference samples (empty list if not yet ready)."""
+        with self._lock:
+            return list(getattr(self, "_iat_reference", []))
+
+    def has_iat_reference(self) -> bool:
+        """True once the pool has enough samples for a reliable KS-test."""
+        with self._lock:
+            return len(getattr(self, "_iat_reference", [])) >= self._MIN_IAT_REFERENCE
+
 
 # ---------------------------------------------------------------------------
 # Evidence Board  (blackboard)

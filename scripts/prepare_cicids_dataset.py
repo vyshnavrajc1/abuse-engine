@@ -17,7 +17,7 @@ OUTPUT_FILE = "cicids2017_api_logs.csv"
 # Column name candidates (including spaces)
 TIMESTAMP_CANDIDATES = ['Timestamp', ' Timestamp', 'Time', 'Start Time']
 SRC_IP_CANDIDATES   = ['Src IP', ' Source IP', 'Source IP', 'SrcAddr', ' Source Address']
-DST_PORT_CANDIDATES  = ['Dst Port', ' Destination Port', 'Port', ' Destination Port']
+DST_PORT_CANDIDATES  = ['Destination Port', 'Dst Port', 'Port']
 FLOW_DURATION_CANDIDATES = ['Flow Duration', ' Flow Duration']
 TOTAL_FWD_PKTS_CANDIDATES = ['Total Fwd Packets', ' Total Fwd Packets']
 LABEL_CANDIDATES    = ['Label', ' Label', 'Attack', ' Attack']

@@ -20,6 +20,7 @@ Key calibrations:
 """
 
 from __future__ import annotations
+import dataclasses
 import logging
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -41,6 +42,25 @@ from schemas.models import (
 
 
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Agent domain map — which threat types each agent is responsible for
+# ---------------------------------------------------------------------------
+
+_AGENT_DOMAINS: Dict[str, frozenset] = {
+    "VolumeAgent":   frozenset({ThreatType.DOS, ThreatType.SCRAPING}),
+    "TemporalAgent": frozenset({ThreatType.BOT_ACTIVITY, ThreatType.SCRAPING}),
+    "AuthAgent":     frozenset({ThreatType.BRUTE_FORCE, ThreatType.CREDENTIAL_STUFFING}),
+}
+
+# If threat A is active at HIGH confidence, these related threats may have been
+# missed by the responsible agent (e.g. DoS often co-occurs with bot timing).
+_RELATED_THREATS: Dict[ThreatType, frozenset] = {
+    ThreatType.DOS:                 frozenset({ThreatType.BOT_ACTIVITY}),
+    ThreatType.CREDENTIAL_STUFFING: frozenset({ThreatType.BOT_ACTIVITY}),
+    ThreatType.BOT_ACTIVITY:        frozenset({ThreatType.DOS, ThreatType.SCRAPING}),
+    ThreatType.SCRAPING:            frozenset({ThreatType.BOT_ACTIVITY, ThreatType.DOS}),
+}
 
 
 # ---------------------------------------------------------------------------
@@ -275,27 +295,61 @@ class MetaAgentOrchestrator:
     def _resolve_conflicts(self, findings: List[AgentFinding]) -> List[AgentFinding]:
         """
         If Agent A says 'no threat' (LOW confidence) and Agent B says 'threat'
-        (HIGH confidence) on a related threat type, escalate to B.
+        (HIGH confidence) for a related threat type, escalate Agent A's finding
+        to MEDIUM confidence so it contributes proportionally to fusion.
 
-        In CICIDS context: Volume says DoS=low, Auth says brute_force=high
-        → keep auth finding, downgrade volume.
+        Example: VolumeAgent=DoS HIGH + TemporalAgent=NONE →
+          DoS often co-occurs with bot timing; escalate TemporalAgent to MEDIUM
+          with a cautionary confidence score so the fused verdict reflects the
+          cross-agent signal without fully endorsing it.
         """
         resolved = list(findings)
 
-        high_conf_threats = {
-            f.threat_type
+        # Build {threat_type: confidence_score} for all HIGH-confidence detections
+        high_conf_threats: Dict[ThreatType, float] = {
+            f.threat_type: f.confidence_score
             for f in findings
             if f.threat_detected and f.confidence == ConfidenceLevel.HIGH
         }
 
+        if not high_conf_threats:
+            return resolved
+
         for i, f in enumerate(resolved):
-            if not f.threat_detected and f.confidence == ConfidenceLevel.LOW:
-                if ThreatType.DOS in high_conf_threats:
-                    logger.debug(
-                        "[MetaAgent] Conflict: %s returned NONE but DoS active — "
-                        "keeping finding as-is",
-                        f.agent_name,
-                    )
+            if f.threat_detected or f.confidence != ConfidenceLevel.LOW:
+                continue
+
+            domain = _AGENT_DOMAINS.get(f.agent_name, frozenset())
+
+            for active_threat, active_conf in high_conf_threats.items():
+                related = _RELATED_THREATS.get(active_threat, frozenset())
+                implicated = domain & related  # threat types this agent should have caught
+
+                if not implicated:
+                    continue
+
+                escalated_type = next(iter(implicated))
+                escalated_conf = round(active_conf * 0.45, 3)  # conservative fraction
+
+                resolved[i] = dataclasses.replace(
+                    f,
+                    threat_detected=True,
+                    threat_type=escalated_type,
+                    confidence=ConfidenceLevel.MEDIUM,
+                    confidence_score=escalated_conf,
+                    indicators=f.indicators + [
+                        f"conflict_escalation: {active_threat.value} detected at "
+                        f"{active_conf:.0%} by another agent — {f.agent_name} "
+                        f"escalated to {escalated_type.value} MEDIUM"
+                    ],
+                )
+                logger.info(
+                    "[MetaAgent] Conflict resolved: %s escalated to %s MEDIUM (conf=%.2f) "
+                    "— related HIGH threat %s from another agent",
+                    f.agent_name, escalated_type.value, escalated_conf, active_threat.value,
+                )
+                break  # one escalation per silent agent
+
         return resolved
 
     # ── Explainability ─────────────────────────────────────────────────────

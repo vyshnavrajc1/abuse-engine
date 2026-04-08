@@ -13,9 +13,9 @@ OODA logic:
   CONCLUDE    → emit finding, post to evidence board
 
 Key calibrations for CICIDS 2017 (500-record windows):
-  - HIGH_RATE_ABSOLUTE raised to 300 (100 was too low for mixed batches)
+  - HIGH_RATE_ABSOLUTE raised to 450 (100 was too low for mixed batches)
   - IP diversity check: >5 distinct IPs sharing the load = distributed = benign
-  - DOMINANT_IP_RATIO: single IP must own >60% of requests to be suspicious
+  - DOMINANT_IP_RATIO: single IP must own >90% of requests to be suspicious
   - warm-up guard: first WARMUP_BATCHES batches only build baselines, no alerts
 """
 

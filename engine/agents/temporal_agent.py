@@ -24,6 +24,8 @@ from collections import defaultdict
 from datetime import datetime
 from typing import Dict, List
 
+import numpy as np
+
 from engine.agents.base_agent import AgentContext, BaseAgent, LoopDecision
 from engine.memory.shared_memory import SharedMemory
 from engine.tools.registry import ToolRegistry
@@ -78,7 +80,7 @@ class TemporalAgent(BaseAgent):
         )
 
     def orient(self, ctx: AgentContext) -> None:
-        """Check if volume agent already signalled DoS (bots typically drive DoS)."""
+        """Check if volume agent already signalled DoS; accumulate IAT reference samples."""
         dos_evidence = self.tools.call(
             "read_evidence_board", key_filter="dos", min_confidence=0.6
         )
@@ -86,6 +88,18 @@ class TemporalAgent(BaseAgent):
         if dos_evidence:
             ctx.log("ORIENT: DoS evidence on board — bot timing investigation relevant")
             ctx.confidence_score = max(ctx.confidence_score, 0.25)
+
+        # Accumulate IATs from this batch into LTM to build a data-derived
+        # reference distribution for the KS-test (replaces the synthetic
+        # _HUMAN_IAT_SAMPLE once MIN_IAT_REFERENCE samples are collected).
+        ip_timestamps = ctx.raw_metrics.get("ip_timestamps", {})
+        batch_iats: List[float] = []
+        for timestamps in ip_timestamps.values():
+            if len(timestamps) >= 2:
+                batch_iats.extend(float(x) for x in np.diff(sorted(timestamps)))
+        if batch_iats:
+            self.memory.ltm.add_iat_samples(batch_iats)
+        ctx.raw_metrics["iat_reference_ready"] = self.memory.ltm.has_iat_reference()
 
     def hypothesize(self, ctx: AgentContext) -> None:
         """Form bot-timing hypothesis with stricter guards."""
@@ -133,7 +147,6 @@ class TemporalAgent(BaseAgent):
             # ── Resolution guard: skip IPs where timestamps lack sufficient
             #    granularity (e.g. all same-second in CICIDS) — this creates
             #    artificial zero-IAT patterns that look periodic but aren't.
-            import numpy as np
             iats = list(np.diff(sorted(timestamps)))
             if iats:
                 median_iat = float(np.median(iats))
@@ -162,9 +175,16 @@ class TemporalAgent(BaseAgent):
                     # Single IP — tentatively raise but cap lower
                     ctx.confidence_score = max(ctx.confidence_score, bot_conf * 0.6)
 
-            # ── KS-test vs human distribution ───────────────────────────
+            # ── KS-test vs traffic reference distribution ────────────────
             if len(iats) >= 6:
-                combined = _HUMAN_IAT_SAMPLE + iats
+                # Use LTM-derived reference once enough samples have accumulated;
+                # fall back to the synthetic constants until then.
+                reference = (
+                    self.memory.ltm.get_iat_reference()
+                    if ctx.raw_metrics.get("iat_reference_ready")
+                    else _HUMAN_IAT_SAMPLE
+                )
+                combined = reference + iats
                 ks_result = self.tools.call(
                     "run_statistical_test",
                     values=combined,

@@ -150,6 +150,7 @@ class AuthAgent(BaseAgent):
                     streak = max(streak, current)
                 else:
                     current = 0
+            max_streak = max(max_streak, streak)
             if streak >= self.BRUTE_FORCE_FAILURE_STREAK:
                 streaky_ips.append((ip, streak))
                 ctx.indicators.append(f"auth_failure_streak: {ip} → {streak} consecutive failures")
