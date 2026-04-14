@@ -98,7 +98,7 @@ def run(
         # they are not scored, since thresholds aren't yet calibrated.
         in_warmup = batch_num <= warmup_batches
         if not in_warmup:
-            evaluator.add_batch(verdict, batch, attack_threshold=attack_threshold)
+            evaluator.add_batch(verdict, batch, attack_threshold=attack_threshold, batch_num=batch_num)
 
         # ── Logging ──────────────────────────────────────────────────────────
         attack_count = sum(1 for r in batch if r.is_attack)

@@ -105,12 +105,15 @@ class Evaluator:
         self._y_prob: List[float] = []         # confidence scores (0-1)
         self._y_true_threat: List[str] = []    # ground-truth category
         self._y_pred_threat: List[str] = []    # predicted threat type
+        self._batch_nums: List[int] = []       # batch sequence numbers
+        self._contributing: List[List[str]] = []  # contributing agents per batch
 
     def add_batch(
         self,
         verdict: FusionVerdict,
         batch_records,
         attack_threshold: float = 0.5,
+        batch_num: int = 0,
     ) -> None:
         """
         Majority-label batch evaluation.
@@ -144,6 +147,8 @@ class Evaluator:
         # (e.g. ThreatType.DOS.value = "DOS" but ground truth is "DoS")
         pred_label = verdict.threat_type.value if verdict.is_attack else "Benign"
         self._y_pred_threat.append(self._normalise_threat_label(pred_label))
+        self._batch_nums.append(batch_num)
+        self._contributing.append(verdict.contributing_agents or [])
 
     def add(
         self,
@@ -223,7 +228,7 @@ class Evaluator:
         )
         ax.set_title("Confusion Matrix")
         plt.tight_layout()
-        plt.savefig(output_path / "confusion_matrix.png")
+        plt.savefig(output_path / "confusion_matrix.png", dpi=150)
         plt.close()
 
         # 2. ROC Curve
@@ -233,7 +238,7 @@ class Evaluator:
             ax.set_title("ROC Curve")
             plt.grid(True, linestyle="--", alpha=0.6)
             plt.tight_layout()
-            plt.savefig(output_path / "roc_curve.png")
+            plt.savefig(output_path / "roc_curve.png", dpi=150)
             plt.close()
 
         # 3. Precision-Recall Curve
@@ -243,7 +248,7 @@ class Evaluator:
             ax.set_title("Precision-Recall Curve")
             plt.grid(True, linestyle="--", alpha=0.6)
             plt.tight_layout()
-            plt.savefig(output_path / "precision_recall_curve.png")
+            plt.savefig(output_path / "precision_recall_curve.png", dpi=150)
             plt.close()
 
         # 4. Per-Threat F1 Score (Bar Chart)
@@ -252,22 +257,77 @@ class Evaluator:
             fig, ax = plt.subplots(figsize=(10, 6))
             threats = list(metrics.keys())
             f1_scores = [m["f1"] for m in metrics.values()]
-            
+
             bars = ax.bar(threats, f1_scores, color='skyblue')
             ax.set_title("F1 Score by Threat Category")
             ax.set_ylabel("F1 Score")
             ax.set_ylim(0, 1.1)
             plt.xticks(rotation=45, ha='right')
-            
-            # Add value labels
+
             for bar in bars:
                 height = bar.get_height()
                 ax.text(bar.get_x() + bar.get_width()/2., height + 0.02,
                         f'{height:.2f}', ha='center', va='bottom')
 
             plt.tight_layout()
-            plt.savefig(output_path / "per_threat_f1.png")
+            plt.savefig(output_path / "per_threat_f1.png", dpi=150)
             plt.close()
+
+        # 5. Detection Timeline
+        if self._batch_nums:
+            from matplotlib.patches import Patch
+            y_true = np.array(self._y_true)
+            y_pred = np.array(self._y_pred)
+            batch_nums = np.array(self._batch_nums)
+
+            colors = []
+            for gt, pred in zip(y_true, y_pred):
+                if   gt == 1 and pred == 1: colors.append('#2ecc71')  # TP green
+                elif gt == 0 and pred == 0: colors.append('#dfe6e9')  # TN light grey
+                elif gt == 0 and pred == 1: colors.append('#e67e22')  # FP orange
+                else:                       colors.append('#e74c3c')  # FN red
+
+            fig, ax = plt.subplots(figsize=(18, 2.5))
+            ax.bar(batch_nums, [1] * len(batch_nums), color=colors, width=1.0, linewidth=0)
+            ax.set_xlim(batch_nums[0] - 1, batch_nums[-1] + 1)
+            ax.set_ylim(0, 1)
+            ax.set_xlabel("Batch Number")
+            ax.set_yticks([])
+            ax.set_title("Detection Timeline")
+            ax.legend(
+                handles=[
+                    Patch(facecolor='#2ecc71', label='TP'),
+                    Patch(facecolor='#e67e22', label='FP'),
+                    Patch(facecolor='#e74c3c', label='FN'),
+                    Patch(facecolor='#dfe6e9', label='TN', edgecolor='#b2bec3'),
+                ],
+                loc='upper right', ncol=4,
+            )
+            plt.tight_layout()
+            plt.savefig(output_path / "detection_timeline.png", dpi=150)
+            plt.close()
+
+        # 6. Agent Contribution (attack verdicts only)
+        if self._contributing:
+            from collections import Counter
+            agent_counts = Counter(
+                agent
+                for agents, pred in zip(self._contributing, self._y_pred)
+                if pred == 1
+                for agent in agents
+            )
+            if agent_counts:
+                fig, ax = plt.subplots(figsize=(9, 5))
+                names, counts = zip(*sorted(agent_counts.items(), key=lambda x: -x[1]))
+                ax.bar(names, counts, color='steelblue')
+                ax.set_title("Agent Contribution to Attack Verdicts")
+                ax.set_ylabel("Batches flagged")
+                plt.xticks(rotation=30, ha='right')
+                for i, c in enumerate(counts):
+                    ax.text(i, c + 0.3, str(c), ha='center', va='bottom', fontsize=9)
+                plt.tight_layout()
+                plt.savefig(output_path / "agent_contribution.png", dpi=150)
+                plt.close()
 
     def _per_threat_metrics(self) -> Dict[str, Dict[str, float]]:
         """Per ground-truth threat-type precision/recall/F1."""
@@ -286,7 +346,7 @@ class Evaluator:
         return out
 
     def reset(self) -> None:
-        self.__init__()
+        self.__init__()  # resets all lists including _batch_nums and _contributing
 
     # Map ThreatType enum values → CICIDS ground-truth category names
     _THREAT_LABEL_MAP = {
