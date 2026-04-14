@@ -1,5 +1,5 @@
 """
-APISentry Tool Registry
+Abuse Engine Tool Registry
 
 Agents call these functions during their ④ INVESTIGATE step.
 Each tool is a plain function; the registry maps names → callables so

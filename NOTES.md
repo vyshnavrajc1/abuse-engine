@@ -2,17 +2,17 @@
 
 ## Future Production Integration Question — Blocking
 
-**Question:** If APISentry only alerts but doesn't block, is it useful to companies?
+**Question:** If Abuse Engine only alerts but doesn't block, is it useful to companies?
 
 **Short answer:** Alerting-only is a real limitation for commercial adoption. The solution is to keep detection log-only and delegate enforcement to the customer's existing infrastructure.
 
 ### Three approaches (in order of integration cost)
 
-**1. WAF rule injection** — APISentry detects from logs → automatically pushes a block rule to the customer's existing WAF (AWS WAF, Cloudflare, nginx deny directive). Detection stays log-only, no new infrastructure. Latency to block: 5–30s (detection time + rule push). Acceptable for persistent attacks, not flash attacks.
+**1. WAF rule injection** — Abuse Engine detects from logs → automatically pushes a block rule to the customer's existing WAF (AWS WAF, Cloudflare, nginx deny directive). Detection stays log-only, no new infrastructure. Latency to block: 5–30s (detection time + rule push). Acceptable for persistent attacks, not flash attacks.
 
-**2. Blocklist sidecar (recommended for product)** — APISentry maintains a Redis-backed blocklist. A small gateway plugin (nginx module, Kong plugin, AWS Lambda authorizer) does a single Redis lookup per request — binary, sub-1ms. Once APISentry's detection fires it writes to Redis; all subsequent requests from that IP/key are blocked synchronously by the plugin, not APISentry. This is how Signal Sciences (Fastly) and similar products work. Detection is async and smart; enforcement is a dumb fast lookup.
+**2. Blocklist sidecar (recommended for product)** — Abuse Engine maintains a Redis-backed blocklist. A small gateway plugin (nginx module, Kong plugin, AWS Lambda authorizer) does a single Redis lookup per request — binary, sub-1ms. Once Abuse Engine's detection fires it writes to Redis; all subsequent requests from that IP/key are blocked synchronously by the plugin, not Abuse Engine. This is how Signal Sciences (Fastly) and similar products work. Detection is async and smart; enforcement is a dumb fast lookup.
 
-**3. Inline reverse proxy** — APISentry sits in the request path. Unknown IPs pass through while analysis runs in parallel. Once flagged, blocks immediately. Adds real latency (~50–100ms rule-only, ~500ms LLM path) before a threat is confirmed; zero latency afterwards. Highest integration cost — requires rerouting all traffic.
+**3. Inline reverse proxy** — Abuse Engine sits in the request path. Unknown IPs pass through while analysis runs in parallel. Once flagged, blocks immediately. Adds real latency (~50–100ms rule-only, ~500ms LLM path) before a threat is confirmed; zero latency afterwards. Highest integration cost — requires rerouting all traffic.
 
 ### Implications for the paper
 "Zero-integration detection" remains accurate and is still the novel research claim — detection requires no code changes. Blocking via WAF rule injection (option 1) reuses existing customer infrastructure and doesn't contradict the zero-integration claim. Option 2 requires one small plugin deployment but is still far lighter than an inline proxy.
@@ -44,11 +44,11 @@ They hit a limit (API call volume, need custom thresholds, need Slack alerts the
 
 That's when you send this:
 
-"You've been running APISentry for 90 days. You've had X abuse attempts flagged, estimated exposure prevented ₹Y. I'd love to get on a 30 minute call to talk about what a longer term setup looks like for your scale."
+"You've been running Abuse Engine for 90 days. You've had X abuse attempts flagged, estimated exposure prevented ₹Y. I'd love to get on a 30 minute call to talk about what a longer term setup looks like for your scale."
 
 That call is where it becomes a business conversation. You discuss their growth plans, their API volume trajectory, what blocking capabilities they need. You propose an annual contract with a 10-15% discount over monthly. You send a proper agreement instead of a dashboard subscription.
 
-The product doesn't change dramatically. The relationship formality does. They go from "we use this tool" to "we have a vendor contract with APISentry."
+The product doesn't change dramatically. The relationship formality does. They go from "we use this tool" to "we have a vendor contract with Abuse Engine."
 
 ---
 

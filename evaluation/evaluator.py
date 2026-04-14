@@ -1,5 +1,5 @@
 """
-APISentry Evaluation Module
+Abuse Engine Evaluation Module
 
 Computes detection metrics against ground-truth labels:
   - Overall: Precision, Recall, F1, Accuracy
@@ -50,7 +50,7 @@ class EvalResult:
         fp_rate = self.false_positives / max(1, self.total_samples - self.true_attacks)
         lines = [
             "=" * 60,
-            "  APISentry Detection Evaluation",
+            "  Abuse Engine Detection Evaluation",
             "=" * 60,
             f"  Evaluation units  : {self.total_samples} batches",
             f"  True Attack batches: {self.true_attacks}",
@@ -291,6 +291,7 @@ class Evaluator:
     # Map ThreatType enum values → CICIDS ground-truth category names
     _THREAT_LABEL_MAP = {
         "DOS": "DoS",
+        "PORT_SCAN": "Port Scan",
         "BRUTE_FORCE": "Brute Force",
         "CREDENTIAL_STUFFING": "Brute Force",   # CICIDS has no "credential stuffing" category
         "BOT_ACTIVITY": "Botnet",

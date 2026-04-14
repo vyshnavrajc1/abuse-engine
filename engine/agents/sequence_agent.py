@@ -1,5 +1,5 @@
 """
-APISentry Sequence Agent
+Abuse Engine Sequence Agent
 
 Mandate: Detect sequential access anomalies using per-IP Markov transition models.
 

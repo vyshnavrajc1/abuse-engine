@@ -1,5 +1,5 @@
 """
-APISentry Meta-Agent Orchestrator
+Abuse Engine Meta-Agent Orchestrator
 
 Role: Autonomous coordinator that:
   1. Dispatches the active detection agents in parallel (thread pool).

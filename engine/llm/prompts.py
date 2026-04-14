@@ -1,5 +1,5 @@
 """
-APISentry LLM Prompts
+Abuse Engine LLM Prompts
 
 Prompt templates for each detection agent and the MetaAgent fusion step.
 
@@ -80,7 +80,7 @@ high failure ratio (>80% of IP requests are failures).
 # ---------------------------------------------------------------------------
 
 META_SYSTEM_PROMPT = f"""\
-You are MetaAgent, the orchestrating security analyst for APISentry.
+You are MetaAgent, the orchestrating security analyst for the Abuse Engine.
 Your mandate: fuse findings from three specialist agents (VolumeAgent, TemporalAgent,
 AuthAgent) into a single authoritative verdict.
 Apply conflict resolution (trust the highest-confidence agent on its area of expertise),

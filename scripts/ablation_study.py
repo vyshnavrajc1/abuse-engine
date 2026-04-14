@@ -1,5 +1,5 @@
 """
-Ablation study — APISentry CICIDS 2017
+Ablation study — Abuse Engine CICIDS 2017
 =======================================
 Three passes over the same dataset window (max_records=1_400_000):
 
@@ -150,7 +150,7 @@ def _run_mode(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="APISentry ablation study")
+    parser = argparse.ArgumentParser(description="Abuse Engine ablation study")
     parser.add_argument("--data", default="datasets/processed/", help="Data directory")
     parser.add_argument("--window", type=int, default=500, help="Batch window size")
     parser.add_argument("--max-records", type=int, default=1_400_000,
@@ -159,7 +159,7 @@ def main() -> None:
     args = parser.parse_args()
 
     print(f"\n{'='*60}")
-    print("  APISentry — Ablation Study")
+    print("  Abuse Engine — Ablation Study")
     print(f"  max_records={args.max_records or 'ALL'}  window={args.window}")
     print(f"{'='*60}")
 

@@ -1,5 +1,5 @@
 """
-APISentry Auth Agent
+Abuse Engine Auth Agent
 
 Mandate: Detect credential stuffing, brute-force, and token abuse.
 Primary tools: auth_failure_streak (derived from records), query_ip_reputation,
@@ -32,6 +32,11 @@ class AuthAgent(BaseAgent):
     MIN_ATTEMPTS_FOR_STUFFING = 20   # need enough attempts to detect pattern
     BRUTE_FORCE_FAILURE_STREAK = 10  # consecutive 401/403 from same IP
     HIGH_FAILURE_RATIO = 0.8          # >80% of requests from IP are failures
+    # Density guard: if a single IP generates this many total failures in one
+    # 500-record window, it is brute force regardless of streak consecutiveness.
+    # Rationale: benign mistyped passwords produce ~1-4 failures/hour globally;
+    # 60 failures from one IP in a 500-record window ≥ 12% window share.
+    BRUTE_FORCE_DENSITY_MIN = 60
 
     def observe(self, ctx: AgentContext) -> None:
         """Split records into auth failures vs successes per IP."""
@@ -123,7 +128,19 @@ class AuthAgent(BaseAgent):
 
         # Brute force: single IP with very high failure count
         top_ip, top_failures = max(ip_failures.items(), key=lambda x: x[1])
-        if top_failures >= self.BRUTE_FORCE_FAILURE_STREAK:
+        # Density shortcut: ≥60 failures from one IP in a 500-record window is brute
+        # force regardless of whether the failures are consecutive — legitimate
+        # users don't mistype passwords 60+ times in any single traffic window.
+        if top_failures >= self.BRUTE_FORCE_DENSITY_MIN:
+            ctx.hypothesis = "brute_force"
+            ctx.threat_type = ThreatType.BRUTE_FORCE
+            ctx.raw_metrics["brute_force_ip"] = top_ip
+            ctx.raw_metrics["brute_force_density"] = True
+            ctx.log(
+                f"HYPOTHESIZE: brute force (density) from {top_ip} "
+                f"({top_failures} failures — density threshold)"
+            )
+        elif top_failures >= self.BRUTE_FORCE_FAILURE_STREAK:
             ctx.hypothesis = "brute_force"
             ctx.threat_type = ThreatType.BRUTE_FORCE
             ctx.raw_metrics["brute_force_ip"] = top_ip
@@ -189,6 +206,25 @@ class AuthAgent(BaseAgent):
             self._post_evidence(
                 "auth:brute_force",
                 {"ips": streaky_ips},
+                ctx.confidence_score,
+                ["auth", "brute_force"],
+            )
+
+        # Density path: total failures >> streak threshold — fires even when
+        # failures are non-consecutive (interspersed with benign traffic).
+        if ctx.raw_metrics.get("brute_force_density"):
+            bf_ip = ctx.raw_metrics.get("brute_force_ip", "?")
+            total_fails = ip_failures.get(bf_ip, 0)
+            # Confidence: 60 fails → 0.80, scales up to 1.0 at 150 fails.
+            density_conf = min(1.0, total_fails / 75.0 + 0.00)
+            density_conf = max(0.80, density_conf)  # floor at single-agent threshold
+            ctx.confidence_score = max(ctx.confidence_score, density_conf)
+            ctx.indicators.append(
+                f"auth_failure_density: {bf_ip} → {total_fails} total failures (non-consecutive)"
+            )
+            self._post_evidence(
+                "auth:brute_force",
+                {"ip": bf_ip, "total_failures": total_fails},
                 ctx.confidence_score,
                 ["auth", "brute_force"],
             )

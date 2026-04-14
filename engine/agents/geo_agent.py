@@ -1,5 +1,5 @@
 """
-APISentry GeoIP Agent
+Abuse Engine GeoIP Agent
 
 Mandate: Detect geographic anomalies — impossible travel, TOR/VPN IPs,
 and single-tenant requests from unusual country concentrations.

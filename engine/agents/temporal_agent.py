@@ -1,5 +1,5 @@
 """
-APISentry Temporal Agent
+Abuse Engine Temporal Agent
 
 Mandate: Detect bot periodicity and off-hours access patterns.
 Primary tools: detect_periodicity, run_statistical_test (kstest), compute_entropy.

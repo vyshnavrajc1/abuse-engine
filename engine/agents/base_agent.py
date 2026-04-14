@@ -1,5 +1,5 @@
 """
-APISentry Base Agent — OODA Reasoning Loop
+Abuse Engine Base Agent — OODA Reasoning Loop
 
 Every detection agent subclasses BaseAgent and implements:
   - observe()      → collect raw signals from SharedMemory

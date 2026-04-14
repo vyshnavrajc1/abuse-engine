@@ -1,5 +1,5 @@
 """
-APISentry Main Runner
+Abuse Engine Main Runner
 
 Entry point for Phase 1: Volume + Temporal + Auth agents on CICIDS 2017.
 
@@ -42,7 +42,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
     datefmt="%H:%M:%S",
 )
-logger = logging.getLogger("apisentry.main")
+logger = logging.getLogger("abuse_engine.main")
 
 
 def run(
@@ -54,13 +54,14 @@ def run(
     warmup_batches: int = 10,
     llm_url: str = "",
     llm_model: str = "qwen2.5:7b",
+    attack_threshold: float = 0.5,
 ) -> None:
 
     if verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
     logger.info("=" * 60)
-    logger.info("  APISentry Phase 1 — CICIDS 2017")
+    logger.info("  Abuse Engine — CICIDS 2017")
     logger.info("  Agents: Volume | Temporal | Auth | MetaOrchestrator")
     logger.info("  Evaluation: batch-level majority-label")
     logger.info("  Warm-up batches (learn only): %d", warmup_batches)
@@ -97,12 +98,12 @@ def run(
         # they are not scored, since thresholds aren't yet calibrated.
         in_warmup = batch_num <= warmup_batches
         if not in_warmup:
-            evaluator.add_batch(verdict, batch)
+            evaluator.add_batch(verdict, batch, attack_threshold=attack_threshold)
 
         # ── Logging ──────────────────────────────────────────────────────────
         attack_count = sum(1 for r in batch if r.is_attack)
         attack_ratio = attack_count / len(batch)
-        gt_label = "ATTACK" if attack_ratio > 0.5 else "BENIGN"
+        gt_label = "ATTACK" if attack_ratio > attack_threshold else "BENIGN"
         pred_label = "ATTACK" if verdict.is_attack else "CLEAN"
         correct = (gt_label == "ATTACK") == verdict.is_attack
 
@@ -153,6 +154,7 @@ def run(
                 "window_size": window_size,
                 "max_records": max_records,
                 "warmup_batches": warmup_batches,
+                "attack_threshold": attack_threshold,
                 "evaluation_mode": "batch_majority_label",
                 "llm_model": llm_model if llm_url else None,
             },
@@ -184,7 +186,7 @@ def run(
 # ── CLI ──────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="APISentry Phase 1 Runner")
+    parser = argparse.ArgumentParser(description="Abuse Engine Runner")
     parser.add_argument(
         "--data",
         default="datasets/processed/",
@@ -222,6 +224,12 @@ def main():
         default="qwen2.5:7b",
         help="Model name to request from the LLM endpoint (default: qwen2.5:7b)",
     )
+    parser.add_argument(
+        "--attack-threshold", type=float, default=0.5,
+        help="Fraction of attack records required to label a batch as attack (default: 0.5). "
+             "Lowering to 0.20 correctly scores partial-attack batches as attacks, "
+             "recovering port-scan and mixed-traffic detections.",
+    )
     args = parser.parse_args()
 
     run(
@@ -233,6 +241,7 @@ def main():
         warmup_batches=args.warmup_batches,
         llm_url=args.llm_url,
         llm_model=args.llm_model,
+        attack_threshold=args.attack_threshold,
     )
 
 

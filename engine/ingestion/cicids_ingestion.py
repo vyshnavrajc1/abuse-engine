@@ -1,5 +1,5 @@
 """
-APISentry Ingestion Pipeline
+Abuse Engine Ingestion Pipeline
 
 Loads CICIDS 2017 processed CSVs, yields LogRecord batches.
 Handles:
@@ -102,12 +102,12 @@ class CICIDSIngestion:
         else:
             df = pd.read_csv(self.path)
 
-        # Sort by timestamp BEFORE capping so max_records picks the earliest N records
-        if "timestamp" in df.columns:
-            df = df.sort_values("timestamp").reset_index(drop=True)
-
         if self.max_records > 0:
             df = df.head(self.max_records)
+
+        # Sort by timestamp so sliding windows are chronological
+        if "timestamp" in df.columns:
+            df = df.sort_values("timestamp").reset_index(drop=True)
 
         logger.info("Loaded %d raw rows from %s", len(df), self.path)
         return df

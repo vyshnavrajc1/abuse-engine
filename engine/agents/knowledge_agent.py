@@ -1,5 +1,5 @@
 """
-APISentry Knowledge Agent
+Abuse Engine Knowledge Agent
 
 Passive advisory agent — produces NO verdicts. Answers reputation queries from
 other agents during their orient() step. Runs a background warm-up thread on

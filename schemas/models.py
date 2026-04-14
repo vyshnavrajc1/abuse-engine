@@ -1,5 +1,5 @@
 """
-APISentry Data Models
+Abuse Engine Data Models
 Pure-dataclass schemas — no external dependencies beyond stdlib.
 """
 

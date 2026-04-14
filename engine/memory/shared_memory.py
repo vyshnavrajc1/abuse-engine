@@ -1,5 +1,5 @@
 """
-APISentry Shared Memory & Evidence Board
+Abuse Engine Shared Memory & Evidence Board
 
 Implements the tiered memory architecture:
   - STM  : in-process dict (simulates Redis sessions)

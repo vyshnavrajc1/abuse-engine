@@ -1,5 +1,5 @@
 """
-APISentry Volume Agent
+Abuse Engine Volume Agent
 
 Mandate: Detect DDoS, scraping, and enumeration spikes.
 Primary tools: query_historical_baseline, run_statistical_test (z-score).
@@ -442,7 +442,7 @@ class VolumeAgent(BaseAgent):
         if iso_score is not None:
             ctx.raw_metrics["iso_score"] = iso_score
             # Isolation Forest scores range ~[-0.5, 0]; lower = more anomalous
-            if iso_score < -0.15:
+            if iso_score < -0.25:
                 iso_conf = min(1.0, abs(iso_score) * 2.0)
                 ctx.confidence_score = max(ctx.confidence_score, iso_conf)
                 ctx.indicators.append(

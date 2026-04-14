@@ -1,4 +1,4 @@
-# APISentry
+# Abuse Engine
 
 Multi-agent API abuse detection system. Detects DoS, credential stuffing, bot activity, and other API-level attacks by analysing gateway logs — no inline proxy, no code changes required by API owners.
 
@@ -8,7 +8,7 @@ Built as a research prototype for IEEE paper validation, with a production SaaS 
 
 ## What It Does
 
-APISentry runs autonomous detection agents that each follow an OODA reasoning loop (Observe → Orient → Hypothesize → Investigate → Evaluate → Conclude). Agents share an evidence board, call statistical tools dynamically, and optionally consult a local LLM to produce a final verdict. A MetaAgent orchestrator fuses all agent findings into a single `FusionVerdict`.
+Abuse Engine runs autonomous detection agents that each follow an OODA reasoning loop (Observe → Orient → Hypothesize → Investigate → Evaluate → Conclude). Agents share an evidence board, call statistical tools dynamically, and optionally consult a local LLM to produce a final verdict. A MetaAgent orchestrator fuses all agent findings into a single `FusionVerdict`.
 
 **Agents implemented (Phase 1):**
 - **VolumeAgent** — DoS / DDoS / scraping via rate and dominance analysis

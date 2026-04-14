@@ -1,5 +1,5 @@
 """
-APISentry Payload Agent
+Abuse Engine Payload Agent
 
 Mandate: Detect port scanning, endpoint enumeration, and injection patterns.
 Primary signal: Shannon entropy of endpoint distribution per IP.
@@ -40,6 +40,13 @@ class PayloadAgent(BaseAgent):
     MIN_REQUESTS_PER_IP     = 5      # ignore low-volume IPs (noise)
     MAX_IP_ENTROPY_PAIRS    = 20     # cap how many IPs we fully analyse
     MIN_WARMUP_BATCHES      = 15     # system-level warmup guard (global batch count)
+
+    # Hard-bypass thresholds — fire regardless of LTM distribution stability.
+    # Benign per-IP entropy peaks at ~3 bits (few repeated endpoints); a true
+    # port scan generates 8-9 bits across 300+ distinct /port_X targets. No
+    # warmup period is needed to recognise this extremity.
+    HARD_ENTROPY_THRESHOLD  = 6.0    # bits — obvious scanner, bypasses stability check
+    HARD_MIN_DISTINCT       = 100    # minimum distinct endpoints for hard bypass
 
     # Well-known service ports that appear in legitimate multi-protocol traffic.
     # Having entropy across THESE ports alone does NOT indicate a port scan.
@@ -135,6 +142,23 @@ class PayloadAgent(BaseAgent):
 
     def hypothesize(self, ctx: AgentContext) -> None:
         """Hypothesize scan/enumeration if a single IP covers many distinct endpoints."""
+        max_entropy = ctx.raw_metrics.get("max_entropy", 0.0)
+        max_ip = ctx.raw_metrics.get("max_entropy_ip")
+        distinct = ctx.raw_metrics.get("per_ip_distinct", {}).get(max_ip, 0) if max_ip else 0
+
+        # Hard bypass: extreme entropy from a single IP is unambiguously a scanner.
+        # This fires before the warmup/stability gate so port scans are never missed
+        # just because the LTM distribution hasn't converged yet.
+        if max_ip and max_entropy >= self.HARD_ENTROPY_THRESHOLD and distinct >= self.HARD_MIN_DISTINCT:
+            ctx.hypothesis = "endpoint_enumeration"
+            ctx.threat_type = ThreatType.PORT_SCAN
+            ctx.confidence_score = max(ctx.confidence_score, 0.70)
+            ctx.log(
+                f"HYPOTHESIZE: hard-bypass scan — {max_ip} entropy={max_entropy:.2f} "
+                f"distinct={distinct} (bypassed stability check)"
+            )
+            return
+
         if ctx.raw_metrics.get("in_warmup") or not self.memory.ltm.is_distribution_stable("PayloadAgent"):
             ctx.hypothesis = "warmup_learning"
             ctx.log("HYPOTHESIZE: warm-up or unstable distribution — building baseline entropy model")
@@ -144,7 +168,7 @@ class PayloadAgent(BaseAgent):
         max_ip = ctx.raw_metrics.get("max_entropy_ip")
         distinct = ctx.raw_metrics.get("per_ip_distinct", {}).get(max_ip, 0) if max_ip else 0
 
-        if max_ip and max_entropy >= self.ENTROPY_THRESHOLD and distinct >= self.MIN_DISTINCT_ENDPOINTS:
+        if max_ip and max_entropy >= self.ENTROPY_THRESHOLD and distinct >= self.MIN_DISTINCT_ENDPOINTS and ctx.hypothesis != "endpoint_enumeration":
             ctx.hypothesis = "endpoint_enumeration"
             ctx.threat_type = ThreatType.PORT_SCAN
             ctx.log(
@@ -188,11 +212,17 @@ class PayloadAgent(BaseAgent):
                 ctx.confidence_score = max(ctx.confidence_score, min(0.55, abs(z) / 5.0))
                 ctx.log(f"INVESTIGATE: entropy z-score significant z={z:.2f}")
 
-        # Absolute check: high entropy + many distinct endpoints
+        # Absolute check: high entropy + many distinct endpoints.
+        # The hard-bypass condition (re-checked against the fixed threshold rather than
+        # ctx.hypothesis, because the adaptive ENTROPY_THRESHOLD can drift above the
+        # port-scan level once the model records high-entropy attack batches in LTM)
+        # ensures that port-scan detection never fails due to a drifted threshold.
         max_entropy = ctx.raw_metrics.get("max_entropy", 0.0)
         distinct = ctx.raw_metrics.get("per_ip_distinct", {}).get(max_ip, 0) if max_ip else 0
+        hard_bypass_confirmed = (max_entropy >= self.HARD_ENTROPY_THRESHOLD
+                                 and distinct >= self.HARD_MIN_DISTINCT)
 
-        if max_entropy >= self.ENTROPY_THRESHOLD and distinct >= self.MIN_DISTINCT_ENDPOINTS:
+        if (hard_bypass_confirmed or (max_entropy >= self.ENTROPY_THRESHOLD and distinct >= self.MIN_DISTINCT_ENDPOINTS)):
             # Port scan signature: systematic sweep hits BOTH low service ports (< 1024)
             # AND unusual mid-range destination ports (1024-49151, non-standard).
             # Benign traffic never mixes these two; even high-application-port traffic
@@ -201,23 +231,22 @@ class PayloadAgent(BaseAgent):
             ip_req_count = sum(ip_eps.values())
 
             has_low_service_port = False   # any endpoint with port < 1024
-            unusual_mid = []               # ports 1024-49151 not in benign service set, hit ≥2x
+            unusual_mid = []               # ports 1024-49151 not in benign service set
             for ep, cnt in ip_eps.items():
                 try:
                     port = int(ep.split("/port_")[-1].split("/")[0])
                 except (ValueError, IndexError):
-                    # non-numeric endpoint — treat as unusual if hit ≥2 times
-                    if cnt >= 2:
-                        unusual_mid.append(ep)
+                    # non-numeric endpoint — treat as unusual
+                    unusual_mid.append(ep)
                     continue
                 if port >= 49152:
                     continue  # skip ephemeral source-port noise
                 if port < 1024:
                     has_low_service_port = True
-                elif port not in self._BENIGN_SERVICE_PORTS and cnt >= 2:
+                elif port not in self._BENIGN_SERVICE_PORTS:
                     unusual_mid.append(ep)
 
-            if has_low_service_port and len(unusual_mid) >= 2:
+            if has_low_service_port and len(unusual_mid) >= 20 and ip_req_count >= 100:
                 ctx.indicators.append(
                     f"port_scan_signature: {max_ip} hit {distinct} distinct endpoints "
                     f"({ip_req_count} requests, entropy={max_entropy:.2f}, "

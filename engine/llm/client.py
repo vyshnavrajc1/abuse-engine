@@ -1,5 +1,5 @@
 """
-APISentry LLM Client
+Abuse Engine LLM Client
 
 Thin wrapper around any OpenAI-compatible endpoint.
 Primary target: Ollama (http://localhost:11434/v1) running qwen2.5:7b.
