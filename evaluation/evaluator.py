@@ -31,6 +31,21 @@ from schemas.models import FusionVerdict, ThreatType
 # ---------------------------------------------------------------------------
 
 @dataclass
+class AgentEvalResult:
+    """Per-agent, per-threat evaluation result."""
+    agent_name: str
+    threat_type: str          # what the agent fired
+    tp: int                   # agent fired + that threat was present ≥5% in batch
+    fp: int                   # agent fired + that threat was NOT present ≥5%
+    fn: int                   # agent did NOT fire + that threat WAS present ≥5%
+    tn: int                   # agent did NOT fire + that threat was NOT present
+    precision: float
+    recall: float
+    f1: float
+    accuracy: float
+
+
+@dataclass
 class EvalResult:
     precision: float
     recall: float
@@ -43,37 +58,55 @@ class EvalResult:
     false_negatives: int
     per_threat: Dict[str, Dict[str, float]] = field(default_factory=dict)
     confusion: Optional[np.ndarray] = None
+    # Secondary evaluation mode (≥5% attack records in batch = attack batch)
+    precision_5pct: Optional[float] = None
+    recall_5pct: Optional[float] = None
+    f1_5pct: Optional[float] = None
+    true_attacks_5pct: Optional[int] = None
+    per_threat_5pct: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    # Per-agent contribution accuracy (legacy: tp/fp relative to majority-label)
+    per_agent_accuracy: Dict[str, Dict[str, int]] = field(default_factory=dict)
+    # Per-agent per-threat evaluation (new: agent fires → was that threat present ≥5%?)
+    per_agent_threat: List[AgentEvalResult] = field(default_factory=list)
 
     def summary(self) -> str:
-        # Derive FP rate and specificity for richer reporting
         tn = self.total_samples - self.true_attacks - self.false_positives - self.false_negatives
         fp_rate = self.false_positives / max(1, self.total_samples - self.true_attacks)
         lines = [
             "=" * 60,
             "  Abuse Engine Detection Evaluation",
+            "  (batch labelled attack if ≥5% of records are attacks)",
             "=" * 60,
-            f"  Evaluation units  : {self.total_samples} batches",
+            f"  Evaluation units   : {self.total_samples} batches",
             f"  True Attack batches: {self.true_attacks}",
             f"  True Benign batches: {self.total_samples - self.true_attacks}",
             "-" * 60,
-            f"  Detected attacks  : {self.detected_attacks}",
             f"  True Positives    : {self.detected_attacks - self.false_positives}",
             f"  False Positives   : {self.false_positives}  (FPR={fp_rate:.2%})",
             f"  False Negatives   : {self.false_negatives}",
+            f"  True Negatives    : {tn}",
             "-" * 60,
             f"  Precision         : {self.precision:.4f}",
             f"  Recall            : {self.recall:.4f}",
             f"  F1 Score          : {self.f1:.4f}",
             f"  Accuracy          : {self.accuracy:.4f}",
         ]
-        if self.per_threat:
+        # Per-agent per-threat evaluation (authoritative view for paper)
+        if self.per_agent_threat:
+            lines.append("=" * 60)
+            lines.append("  Per-Agent Threat Detection")
+            lines.append("  (Each row: agent fires that threat OR threat is ≥5% present)")
             lines.append("-" * 60)
-            lines.append("  Per-Threat Breakdown (majority-label basis):")
-            for threat, metrics in self.per_threat.items():
+            lines.append(
+                f"  {'Agent':<20} {'Threat':<18} {'P':>6} {'R':>6} {'F1':>6} "
+                f"{'Acc':>6}  {'TP':>4} {'FP':>4} {'FN':>4}"
+            )
+            lines.append("  " + "-" * 74)
+            for r in sorted(self.per_agent_threat, key=lambda x: (x.agent_name, x.threat_type)):
                 lines.append(
-                    f"    {threat:<26} P={metrics['precision']:.3f} "
-                    f"R={metrics['recall']:.3f} F1={metrics['f1']:.3f} "
-                    f"(n={metrics['support']})"
+                    f"  {r.agent_name:<20} {r.threat_type:<18} "
+                    f"{r.precision:>6.3f} {r.recall:>6.3f} {r.f1:>6.3f} {r.accuracy:>6.3f}"
+                    f"  {r.tp:>4} {r.fp:>4} {r.fn:>4}"
                 )
         lines.append("=" * 60)
         return "\n".join(lines)
@@ -100,13 +133,21 @@ class Evaluator:
     """
 
     def __init__(self):
-        self._y_true: List[int] = []           # 1=attack, 0=benign
+        self._y_true: List[int] = []           # 1=attack, 0=benign (majority-label)
         self._y_pred: List[int] = []           # 1=attack, 0=benign
         self._y_prob: List[float] = []         # confidence scores (0-1)
-        self._y_true_threat: List[str] = []    # ground-truth category
+        self._y_true_threat: List[str] = []    # ground-truth category (majority)
         self._y_pred_threat: List[str] = []    # predicted threat type
         self._batch_nums: List[int] = []       # batch sequence numbers
         self._contributing: List[List[str]] = []  # contributing agents per batch
+        # Secondary eval: raw attack ratio per batch (for ≥5% threshold recomputation)
+        self._attack_ratios: List[float] = []  # fraction of attack records per batch
+        # Per-batch majority category and dominant attack category for secondary eval
+        self._majority_categories: List[str] = []
+        self._dominant_attack_categories: List[str] = []
+        # Per-agent per-threat eval: list of (agent_name, predicted_threat, cat_ratios_dict)
+        # cat_ratios_dict maps category → fraction of batch records with that label
+        self._agent_findings: List[List[tuple]] = []  # per batch: [(agent, threat, fired)]
 
     def add_batch(
         self,
@@ -139,6 +180,11 @@ class Evaluator:
         from collections import Counter
         majority_category = Counter(categories).most_common(1)[0][0]
 
+        # Per-category ratios: fraction of batch records belonging to each category
+        cat_counts = Counter(categories)
+        total = len(batch_records)
+        cat_ratios: Dict[str, float] = {cat: cnt / total for cat, cnt in cat_counts.items()}
+
         self._y_true.append(int(majority_is_attack))
         self._y_pred.append(int(verdict.is_attack))
         self._y_prob.append(verdict.confidence_score)
@@ -149,6 +195,22 @@ class Evaluator:
         self._y_pred_threat.append(self._normalise_threat_label(pred_label))
         self._batch_nums.append(batch_num)
         self._contributing.append(verdict.contributing_agents or [])
+        self._attack_ratios.append(attack_ratio)
+        self._majority_categories.append(majority_category)
+        # Dominant attack category (for secondary per-threat — ignores benign majority)
+        attack_cats = [r.attack_category for r in batch_records if r.is_attack]
+        dominant_attack_cat = Counter(attack_cats).most_common(1)[0][0] if attack_cats else "Benign"
+        self._dominant_attack_categories.append(dominant_attack_cat)
+
+        # Per-agent findings: store (agent_name, normalised_threat, fired, cat_ratios)
+        batch_agent_findings = []
+        if verdict.agent_findings:
+            for finding in verdict.agent_findings:
+                normalised = self._normalise_threat_label(finding.threat_type.value)
+                batch_agent_findings.append(
+                    (finding.agent_name, normalised, finding.threat_detected, cat_ratios)
+                )
+        self._agent_findings.append(batch_agent_findings)
 
     def add(
         self,
@@ -197,6 +259,9 @@ class Evaluator:
             false_negatives=fn,
             per_threat=per_threat,
             confusion=cm,
+            **self._compute_secondary_metrics(y_pred),
+            per_agent_accuracy=self._compute_per_agent_accuracy(y_true, y_pred),
+            per_agent_threat=self._compute_per_agent_threat_accuracy(),
         )
 
     def save_plots(self, output_dir: str | Path) -> None:
@@ -329,6 +394,146 @@ class Evaluator:
                 plt.savefig(output_path / "agent_contribution.png", dpi=150)
                 plt.close()
 
+    def _compute_secondary_metrics(self, y_pred: np.ndarray) -> dict:
+        """
+        Recompute metrics using the ≥5% threshold: a batch is labelled attack if
+        at least 5% of its records are attacks (vs >50% in primary mode).
+        This credits short-burst attacks (brute force, botnet) that are always
+        a minority in 500-record windows.
+        """
+        if not self._attack_ratios:
+            return {}
+        SECONDARY_THRESHOLD = 0.05
+        y_true_5 = np.array([1 if r > SECONDARY_THRESHOLD else 0
+                              for r in self._attack_ratios])
+        # Per-threat for secondary mode: for batches that qualify as attacks under ≥5%,
+        # use the dominant *attack* category (not the overall majority, which is usually
+        # "Benign" for short-burst attacks like Brute Force that are minority in a window).
+        y_true_threat_5 = [
+            dom_attack_cat if ratio > SECONDARY_THRESHOLD else "Benign"
+            for dom_attack_cat, ratio in zip(self._dominant_attack_categories, self._attack_ratios)
+        ]
+        prec5 = float(precision_score(y_true_5, y_pred, zero_division=0))
+        rec5  = float(recall_score(y_true_5, y_pred, zero_division=0))
+        f1_5  = float(f1_score(y_true_5, y_pred, zero_division=0))
+        # Per-threat under secondary mode
+        categories_5 = set(y_true_threat_5)
+        per_5: Dict[str, Dict[str, float]] = {}
+        y_pred_threat = np.array(self._y_pred_threat)
+        for cat in sorted(categories_5):
+            y_t = np.array([1 if c == cat else 0 for c in y_true_threat_5])
+            y_p = np.array([1 if c == cat else 0 for c in self._y_pred_threat])
+            per_5[cat] = {
+                "precision": round(float(precision_score(y_t, y_p, zero_division=0)), 4),
+                "recall":    round(float(recall_score(y_t, y_p, zero_division=0)), 4),
+                "f1":        round(float(f1_score(y_t, y_p, zero_division=0)), 4),
+                "support":   int(y_t.sum()),
+            }
+        return {
+            "precision_5pct":   round(prec5, 4),
+            "recall_5pct":      round(rec5, 4),
+            "f1_5pct":          round(f1_5, 4),
+            "true_attacks_5pct": int(y_true_5.sum()),
+            "per_threat_5pct":  per_5,
+        }
+
+    def _compute_per_agent_accuracy(
+        self, y_true: np.ndarray, y_pred: np.ndarray
+    ) -> Dict[str, Dict[str, int]]:
+        """
+        For each agent that contributed to an attack verdict, count how many of
+        those verdicts were TPs (ground truth = attack) vs FPs (ground truth = benign).
+        """
+        agent_stats: Dict[str, Dict[str, int]] = {}
+        for gt, pred, agents in zip(y_true, y_pred, self._contributing):
+            if pred == 1:  # engine said attack
+                for agent in agents:
+                    if agent not in agent_stats:
+                        agent_stats[agent] = {"tp": 0, "fp": 0}
+                    if gt == 1:
+                        agent_stats[agent]["tp"] += 1
+                    else:
+                        agent_stats[agent]["fp"] += 1
+        return agent_stats
+
+    def _compute_per_agent_threat_accuracy(self) -> List[AgentEvalResult]:
+        """
+        Per-agent, per-threat evaluation.
+
+        For every (agent, threat_type) pair seen across all batches:
+          TP: agent fired that threat AND that threat was ≥5% of the batch
+          FP: agent fired that threat AND that threat was <5% of the batch
+          FN: agent did NOT fire that threat AND that threat was ≥5% of the batch
+          TN: agent did NOT fire + threat not present ≥5%
+
+        Accuracy = (TP + TN) / (TP + FP + FN + TN)
+        This answers: "When VolumeAgent says DDoS, is DDoS actually there?"
+        """
+        PRESENCE_THRESHOLD = 0.05
+
+        # Discover all (agent, threat) pairs that ever fired
+        from collections import defaultdict
+        pair_set: set = set()
+        for batch_findings in self._agent_findings:
+            for agent, threat, fired, _ in batch_findings:
+                if fired and threat != "Benign":
+                    pair_set.add((agent, threat))
+
+        results: List[AgentEvalResult] = []
+        for agent_name, threat_label in sorted(pair_set):
+            tp = fp = fn = tn = 0
+            for batch_findings, cat_ratios_via_batch in zip(
+                self._agent_findings,
+                # cat_ratios lives inside the finding tuples; grab it per batch
+                # by pulling it from the first finding that has it
+                [
+                    next(
+                        (cr for a, t, f, cr in bf),
+                        {}
+                    )
+                    for bf in self._agent_findings
+                ],
+            ):
+                # Find this agent's finding in this batch (if present)
+                agent_fired = False
+                for a, t, fired, _ in batch_findings:
+                    if a == agent_name and t == threat_label and fired:
+                        agent_fired = True
+                        break
+
+                # Was this threat present ≥5% in the batch?
+                # cat_ratios_via_batch is the same dict for all agents in the batch
+                if batch_findings:
+                    _, _, _, cat_ratios = batch_findings[0]
+                else:
+                    cat_ratios = {}
+                threat_present = cat_ratios.get(threat_label, 0.0) >= PRESENCE_THRESHOLD
+
+                if agent_fired and threat_present:
+                    tp += 1
+                elif agent_fired and not threat_present:
+                    fp += 1
+                elif not agent_fired and threat_present:
+                    fn += 1
+                else:
+                    tn += 1
+
+            total = tp + fp + fn + tn
+            prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+            rec  = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+            f1v  = (2 * prec * rec / (prec + rec)) if (prec + rec) > 0 else 0.0
+            acc  = (tp + tn) / total if total > 0 else 0.0
+            results.append(AgentEvalResult(
+                agent_name=agent_name,
+                threat_type=threat_label,
+                tp=tp, fp=fp, fn=fn, tn=tn,
+                precision=round(prec, 4),
+                recall=round(rec, 4),
+                f1=round(f1v, 4),
+                accuracy=round(acc, 4),
+            ))
+        return results
+
     def _per_threat_metrics(self) -> Dict[str, Dict[str, float]]:
         """Per ground-truth threat-type precision/recall/F1."""
         from collections import defaultdict
@@ -346,16 +551,18 @@ class Evaluator:
         return out
 
     def reset(self) -> None:
-        self.__init__()  # resets all lists including _batch_nums and _contributing
+        self.__init__()  # resets all lists including _batch_nums, _contributing, _attack_ratios, _agent_findings
 
     # Map ThreatType enum values → CICIDS ground-truth category names
     _THREAT_LABEL_MAP = {
         "DOS": "DoS",
+        "DDOS": "DDoS",
         "PORT_SCAN": "Port Scan",
         "BRUTE_FORCE": "Brute Force",
         "CREDENTIAL_STUFFING": "Brute Force",   # CICIDS has no "credential stuffing" category
         "BOT_ACTIVITY": "Botnet",
         "SCRAPING": "DoS",                       # compound DoS+bot → still DoS in ground truth
+        "WEB_ATTACK": "Web Attack",
         "UNKNOWN_ABUSE": "Other",
         "NONE": "Benign",
     }

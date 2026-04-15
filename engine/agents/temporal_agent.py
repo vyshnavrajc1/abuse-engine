@@ -279,7 +279,12 @@ class TemporalAgent(BaseAgent):
             if len(iats) >= 6:
                 human_mean = float(np.mean(_HUMAN_IAT_SAMPLE))
                 cusum_alarm, cusum_peak = self._cusum_detect(iats, target_mean=human_mean)
-                if cusum_alarm:
+                # CUSUM alone is weak evidence — require at least MIN_PERIODIC_IPS-1 IPs
+                # to already show FFT periodicity before boosting confidence.
+                # Without this guard, any single-IP DoS flood (machine-generated,
+                # very short IAT compared to the human baseline) triggers a CUSUM
+                # alarm and falsely raises bot confidence to 0.72.
+                if cusum_alarm and periodic_ip_count >= max(1, self.MIN_PERIODIC_IPS - 1):
                     ctx.indicators.append(
                         f"cusum_iat_alarm: {ip} peak={cusum_peak:.2f} "
                         f"(threshold={_CUSUM_H}) — sustained IAT reduction detected"
@@ -344,11 +349,18 @@ class TemporalAgent(BaseAgent):
         if self.memory.ltm.is_distribution_stable("TemporalAgent"):
             self._update_adaptive_thresholds()
 
-        # Raised threshold: need 0.60 confidence AND indicators
-        threat_detected = ctx.confidence_score >= 0.60 and bool(ctx.indicators)
+        # If VolumeAgent already flagged this batch as DoS/DDoS, the periodic IAT
+        # pattern is explained by the flood itself — suppress BOT_ACTIVITY to avoid
+        # labelling every machine-generated flood as a botnet.
+        related_dos = ctx.raw_metrics.get("related_dos_evidence", False)
+
+        # Raised threshold: need 0.60 confidence AND indicators AND no DoS explanation
+        threat_detected = ctx.confidence_score >= 0.60 and bool(ctx.indicators) and not related_dos
         if threat_detected:
             ctx.threat_type = ThreatType.BOT_ACTIVITY
             ctx.log(f"CONCLUDE: bot timing detected (conf={ctx.confidence_score:.2f})")
+        elif related_dos and ctx.confidence_score >= 0.60:
+            ctx.log("CONCLUDE: periodic pattern present but explained by DoS evidence — suppressed")
         else:
             ctx.log("CONCLUDE: no bot timing pattern detected")
 

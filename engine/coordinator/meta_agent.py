@@ -72,10 +72,10 @@ class DispatchPlan:
     skip_reasons: Dict[str, str] = field(default_factory=dict)
 
 _AGENT_DOMAINS: Dict[str, frozenset] = {
-    "VolumeAgent":   frozenset({ThreatType.DOS, ThreatType.SCRAPING}),
+    "VolumeAgent":   frozenset({ThreatType.DOS, ThreatType.DDOS, ThreatType.SCRAPING}),
     "TemporalAgent": frozenset({ThreatType.BOT_ACTIVITY, ThreatType.SCRAPING}),
     "AuthAgent":     frozenset({ThreatType.BRUTE_FORCE, ThreatType.CREDENTIAL_STUFFING}),
-    "PayloadAgent":  frozenset({ThreatType.PORT_SCAN, ThreatType.ENUMERATION}),
+    "PayloadAgent":  frozenset({ThreatType.PORT_SCAN, ThreatType.ENUMERATION, ThreatType.WEB_ATTACK}),
     "SequenceAgent": frozenset({ThreatType.SEQUENCE_ABUSE}),
     "GeoIPAgent":    frozenset({ThreatType.GEO_ANOMALY}),
 }
@@ -83,7 +83,6 @@ _AGENT_DOMAINS: Dict[str, frozenset] = {
 # If threat A is active at HIGH confidence, these related threats may have been
 # missed by the responsible agent (e.g. DoS often co-occurs with bot timing).
 _RELATED_THREATS: Dict[ThreatType, frozenset] = {
-    ThreatType.DOS:                 frozenset({ThreatType.BOT_ACTIVITY}),
     ThreatType.CREDENTIAL_STUFFING: frozenset({ThreatType.BOT_ACTIVITY}),
     ThreatType.BOT_ACTIVITY:        frozenset({ThreatType.DOS, ThreatType.SCRAPING}),
     ThreatType.SCRAPING:            frozenset({ThreatType.BOT_ACTIVITY, ThreatType.DOS}),
@@ -102,6 +101,13 @@ _COMPOUND_RULES: List[Tuple[frozenset, ThreatType, str, float, float]] = [
         "High Volume + Bot Timing → Scraping/DDoS Bot",
         0.08,
         0.70,   # each agent must have conf >= 0.70 individually
+    ),
+    (
+        frozenset({ThreatType.DDOS, ThreatType.BOT_ACTIVITY}),
+        ThreatType.DDOS,
+        "Distributed Flood + Bot Timing → Botnet-driven DDoS",
+        0.10,
+        0.65,
     ),
     (
         frozenset({ThreatType.CREDENTIAL_STUFFING, ThreatType.BOT_ACTIVITY}),
@@ -292,7 +298,6 @@ class MetaAgentOrchestrator:
             n_estimators=50,
             max_depth=3,
             learning_rate=0.1,
-            use_label_encoder=False,
             eval_metric="logloss",
             verbosity=0,
             n_jobs=1,
@@ -488,6 +493,32 @@ class MetaAgentOrchestrator:
         # ── Conflict resolution ──────────────────────────────────────────
         resolved_findings = self._resolve_conflicts(findings)
 
+        # ── DoS/DDoS explains TemporalAgent periodicity — suppress BOT_ACTIVITY ──
+        # Machine-generated floods are inherently periodic (fixed IAT), so
+        # TemporalAgent's FFT fires correctly but the threat is already explained
+        # by VolumeAgent.  Suppress TemporalAgent's BOT_ACTIVITY after we have all
+        # findings in hand (cannot be done inside TemporalAgent itself because the
+        # evidence board may not be populated yet when it runs).
+        volume_fired_dos = any(
+            f.threat_detected and f.threat_type in (ThreatType.DOS, ThreatType.DDOS)
+            for f in resolved_findings
+            if f.agent_name == "VolumeAgent"
+        )
+        if volume_fired_dos:
+            resolved_findings = [
+                dataclasses.replace(
+                    f,
+                    threat_detected=False,
+                    confidence=ConfidenceLevel.LOW,
+                    indicators=f.indicators + [
+                        "suppressed: bot periodicity explained by concurrent DoS/DDoS signal"
+                    ],
+                )
+                if f.agent_name == "TemporalAgent" and f.threat_detected and f.threat_type == ThreatType.BOT_ACTIVITY
+                else f
+                for f in resolved_findings
+            ]
+
         # ── Weighted confidence fusion ────────────────────────────────────
         total_weight = 0.0
         weighted_conf = 0.0
@@ -544,20 +575,25 @@ class MetaAgentOrchestrator:
         rule_is_attack = is_attack
         self.memory.ltm.record_verdict_sample(features, int(rule_is_attack))
         self._retrain_xgb()
-        # Don't let XGB downgrade a high-confidence single-agent verdict —
-        # XGB is trained on historical data and may not have seen the current attack type yet.
-        # Only apply XGB blend when the rule-based verdict is ambiguous (not a clear high-conf single agent).
-        _single_high_conf = (n_contributing == 1 and rule_is_attack)
+        # Don't let XGB downgrade a high-confidence primary agent verdict —
+        # XGB trains on historical data and won't have seen novel attack types at first
+        # encounter (concept drift). If any agent fires at >= SINGLE_AGENT_THRESHOLD,
+        # the rule-based verdict wins regardless of how many agents were escalated.
+        _primary_conf = max(
+            (f.confidence_score for f in resolved_findings if f.threat_detected),
+            default=0.0,
+        )
+        _high_conf_primary = rule_is_attack and _primary_conf >= self._SINGLE_AGENT_THRESHOLD
         xgb_proba = self._xgb_predict_proba(features)
-        if xgb_proba is not None and not _single_high_conf:
+        if xgb_proba is not None and not _high_conf_primary:
             # Blend: 0.4 × rule-based + 0.6 × xgb
             blended = 0.4 * fused_conf + 0.6 * xgb_proba
             is_attack_xgb = blended >= self._ATTACK_THRESHOLD and final_threat != ThreatType.NONE
             if is_attack_xgb != is_attack:
                 logger.debug(
                     "[MetaAgent] XGB stacker overrides rule verdict: "
-                    "rule=%s xgb_proba=%.3f blended=%.3f",
-                    is_attack, xgb_proba, blended,
+                    "rule=%s xgb_proba=%.3f blended=%.3f primary_conf=%.3f",
+                    is_attack, xgb_proba, blended, _primary_conf,
                 )
             is_attack = is_attack_xgb
             fused_conf = min(1.0, blended)

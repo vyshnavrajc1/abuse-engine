@@ -54,7 +54,7 @@ def run(
     warmup_batches: int = 10,
     llm_url: str = "",
     llm_model: str = "qwen2.5:7b",
-    attack_threshold: float = 0.5,
+    attack_threshold: float = 0.05,
 ) -> None:
 
     if verbose:
@@ -155,7 +155,7 @@ def run(
                 "max_records": max_records,
                 "warmup_batches": warmup_batches,
                 "attack_threshold": attack_threshold,
-                "evaluation_mode": "batch_majority_label",
+                "evaluation_mode": "batch_5pct_threshold",
                 "llm_model": llm_model if llm_url else None,
             },
             "metrics": {
@@ -169,7 +169,15 @@ def run(
                 "false_positives":   result.false_positives,
                 "false_negatives":   result.false_negatives,
             },
+            "metrics_5pct": {
+                "precision":      result.precision_5pct,
+                "recall":         result.recall_5pct,
+                "f1":             result.f1_5pct,
+                "attack_batches": result.true_attacks_5pct,
+            },
             "per_threat": result.per_threat,
+            "per_threat_5pct": result.per_threat_5pct,
+            "per_agent_accuracy": result.per_agent_accuracy,
             "verdicts": verdicts_log,
         }
         with open(output, "w") as f:
@@ -225,10 +233,9 @@ def main():
         help="Model name to request from the LLM endpoint (default: qwen2.5:7b)",
     )
     parser.add_argument(
-        "--attack-threshold", type=float, default=0.5,
-        help="Fraction of attack records required to label a batch as attack (default: 0.5). "
-             "Lowering to 0.20 correctly scores partial-attack batches as attacks, "
-             "recovering port-scan and mixed-traffic detections.",
+        "--attack-threshold", type=float, default=0.05,
+        help="Fraction of attack records required to label a batch as attack (default: 0.05). "
+             "≥5%% threshold credits minority attacks in mixed-traffic windows.",
     )
     args = parser.parse_args()
 

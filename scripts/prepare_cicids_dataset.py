@@ -10,7 +10,7 @@ import numpy as np
 import argparse
 from datetime import datetime
 
-DATASET_DIR = "datasets"
+DATASET_DIR = "datasets/CICIDS2017"  # CSVs live in the subdirectory, not the root datasets/ folder
 OUTPUT_DIR = "datasets/processed"
 OUTPUT_FILE = "cicids2017_api_logs.csv"
 
@@ -37,12 +37,13 @@ def categorize_label(label):
     label = str(label).strip()
     if label == "BENIGN":
         return "Benign"
+    # DDoS must be checked BEFORE DoS — "DoS" is a substring of "DDoS"
+    elif "DDoS" in label:
+        return "DDoS"
     elif "Brute Force" in label or "FTP-Patator" in label or "SSH-Patator" in label:
         return "Brute Force"
     elif "DoS" in label or "Hulk" in label or "GoldenEye" in label:
         return "DoS"
-    elif "DDoS" in label:
-        return "DDoS"
     elif "PortScan" in label:
         return "Port Scan"
     elif "Bot" in label:

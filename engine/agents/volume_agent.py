@@ -60,6 +60,12 @@ class VolumeAgent(BaseAgent):
     DOMINANT_IP_RATIO      = 0.90     # single IP must own >90% of traffic
     HIGH_LATENCY_BENIGN_MS = 6500.0   # single-IP batches with avg latency above this are likely long-lived benign sessions
     MIN_WARMUP_BATCHES     = 15       # minimum global batches before alerting
+    # Distributed DoS (DDoS) detection thresholds
+    # DDoS uses a coordinated cluster of IPs (e.g. 2–20), each sending significant
+    # traffic. Truly distributed benign traffic has many IPs each sending few requests.
+    DDOS_MAX_UNIQUE_IPS          = 50   # DDoS botnets rarely have >50 coordinated sources
+    MAX_BENIGN_TOP_COUNT_DISTRIBUTED = 25  # benign distributed: busiest IP sends <25 reqs
+    DDOS_MIN_DOM_RATIO           = 0.25  # distributed DDoS still has one noticeably dominant IP
 
     def observe(self, ctx: AgentContext) -> None:
         """Compute per-IP request counts, endpoint rates, diversity metrics, and avg latency."""
@@ -144,14 +150,22 @@ class VolumeAgent(BaseAgent):
 
     def _update_adaptive_thresholds(self) -> None:
         """Replace cold-start constants with data-derived values from LTM.
-        Called once per batch after distribution has stabilised."""
+        Called once per batch after distribution has stabilised.
+
+        Floors:
+          DOMINANT_IP_RATIO >= 0.65 — DDoS traffic (dom_ratio ~0.52) must still
+            enter the distributed-flood block; benign CICIDS traffic (dom_ratio ~0.02)
+            adapts the threshold DOWN but we never let it drop below the DDoS range.
+          HIGH_RATE_ABSOLUTE >= 50  — prevents the absolute-flood threshold from
+            becoming so low that benign spikes trigger single-source-flood verdicts.
+        """
         dom_mean, dom_std = self.memory.ltm.get_batch_distribution("VolumeAgent", "dom_ratio")
         if dom_mean is not None and dom_std is not None:
-            self.DOMINANT_IP_RATIO = min(0.99, dom_mean + 2.0 * dom_std)
+            self.DOMINANT_IP_RATIO = min(0.99, max(0.65, dom_mean + 2.0 * dom_std))
 
         top_mean, top_std = self.memory.ltm.get_batch_distribution("VolumeAgent", "top_count")
         if top_mean is not None and top_std is not None:
-            self.HIGH_RATE_ABSOLUTE = top_mean + 2.0 * top_std
+            self.HIGH_RATE_ABSOLUTE = max(50.0, top_mean + 2.0 * top_std)
 
         lat_mean, lat_std = self.memory.ltm.get_batch_distribution("VolumeAgent", "avg_latency")
         if lat_mean is not None and lat_std is not None:
@@ -333,14 +347,57 @@ class VolumeAgent(BaseAgent):
             )
             return
 
-        # Strong diversity guard: many IPs sharing the load → distributed benign traffic
-        if unique_ips > self.MAX_IP_DIVERSITY and dominant_ratio < self.DOMINANT_IP_RATIO:
-            ctx.hypothesis = "distributed_traffic_benign"
+        # Small-cluster DDoS: 2–DDOS_MAX_UNIQUE_IPS IPs with moderate dominance.
+        # This zone (dom_ratio in [DDOS_MIN_DOM_RATIO, DOMINANT_IP_RATIO)) is skipped by
+        # both the diversity guard below (requires unique_ips > MAX_IP_DIVERSITY) and the
+        # single-source flood check (requires dom_ratio >= DOMINANT_IP_RATIO). A targeted
+        # check here catches small-botnet scenarios (2–50 coordinated IPs) that would
+        # otherwise fall to the z-score path without a specific threat label.
+        if (2 <= unique_ips <= self.DDOS_MAX_UNIQUE_IPS
+                and self.DDOS_MIN_DOM_RATIO <= dominant_ratio < self.DOMINANT_IP_RATIO
+                and top_count >= self.HIGH_RATE_ABSOLUTE):
+            ctx.hypothesis = "distributed_dos_flood"
+            ctx.threat_type = ThreatType.DDOS
             ctx.log(
-                f"HYPOTHESIZE: {unique_ips} unique IPs sharing load (dominant={dominant_ratio:.0%}) "
-                f"— distributed traffic, not spike"
+                f"HYPOTHESIZE: small-cluster DDoS — {unique_ips} IPs, "
+                f"top={top_count} ({dominant_ratio:.0%} dominance) — small-botnet DDoS"
             )
-            return
+            # Fall through to investigate()
+
+        # Strong diversity guard: many IPs sharing the load → distributed benign traffic
+        # EXCEPTION: if the busiest IP is itself sending a large number of requests
+        # (top_count ≥ MAX_BENIGN_TOP_COUNT_DISTRIBUTED), the traffic is a coordinated
+        # distributed flood (DDoS), not genuinely distributed benign activity.
+        if unique_ips > self.MAX_IP_DIVERSITY and dominant_ratio < self.DOMINANT_IP_RATIO and ctx.hypothesis != "distributed_dos_flood":
+            top_count_check = ctx.raw_metrics.get("top_ip_count", 0)
+            if top_count_check < self.MAX_BENIGN_TOP_COUNT_DISTRIBUTED:
+                # Truly distributed benign: many IPs, few requests each
+                ctx.hypothesis = "distributed_traffic_benign"
+                ctx.log(
+                    f"HYPOTHESIZE: {unique_ips} unique IPs sharing load (dominant={dominant_ratio:.0%}, "
+                    f"top_count={top_count_check}) — distributed traffic, not spike"
+                )
+                return
+            elif unique_ips <= self.DDOS_MAX_UNIQUE_IPS and dominant_ratio >= self.DDOS_MIN_DOM_RATIO:
+                # Distributed flood: moderate IP count AND top IP is visibly dominant
+                # (e.g. DDoS LOIC/LOIT: 14 IPs, dom_ratio ≈ 0.52 — one leader)
+                # dom_ratio < DDOS_MIN_DOM_RATIO means truly balanced traffic → benign
+                ctx.hypothesis = "distributed_dos_flood"
+                ctx.threat_type = ThreatType.DDOS
+                ctx.log(
+                    f"HYPOTHESIZE: distributed DoS flood — {unique_ips} IPs, "
+                    f"top_count={top_count_check} ({dominant_ratio:.0%} dominance) "
+                    f"— DDoS pattern"
+                )
+                # Fall through to investigate()
+            else:
+                # CDN/global traffic or balanced multi-IP load — benign
+                ctx.hypothesis = "distributed_traffic_benign"
+                ctx.log(
+                    f"HYPOTHYSIZE: {unique_ips} unique IPs, dom_ratio={dominant_ratio:.0%} "
+                    f"— CDN/global/balanced traffic, benign"
+                )
+                return
 
         # Absolute single-source flood
         if top_count >= self.HIGH_RATE_ABSOLUTE and dominant_ratio >= self.DOMINANT_IP_RATIO:
@@ -391,6 +448,30 @@ class VolumeAgent(BaseAgent):
             )
             self._post_evidence("dos:slow_flood", top_ip_ep_count, conf, ["volume", "dos"])
             ctx.log(f"INVESTIGATE: slow-DoS conf={conf:.2f} (ep_saturation={ip_ep_sat:.2f})")
+            return
+
+        # Distributed DoS flood: cluster of IPs each sending significant traffic
+        if ctx.hypothesis == "distributed_dos_flood":
+            unique_ips      = ctx.raw_metrics.get("unique_ips", 0)
+            top_count       = ctx.raw_metrics.get("top_ip_count", 0)
+            dominant_ratio  = ctx.raw_metrics.get("dominant_ratio", 0.0)
+            total           = ctx.raw_metrics.get("total_requests", 500)
+            # Confidence: scales with how many requests the top IP sends relative to
+            # what is expected from truly benign distributed traffic.
+            # top_count=25 → floor 0.70; top_count=250 → ~0.90
+            base_conf = min(1.0, 0.65 + (top_count / float(total)) * 0.40)
+            base_conf = max(0.70, base_conf)
+            ctx.confidence_score = base_conf
+            ctx.indicators.append(
+                f"distributed_flood: {unique_ips} IPs coordinated, "
+                f"top={top_count} reqs ({dominant_ratio:.0%} dom_ratio)"
+            )
+            self._post_evidence("dos:distributed_flood", top_count, base_conf, ["volume", "ddos"])
+            # Update LTM
+            endpoint_counts = ctx.raw_metrics.get("endpoint_counts", {})
+            for ep, count in endpoint_counts.items():
+                self.memory.ltm.record_rate(ep, float(count))
+            ctx.log(f"INVESTIGATE: distributed DoS conf={base_conf:.2f} ({unique_ips} IPs, top={top_count})")
             return
 
         ip_counts       = ctx.raw_metrics.get("ip_counts", {})
@@ -455,9 +536,14 @@ class VolumeAgent(BaseAgent):
         for ip, cnt in ip_counts.items():
             self.memory.ltm.record_ip_rate(ip, float(cnt))
 
-        # Aggregate z-score confidence (only if dominant IP is also suspicious)
+        # Aggregate z-score confidence.
+        # Use a fixed 0.50 dominance threshold: one IP owning ≥50% of traffic AND
+        # producing a significant rate spike is a strong DoS/DDoS signal.
+        # DOMINANT_IP_RATIO adapts too high (0.99) to be useful; DDOS_MIN_DOM_RATIO at
+        # 0.25 is too aggressive and flags legitimate aggregation. 0.50 is the sweet spot.
+        _ZSCORE_DOM_THRESHOLD = 0.50
         significant = [v for v in z_scores.values() if v.get("significant")]
-        if significant and dominant_ratio >= self.DOMINANT_IP_RATIO:
+        if significant and dominant_ratio >= _ZSCORE_DOM_THRESHOLD:
             avg_z = sum(abs(v["z"]) for v in significant) / len(significant)
             z_conf = min(1.0, avg_z / 6.0)
             # Only apply z-score confidence if it clears the minimum bar
@@ -499,6 +585,21 @@ class VolumeAgent(BaseAgent):
         threat_detected = ctx.confidence_score >= 0.55 and bool(ctx.indicators)
 
         if threat_detected:
+            # Ensure a meaningful threat type is always set — if the only signal came
+            # from the Isolation Forest or z-score path (no specific hypothesis), the
+            # ctx.threat_type stays ThreatType.NONE. MetaAgent fuses on final_threat,
+            # and final_threat=NONE causes is_attack=False regardless of confidence.
+            if ctx.threat_type == ThreatType.NONE:
+                unique_ips = ctx.raw_metrics.get("unique_ips", 1)
+                ctx.threat_type = (
+                    ThreatType.DDOS
+                    if unique_ips > self.MAX_IP_DIVERSITY
+                    else ThreatType.DOS
+                )
+                ctx.log(
+                    f"CONCLUDE: threat_type promoted from NONE → {ctx.threat_type.value} "
+                    f"(unique_ips={unique_ips})"
+                )
             self._post_evidence(
                 "dos:detected",
                 {"confidence": ctx.confidence_score, "indicators": ctx.indicators},

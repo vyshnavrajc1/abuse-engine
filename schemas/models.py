@@ -20,6 +20,7 @@ class ConfidenceLevel(str, Enum):
 class ThreatType(str, Enum):
     NONE                = "NONE"
     DOS                 = "DOS"
+    DDOS                = "DDOS"
     BRUTE_FORCE         = "BRUTE_FORCE"
     CREDENTIAL_STUFFING = "CREDENTIAL_STUFFING"
     BOT_ACTIVITY        = "BOT_ACTIVITY"
@@ -27,6 +28,7 @@ class ThreatType(str, Enum):
     PORT_SCAN           = "PORT_SCAN"
     ENUMERATION         = "ENUMERATION"
     SEQUENCE_ABUSE      = "SEQUENCE_ABUSE"
+    WEB_ATTACK          = "WEB_ATTACK"
     GEO_ANOMALY         = "GEO_ANOMALY"
     UNKNOWN_ABUSE       = "UNKNOWN_ABUSE"
 

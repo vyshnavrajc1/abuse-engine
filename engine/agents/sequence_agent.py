@@ -205,8 +205,10 @@ class SequenceAgent(BaseAgent):
         # Secondary signal: low Markov probability (only after warm-up baseline is rich)
         low_prob_ips = [ip for ip, lp in ip_log_probs.items() if lp < self.LOW_PROB_THRESHOLD]
 
-        # Hypothesis only if sequential OR (low-prob AND corroborated by other agent findings)
-        # For CICIDS-style data (port_X endpoints), sequential is the dominant reliable signal
+        # Use sequential IPs as the primary (and only) detection signal.
+        # The Markov-only fallback was tested and caused excessive FPs on benign batches
+        # because the model is not calibrated enough to use log-prob alone without
+        # sequential confirmation. Keep it as supporting evidence only.
         suspect_ips = sequential_ips or []
 
         if suspect_ips:

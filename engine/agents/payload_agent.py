@@ -24,6 +24,7 @@ Adaptive thresholds:
 
 from __future__ import annotations
 from collections import Counter, defaultdict
+import re
 from typing import Dict, List
 
 from engine.agents.base_agent import AgentContext, BaseAgent, LoopDecision
@@ -47,6 +48,18 @@ class PayloadAgent(BaseAgent):
     # warmup period is needed to recognise this extremity.
     HARD_ENTROPY_THRESHOLD  = 6.0    # bits — obvious scanner, bypasses stability check
     HARD_MIN_DISTINCT       = 100    # minimum distinct endpoints for hard bypass
+
+    # Injection pattern detection (Web Attack: XSS, SQLi, path traversal, cmd injection).
+    # Patterns match URL-decoded endpoint strings; compiled once at class level.
+    _INJECTION_PATTERNS: List[tuple[str, re.Pattern]] = [
+        ("xss",          re.compile(r"<\s*script|javascript:|on\w+\s*=|<\s*img[^>]+src\s*=", re.I)),
+        ("sqli",         re.compile(r"union\s+select|'\s*(or|and)\s+'?\d|--\s*$|;\s*drop\s+table|select\s+.+\s+from", re.I)),
+        ("path_trav",    re.compile(r"\.\./|\.\.\\|%2e%2e[%/\\]|/etc/passwd|/windows/system32", re.I)),
+        ("cmd_inject",   re.compile(r";\s*(ls|cat|whoami|id|uname|wget|curl)\b|`[^`]+`|\|\s*(sh|bash|cmd)\b", re.I)),
+        ("xxe_ssrf",     re.compile(r"<!entity|file://|dict://|gopher://|/proc/self", re.I)),
+    ]
+    # Minimum injection hits in a window to hypothesize a Web Attack
+    MIN_INJECTION_HITS      = 3
 
     # Well-known service ports that appear in legitimate multi-protocol traffic.
     # Having entropy across THESE ports alone does NOT indicate a port scan.
@@ -97,6 +110,34 @@ class PayloadAgent(BaseAgent):
         max_entropy_ip = max(per_ip_entropy, key=per_ip_entropy.get) if per_ip_entropy else None
         max_entropy = per_ip_entropy.get(max_entropy_ip, 0.0) if max_entropy_ip else 0.0
 
+        # Injection pattern scanning — URL-decode endpoints and test against signatures.
+        # Operates on all records regardless of warmup state (pattern-match, not statistical).
+        from urllib.parse import unquote
+        injection_hits: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+        for r in ctx.records:
+            ep = unquote(r.endpoint_template or r.endpoint or "")
+            for pattern_name, pattern in self._INJECTION_PATTERNS:
+                if pattern.search(ep):
+                    injection_hits[r.ip][pattern_name] += 1
+
+        # Summarise: total hits per IP and distinct pattern types per IP
+        injection_summary: Dict[str, Dict] = {}
+        for ip, hits_by_type in injection_hits.items():
+            injection_summary[ip] = {
+                "total": sum(hits_by_type.values()),
+                "patterns": dict(hits_by_type),
+                "distinct_types": len(hits_by_type),
+            }
+        total_injection_hits = sum(v["total"] for v in injection_summary.values())
+        top_injection_ip = (
+            max(injection_summary, key=lambda ip: injection_summary[ip]["total"])
+            if injection_summary else None
+        )
+
+        ctx.raw_metrics["injection_summary"]      = injection_summary
+        ctx.raw_metrics["total_injection_hits"]   = total_injection_hits
+        ctx.raw_metrics["top_injection_ip"]       = top_injection_ip
+
         ctx.raw_metrics["ip_endpoints"]     = {ip: dict(c) for ip, c in ip_endpoints.items()}
         ctx.raw_metrics["per_ip_entropy"]   = per_ip_entropy
         ctx.raw_metrics["per_ip_distinct"]  = per_ip_distinct
@@ -109,7 +150,8 @@ class PayloadAgent(BaseAgent):
         ctx.log(
             f"OBSERVE: {len(ip_endpoints)} IPs | "
             f"max_entropy_ip={max_entropy_ip} entropy={max_entropy:.2f} | "
-            f"total_distinct_eps={ctx.raw_metrics['total_distinct_endpoints']}"
+            f"total_distinct_eps={ctx.raw_metrics['total_distinct_endpoints']} | "
+            f"injection_hits={total_injection_hits} ips_with_injection={len(injection_summary)}"
         )
 
     def orient(self, ctx: AgentContext) -> None:
@@ -141,10 +183,25 @@ class PayloadAgent(BaseAgent):
             ctx.confidence_score = max(ctx.confidence_score, 0.20)
 
     def hypothesize(self, ctx: AgentContext) -> None:
-        """Hypothesize scan/enumeration if a single IP covers many distinct endpoints."""
+        """Hypothesize scan/enumeration if a single IP covers many distinct endpoints,
+        or web attack if injection patterns are found in endpoint strings."""
         max_entropy = ctx.raw_metrics.get("max_entropy", 0.0)
         max_ip = ctx.raw_metrics.get("max_entropy_ip")
         distinct = ctx.raw_metrics.get("per_ip_distinct", {}).get(max_ip, 0) if max_ip else 0
+
+        # Injection hypothesis — fires before any warmup/stability gate because
+        # pattern matching doesn't require a learned baseline.
+        total_inj = ctx.raw_metrics.get("total_injection_hits", 0)
+        top_inj_ip = ctx.raw_metrics.get("top_injection_ip")
+        if total_inj >= self.MIN_INJECTION_HITS and top_inj_ip:
+            ctx.hypothesis = "injection_detected"
+            ctx.threat_type = ThreatType.WEB_ATTACK
+            ctx.confidence_score = max(ctx.confidence_score, 0.60)
+            ctx.log(
+                f"HYPOTHESIZE: injection patterns detected — {top_inj_ip} "
+                f"total_hits={total_inj}"
+            )
+            # Don't return — still check entropy so both paths can fire simultaneously
 
         # Hard bypass: extreme entropy from a single IP is unambiguously a scanner.
         # This fires before the warmup/stability gate so port scans are never missed
@@ -160,8 +217,9 @@ class PayloadAgent(BaseAgent):
             return
 
         if ctx.raw_metrics.get("in_warmup") or not self.memory.ltm.is_distribution_stable("PayloadAgent"):
-            ctx.hypothesis = "warmup_learning"
-            ctx.log("HYPOTHESIZE: warm-up or unstable distribution — building baseline entropy model")
+            if ctx.hypothesis != "injection_detected":
+                ctx.hypothesis = "warmup_learning"
+                ctx.log("HYPOTHESIZE: warm-up or unstable distribution — building baseline entropy model")
             return
 
         max_entropy = ctx.raw_metrics.get("max_entropy", 0.0)
@@ -264,6 +322,31 @@ class PayloadAgent(BaseAgent):
         for ip, entropy in list(per_ip_entropy.items())[:self.MAX_IP_ENTROPY_PAIRS]:
             self.memory.ltm.record_batch_stats("PayloadAgent", {"ip_entropy": entropy})
 
+        # Injection investigation — score per-IP hit concentration and pattern diversity
+        injection_summary = ctx.raw_metrics.get("injection_summary", {})
+        top_inj_ip = ctx.raw_metrics.get("top_injection_ip")
+        if ctx.hypothesis == "injection_detected" and top_inj_ip and top_inj_ip in injection_summary:
+            info = injection_summary[top_inj_ip]
+            distinct_types = info["distinct_types"]
+            total_hits = info["total"]
+            # More diverse pattern types = more confident (attacker probing multiple vectors)
+            inj_conf = min(0.95, 0.60 + 0.10 * distinct_types)
+            ctx.confidence_score = max(ctx.confidence_score, inj_conf)
+            ctx.indicators.append(
+                f"injection_patterns: {top_inj_ip} — {total_hits} hits across "
+                f"{distinct_types} pattern type(s): {list(info['patterns'].keys())}"
+            )
+            self._post_evidence(
+                f"payload:web_attack:{top_inj_ip}",
+                {"ip": top_inj_ip, "patterns": info["patterns"], "total_hits": total_hits},
+                inj_conf,
+                ["payload", "web_attack", "injection"],
+            )
+            ctx.log(
+                f"INVESTIGATE: injection confirmed — {top_inj_ip} "
+                f"hits={total_hits} types={distinct_types} conf={inj_conf:.2f}"
+            )
+
     def evaluate(self, ctx: AgentContext) -> LoopDecision:
         if ctx.hypothesis in ("insufficient_endpoint_diversity", "warmup_learning"):
             return LoopDecision.INSUFFICIENT_DATA
@@ -276,11 +359,14 @@ class PayloadAgent(BaseAgent):
     def conclude(self, ctx: AgentContext) -> AgentFinding:
         threat_detected = ctx.confidence_score >= 0.60 and bool(ctx.indicators)
         if threat_detected:
-            # Distinguish port scan (many /port_X) from generic enumeration
-            max_ip = ctx.raw_metrics.get("max_entropy_ip", "")
-            eps = ctx.raw_metrics.get("ip_endpoints", {}).get(max_ip, {})
-            is_port_scan = any(k.startswith("/port_") for k in eps)
-            ctx.threat_type = ThreatType.PORT_SCAN if is_port_scan else ThreatType.ENUMERATION
+            if ctx.hypothesis == "injection_detected":
+                ctx.threat_type = ThreatType.WEB_ATTACK
+            else:
+                # Distinguish port scan (many /port_X) from generic enumeration
+                max_ip = ctx.raw_metrics.get("max_entropy_ip", "")
+                eps = ctx.raw_metrics.get("ip_endpoints", {}).get(max_ip, {})
+                is_port_scan = any(k.startswith("/port_") for k in eps)
+                ctx.threat_type = ThreatType.PORT_SCAN if is_port_scan else ThreatType.ENUMERATION
             ctx.log(f"CONCLUDE: {ctx.threat_type.value} detected (conf={ctx.confidence_score:.2f})")
         else:
             ctx.log("CONCLUDE: no endpoint enumeration detected")
