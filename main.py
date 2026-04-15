@@ -133,6 +133,7 @@ def run(
                 "confidence": verdict.confidence_score,
                 "contributing_agents": verdict.contributing_agents,
                 "compound_signals": verdict.compound_signals,
+                "explanation": verdict.explanation,
                 "ground_truth_categories": list({r.attack_category for r in batch}),
                 "ground_truth_attack_ratio": round(attack_ratio, 3),
                 "majority_label": gt_label,
