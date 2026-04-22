@@ -46,9 +46,12 @@ class LogRecord:
     label:             str                    = "BENIGN"
     attack_category:   str                    = "Benign"
     is_attack:         bool                   = False
-    session_id:        Optional[str]          = None
-    endpoint_template: Optional[str]          = None
-    geo_context:       Optional[Dict[str,Any]]= None
+    session_id:           Optional[str]          = None
+    endpoint_template:    Optional[str]          = None
+    geo_context:          Optional[Dict[str,Any]]= None
+    # ISO-3166-1 alpha-2 code embedded from dataset (e.g. 'CZ' for CTU13).
+    # GeoIPAgent reads this to determine what counts as "foreign" traffic.
+    tenant_home_country:  str                    = ""
 
 
 @dataclass

@@ -47,6 +47,10 @@ def _row_to_record(row: pd.Series) -> Optional[LogRecord]:
         if ts.tzinfo is not None:
             ts = ts.tz_localize(None)
         endpoint = str(row.get("endpoint", "/unknown"))
+        # Read tenant_home_country from dataset column (e.g. CTU13 uses 'CZ').
+        # This is forwarded to GeoIPAgent via LogRecord so it can compare
+        # foreign vs home-country traffic even when --home-country is not passed.
+        home_country = str(row.get("tenant_home_country", "") or "")
         return LogRecord(
             timestamp=ts.to_pydatetime(),
             ip=str(row["ip"]),
@@ -65,6 +69,7 @@ def _row_to_record(row: pd.Series) -> Optional[LogRecord]:
                 endpoint,
             ),
             endpoint_template=_normalise_endpoint(endpoint),
+            tenant_home_country=home_country,
         )
     except Exception as exc:
         logger.debug("Skipping malformed row: %s", exc)

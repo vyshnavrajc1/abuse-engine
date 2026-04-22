@@ -55,6 +55,7 @@ def run(
     llm_url: str = "",
     llm_model: str = "qwen2.5:7b",
     attack_threshold: float = 0.05,
+    home_country: str = "",
 ) -> None:
 
     if verbose:
@@ -65,10 +66,14 @@ def run(
     logger.info("  Agents: Volume | Temporal | Auth | MetaOrchestrator")
     logger.info("  Evaluation: batch-level majority-label")
     logger.info("  Warm-up batches (learn only): %d", warmup_batches)
+    if home_country:
+        logger.info("  Tenant home country: %s", home_country)
     logger.info("=" * 60)
 
     # ── Setup ────────────────────────────────────────────────────────────────
     memory = SharedMemory(window_seconds=60)
+    if home_country:
+        memory.ltm._tenant_home_country = home_country  # picked up by GeoIPAgent.orient()
 
     llm_client = None
     if llm_url:
@@ -238,6 +243,12 @@ def main():
         help="Fraction of attack records required to label a batch as attack (default: 0.05). "
              "≥5%% threshold credits minority attacks in mixed-traffic windows.",
     )
+    parser.add_argument(
+        "--home-country",
+        default="",
+        help="ISO-3166-1 alpha-2 country code for the tenant's home country "
+             "(e.g. US). Sets GeoIPAgent baseline; empty = no home country (default).",
+    )
     args = parser.parse_args()
 
     run(
@@ -250,6 +261,7 @@ def main():
         llm_url=args.llm_url,
         llm_model=args.llm_model,
         attack_threshold=args.attack_threshold,
+        home_country=args.home_country,
     )
 
 
