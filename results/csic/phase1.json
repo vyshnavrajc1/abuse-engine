@@ -1,0 +1,2042 @@
+{
+  "run_timestamp": "2026-04-18T14:17:58.033370",
+  "config": {
+    "data_path": "datasets/processed/csic_api_logs.csv",
+    "window_size": 500,
+    "max_records": 0,
+    "warmup_batches": 10,
+    "attack_threshold": 0.05,
+    "evaluation_mode": "batch_5pct_threshold",
+    "llm_model": null
+  },
+  "metrics": {
+    "precision": 1.0,
+    "recall": 0.9412,
+    "f1": 0.9697,
+    "accuracy": 0.9735,
+    "total_batches": 113,
+    "attack_batches": 51,
+    "detected_attacks": 48,
+    "false_positives": 0,
+    "false_negatives": 3
+  },
+  "metrics_5pct": {
+    "precision": 1.0,
+    "recall": 0.9412,
+    "f1": 0.9697,
+    "attack_batches": 51
+  },
+  "per_threat": {
+    "Benign": {
+      "precision": 0.9538,
+      "recall": 1.0,
+      "f1": 0.9764,
+      "support": 62
+    },
+    "Web Attack": {
+      "precision": 1.0,
+      "recall": 0.7059,
+      "f1": 0.8276,
+      "support": 51
+    }
+  },
+  "per_threat_5pct": {
+    "Benign": {
+      "precision": 0.9538,
+      "recall": 1.0,
+      "f1": 0.9764,
+      "support": 62
+    },
+    "Web Attack": {
+      "precision": 1.0,
+      "recall": 0.7059,
+      "f1": 0.8276,
+      "support": 51
+    }
+  },
+  "per_agent_accuracy": {
+    "PayloadAgent": {
+      "tp": 48,
+      "fp": 0
+    },
+    "TemporalAgent": {
+      "tp": 47,
+      "fp": 0
+    },
+    "VolumeAgent": {
+      "tp": 1,
+      "fp": 0
+    }
+  },
+  "verdicts": [
+    {
+      "batch": 11,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.202: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.203: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.204: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 12,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.222: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.223: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.224: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 13,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.242: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.243: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.244: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 14,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.8: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.9: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.10: cv=None, period=1000.0ms, conf=0.99\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 15,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=99 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=99 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.28: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.29: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.30: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 16,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.48: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.49: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.50: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 17,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.68: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.69: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.70: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 18,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.88: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.89: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.90: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 19,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.108: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.109: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.110: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 20,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.128: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.129: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.130: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 21,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.148: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.149: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.150: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 22,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.168: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.169: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.170: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 23,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.188: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.189: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.190: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 24,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=100 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=100 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.208: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.209: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.210: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 25,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.228: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.229: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.230: cv=None, period=1000.0ms, conf=0.99\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 26,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.248: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.249: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.250: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 27,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.14: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.15: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.16: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 28,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.34: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.35: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.36: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 29,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.54: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.55: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.56: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 30,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.74: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.75: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.76: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 31,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.94: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.95: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.96: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 32,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.114: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.115: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.116: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 33,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=100 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=100 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.134: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.135: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.136: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 34,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.154: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.155: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.156: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 35,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.174: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.175: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.176: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 36,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.194: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.195: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.196: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 37,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.214: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.215: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.216: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 38,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.234: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.235: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.236: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 39,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.254: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.1: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.2: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 40,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.20: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.21: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.22: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 41,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.40: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.41: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.42: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 42,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=100 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=100 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.60: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.61: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.62: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 43,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.80: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.81: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.82: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 44,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.100: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.101: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.102: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 45,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.120: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.121: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.122: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 46,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.140: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.141: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.142: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 47,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.160: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.161: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.162: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 48,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.180: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.181: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.182: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 49,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.200: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.201: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.202: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 50,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.220: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.221: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.222: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 51,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=100 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=100 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.240: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.241: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.242: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 52,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.6: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.7: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.8: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 53,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.26: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.27: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.28: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 54,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.46: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.47: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.48: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 55,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.66: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.67: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.68: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 56,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.86: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.87: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.88: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 57,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.106: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.107: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.108: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 58,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.126: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.127: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.128: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 59,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.146: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.147: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.148: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 60,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=100 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=100 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.166: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.167: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.168: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 61,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.186: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.187: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.188: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 62,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.206: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.207: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.208: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 63,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.226: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.227: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.228: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 64,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.246: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.247: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.248: cv=None, period=1000.0ms, conf=0.99\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 65,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.12: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.13: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.14: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 66,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.32: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.33: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.34: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 67,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.52: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.53: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.54: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 68,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.72: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.73: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.74: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 69,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=100 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=100 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.92: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.93: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.94: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 70,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=102 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=102 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.112: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.113: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.114: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 71,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.132: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.133: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.134: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 72,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=101 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=101 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 192.168.1.152: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.153: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 192.168.1.154: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Benign"
+      ],
+      "ground_truth_attack_ratio": 0.0,
+      "majority_label": "BENIGN",
+      "correct": true
+    },
+    {
+      "batch": 73,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.887,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=89%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=281 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=281 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.16 \u2014 3 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.2: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.3: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.4: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 74,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.793,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=79%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=282 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=282 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.30 \u2014 2 hits across 2 pattern type(s): ['path_trav', 'cmd_inject']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.22: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.23: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.24: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 75,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.883,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=88%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=282 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=282 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.55 \u2014 3 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.42: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.43: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.44: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 76,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.881,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=88%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=286 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=286 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.73 \u2014 4 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'xss']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.62: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.63: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.64: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 77,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.702,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=70%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=278 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=278 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.98 \u2014 3 hits across 1 pattern type(s): ['xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.82: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.83: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.84: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 78,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.921,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=92%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=283 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=283 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.95 (HIGH)\n    \u2192 endpoint_entropy_spike: 10.0.0.108 z=-3.43 (entropy=4.37)\n    \u2192 injection_patterns: 10.0.0.121 \u2014 4 hits across 4 pattern type(s): ['xss', 'sqli', 'path_trav', 'cmd_inject']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.102: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.103: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.104: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 79,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.789,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=79%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=290 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=290 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.130 \u2014 3 hits across 2 pattern type(s): ['sqli', 'xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.122: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.123: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.124: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 80,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.788,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=79%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=288 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=288 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.146 \u2014 5 hits across 2 pattern type(s): ['sqli', 'xss']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.142: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.143: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.144: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 81,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.872,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=87%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=275 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=275 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.177 \u2014 4 hits across 3 pattern type(s): ['sqli', 'path_trav', 'cmd_inject']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.162: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.163: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.164: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 82,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.787,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=79%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=268 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=268 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.185 \u2014 3 hits across 2 pattern type(s): ['sqli', 'xss']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.182: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.183: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.184: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 83,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.87,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=87%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=283 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=283 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.219 \u2014 5 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'sqli']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.202: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.203: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.204: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 84,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.868,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=87%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=281 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=281 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.222 \u2014 4 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.222: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.223: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.224: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 85,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.704,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=70%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=281 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=281 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.3 \u2014 3 hits across 1 pattern type(s): ['xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.242: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.243: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.244: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 86,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.906,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=91%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=273 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=273 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.95 (HIGH)\n    \u2192 injection_patterns: 10.0.0.24 \u2014 7 hits across 4 pattern type(s): ['xss', 'path_trav', 'cmd_inject', 'sqli']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.8: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.9: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.10: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 87,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.865,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=86%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=267 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=267 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 endpoint_entropy_spike: 10.0.0.47 z=3.80 (entropy=4.40)\n    \u2192 injection_patterns: 10.0.0.40 \u2014 3 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'sqli']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.28: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.29: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.30: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 88,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.863,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=86%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=280 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=280 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.60 \u2014 5 hits across 3 pattern type(s): ['xss', 'path_trav', 'cmd_inject']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.48: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.49: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.50: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 89,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.862,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=86%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=284 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=284 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.73 \u2014 3 hits across 3 pattern type(s): ['sqli', 'path_trav', 'cmd_inject']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.68: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.69: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.70: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 90,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.704,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=70%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=277 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=277 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.94 \u2014 2 hits across 1 pattern type(s): ['sqli']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.88: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.89: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.90: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 91,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.704,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=70%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=280 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=280 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.126 \u2014 2 hits across 1 pattern type(s): ['xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.108: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.109: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.110: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 92,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.705,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=70%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=286 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=286 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 endpoint_entropy_spike: 10.0.0.147 z=2.11 (entropy=4.48)\n    \u2192 injection_patterns: 10.0.0.145 \u2014 3 hits across 1 pattern type(s): ['xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.128: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.129: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.130: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 93,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.897,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=90%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=283 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=283 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.95 (HIGH)\n    \u2192 injection_patterns: 10.0.0.153 \u2014 4 hits across 4 pattern type(s): ['sqli', 'path_trav', 'cmd_inject', 'xss']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.148: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.149: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.150: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 94,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.781,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=279 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=279 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.170 \u2014 3 hits across 2 pattern type(s): ['sqli', 'xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.168: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.169: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.170: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 95,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.856,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=86%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=283 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=283 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.195 \u2014 3 hits across 3 pattern type(s): ['sqli', 'path_trav', 'cmd_inject']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.188: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.189: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.190: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 96,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=290 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=290 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.60 (MEDIUM)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.208: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.209: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.210: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": false
+    },
+    {
+      "batch": 97,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.705,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=70%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=277 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=277 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.228 \u2014 2 hits across 1 pattern type(s): ['xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.228: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.229: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.230: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 98,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.78,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=277 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=277 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.248 \u2014 3 hits across 2 pattern type(s): ['xss', 'sqli']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.248: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.249: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.250: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 99,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.892,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=89%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=274 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=274 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.95 (HIGH)\n    \u2192 injection_patterns: 10.0.0.15 \u2014 4 hits across 4 pattern type(s): ['sqli', 'xss', 'path_trav', 'cmd_inject']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.14: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.15: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.16: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 100,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.705,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=71%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=282 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=282 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 endpoint_entropy_spike: 10.0.0.46 z=2.07 (entropy=4.37)\n    \u2192 injection_patterns: 10.0.0.34 \u2014 2 hits across 1 pattern type(s): ['xss']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.34: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.35: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.36: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 101,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.89,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=89%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=283 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=283 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.95 (HIGH)\n    \u2192 injection_patterns: 10.0.0.56 \u2014 6 hits across 4 pattern type(s): ['xss', 'sqli', 'path_trav', 'cmd_inject']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.54: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.55: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.56: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 102,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.705,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=71%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=278 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=278 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.75 \u2014 3 hits across 1 pattern type(s): ['xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.74: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.75: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.76: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 103,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.779,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=284 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=284 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.102 \u2014 3 hits across 2 pattern type(s): ['sqli', 'xss']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.94: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.95: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.96: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 104,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.779,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=280 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=280 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.118 \u2014 3 hits across 2 pattern type(s): ['sqli', 'xss']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.114: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.115: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.116: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 105,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.853,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=85%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=285 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=285 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.141 \u2014 3 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'xss']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.134: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.135: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.136: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 106,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.705,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=71%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=283 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=283 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.160 \u2014 2 hits across 1 pattern type(s): ['xss']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.154: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.155: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.156: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 107,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.852,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=85%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=287 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=287 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.183 \u2014 4 hits across 3 pattern type(s): ['xss', 'path_trav', 'cmd_inject']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.174: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.175: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.176: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 108,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.887,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=89%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=281 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=281 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.95 (HIGH)\n    \u2192 injection_patterns: 10.0.0.203 \u2014 4 hits across 4 pattern type(s): ['path_trav', 'cmd_inject', 'sqli', 'xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.194: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.195: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.196: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 109,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=287 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=287 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.60 (MEDIUM)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.214: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.215: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.216: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": false
+    },
+    {
+      "batch": 110,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.85,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=85%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=296 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=296 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.235 \u2014 3 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'xss']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.234: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.235: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.236: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 111,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.849,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=85%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=279 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=279 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.6 \u2014 3 hits across 3 pattern type(s): ['xss', 'path_trav', 'cmd_inject']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.254: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.1: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.2: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 112,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.777,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=276 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=276 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.29 \u2014 4 hits across 2 pattern type(s): ['xss', 'sqli']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.20: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.21: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.22: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 113,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.776,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=273 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=273 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.47 \u2014 4 hits across 2 pattern type(s): ['path_trav', 'cmd_inject']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.40: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.41: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.42: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 114,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.776,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=78%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=286 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=286 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.72 \u2014 4 hits across 2 pattern type(s): ['xss', 'sqli']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.60: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.61: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.62: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 115,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.845,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=84%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=275 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=275 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.80 \u2014 7 hits across 3 pattern type(s): ['path_trav', 'cmd_inject', 'sqli']\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.80: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.81: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.82: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 116,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.775,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=77%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=282 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=282 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.102 \u2014 2 hits across 2 pattern type(s): ['path_trav', 'cmd_inject']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.100: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.101: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.102: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 117,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.706,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=71%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=277 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=277 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.126 \u2014 3 hits across 1 pattern type(s): ['xss']\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.120: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.121: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.122: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 118,
+      "is_attack": true,
+      "threat_type": "BOT_ACTIVITY",
+      "confidence": 0.706,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=71%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=281 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=281 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.144 \u2014 2 hits across 1 pattern type(s): ['xss']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.140: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.141: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.142: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 119,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.774,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=77%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=281 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=281 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.80 (HIGH)\n    \u2192 injection_patterns: 10.0.0.174 \u2014 4 hits across 2 pattern type(s): ['xss', 'sqli']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.160: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.161: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.162: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 120,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.84,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=84%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=276 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=276 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 injection_patterns: 10.0.0.189 \u2014 5 hits across 3 pattern type(s): ['xss', 'path_trav', 'cmd_inject']\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.180: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.181: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.182: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 121,
+      "is_attack": true,
+      "threat_type": "WEB_ATTACK",
+      "confidence": 0.839,
+      "contributing_agents": [
+        "PayloadAgent",
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=84%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=286 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=286 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.90 (HIGH)\n    \u2192 endpoint_entropy_spike: 10.0.0.206 z=-2.61 (entropy=4.40)\n    \u2192 injection_patterns: 10.0.0.205 \u2014 3 hits across 3 pattern type(s): ['xss', 'path_trav', 'cmd_inject']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.200: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.201: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.202: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    },
+    {
+      "batch": 122,
+      "is_attack": false,
+      "threat_type": "NONE",
+      "confidence": 0.72,
+      "contributing_agents": [
+        "TemporalAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u2705  No attack detected (fused confidence=72%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=499000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=277 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=277 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [PayloadAgent] threat=NONE conf=0.60 (MEDIUM)\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [VolumeAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [TemporalAgent] threat=BOT_ACTIVITY conf=0.72 (MEDIUM)\n    \u2192 bot_periodicity on 10.0.0.220: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.221: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.222: cv=None, period=1000.0ms, conf=0.99",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": false
+    },
+    {
+      "batch": 123,
+      "is_attack": true,
+      "threat_type": "DOS",
+      "confidence": 0.858,
+      "contributing_agents": [
+        "PayloadAgent",
+        "VolumeAgent"
+      ],
+      "compound_signals": [],
+      "explanation": "\u26a0\ufe0f  ATTACK DETECTED (fused confidence=86%)\nTriage:\n  \u2192 rough_dom_ratio=0.50 > 0.05 \u2192 VolumeAgent warranted\n  \u2192 ts_span_ms=64000 > 200 \u2192 TemporalAgent warranted\n  \u2192 distinct_endpoints=50 >= 5 \u2192 PayloadAgent warranted\n  \u2192 distinct_endpoints=50 >= 3 \u2192 SequenceAgent warranted\n  \u2192 GeoIPAgent always dispatched (offline-first, negligible cost)\n  \u2298 [AuthAgent] skipped \u2014 n_4xx=0\n\u2713 [AuthAgent] threat=NONE conf=0.00 (LOW)\n\u26a0 [PayloadAgent] threat=WEB_ATTACK conf=0.70 (MEDIUM)\n    \u2192 injection_patterns: 10.0.0.240 \u2014 3 hits across 1 pattern type(s): ['xss']\n\u2713 [SequenceAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [GeoIPAgent] threat=NONE conf=0.00 (LOW)\n\u2713 [TemporalAgent] threat=BOT_ACTIVITY conf=0.60 (LOW)\n    \u2192 bot_periodicity on 10.0.0.240: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.241: cv=None, period=1000.0ms, conf=0.99\n    \u2192 bot_periodicity on 10.0.0.242: cv=None, period=1000.0ms, conf=0.99\n\u26a0 [VolumeAgent] threat=DOS conf=1.00 (HIGH)\n    \u2192 rate_spike on /tienda1/miembros/editar.jsp: z=-17939393939.39\n    \u2192 rate_spike on /tienda1/publico/autenticar.jsp: z=-19954545454.54\n    \u2192 rate_spike on /tienda1/publico/entrar.jsp: z=-13365853658.54",
+      "ground_truth_categories": [
+        "Web Attack"
+      ],
+      "ground_truth_attack_ratio": 1.0,
+      "majority_label": "ATTACK",
+      "correct": true
+    }
+  ]
+}

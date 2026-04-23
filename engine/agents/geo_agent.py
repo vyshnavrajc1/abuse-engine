@@ -107,7 +107,13 @@ def _lookup_country(ip: str) -> str:
 
 class GeoIPAgent(BaseAgent):
 
-    FOREIGN_CONCENTRATION_THRESHOLD = 0.80   # >80% of batch from single non-home country
+    FOREIGN_CONCENTRATION_THRESHOLD = 0.40   # >40% of batch from single non-home country
+    DISTRIBUTED_FOREIGN_THRESHOLD   = 0.20   # >20% of batch from ANY foreign countries combined
+    DISTRIBUTED_FOREIGN_MIN_COUNTRIES = 3    # require at least 3 distinct foreign countries
+    # Botnet spatial spread: many unique IPs from many countries (distributed C2)
+    BOTNET_SPREAD_MIN_UNIQUE_IPS    = 10     # at least N distinct IPs in the batch
+    BOTNET_SPREAD_MIN_COUNTRIES     = 5      # spanning at least N distinct countries
+    BOTNET_SPREAD_DIVERSITY_RATIO   = 0.10   # countries/unique_IPs ratio >= 10%
     MIN_TRAVEL_MINUTES              = _MIN_TRAVEL_MINUTES
 
     def observe(self, ctx: AgentContext) -> None:
@@ -139,10 +145,22 @@ class GeoIPAgent(BaseAgent):
         )
 
     def orient(self, ctx: AgentContext) -> None:
-        """Load tenant home country from LTM; check for TOR/VPN markers."""
-        # Tenant home country — in production this comes from tenant config.
-        # During CICIDS evaluation it's unused (all IPs are private).
+        """Load tenant home country from LTM or batch records; check for TOR/VPN."""
+        # Priority 1: CLI-supplied home country stored in LTM
         home_country = getattr(self.memory.ltm, "_tenant_home_country", "")
+
+        # Priority 2: read from LogRecord.tenant_home_country (populated by ingestion
+        # from dataset column). This makes CTU13/CICIDS datasets work without --home-country.
+        if not home_country and ctx.records:
+            for r in ctx.records:
+                hc = getattr(r, "tenant_home_country", "")
+                if hc:
+                    home_country = hc
+                    # Cache in LTM so subsequent batches do not re-scan all records
+                    self.memory.ltm._tenant_home_country = home_country
+                    ctx.log(f"ORIENT: home_country='{home_country}' (from record field)")
+                    break
+
         ctx.raw_metrics["home_country"] = home_country
 
         # Check board for TOR/VPN evidence posted by KnowledgeAgent
@@ -182,7 +200,7 @@ class GeoIPAgent(BaseAgent):
             )
             ctx.confidence_score = max(ctx.confidence_score, 0.75)
 
-        # ── Foreign concentration ─────────────────────────────────────────
+        # ── Foreign concentration (single-country) ───────────────────────
         total_resolved = ctx.raw_metrics.get("resolved_total", 0)
         if total_resolved > 0:
             foreign_counts = {
@@ -196,13 +214,97 @@ class GeoIPAgent(BaseAgent):
                         f"foreign_concentration: {top_cnt}/{total_resolved} reqs "
                         f"from {top_foreign} ({ratio:.0%})"
                     )
-                    ctx.confidence_score = max(ctx.confidence_score, 0.70)
+                    ctx.confidence_score = max(ctx.confidence_score, 0.80)
                     self._post_evidence(
                         f"geo:foreign_concentration:{top_foreign}",
                         {"country": top_foreign, "ratio": ratio},
-                        0.70,
+                        0.80,
                         ["geo", "foreign"],
                     )
+
+        # ── Distributed multi-country foreign traffic ─────────────────────
+        # Catches geo attacks that span many countries (e.g. global botnets,
+        # distributed port scans) where no single country hits the 40% bar.
+        # Uses overall foreign ratio rather than single-country dominance.
+        if home_country and total_resolved > 0:
+            total_foreign = sum(
+                n for c, n in country_counts.items() if c != home_country
+            )
+            n_foreign_countries = sum(
+                1 for c in country_counts if c != home_country
+            )
+            overall_foreign_ratio = total_foreign / total_resolved
+
+            if (
+                overall_foreign_ratio >= self.DISTRIBUTED_FOREIGN_THRESHOLD
+                and n_foreign_countries >= self.DISTRIBUTED_FOREIGN_MIN_COUNTRIES
+            ):
+                conf = round(
+                    min(0.50 + overall_foreign_ratio * 0.40, 0.85), 2
+                )
+                ctx.indicators.append(
+                    f"distributed_foreign_traffic: {total_foreign}/{total_resolved} reqs "
+                    f"from {n_foreign_countries} foreign countries "
+                    f"({overall_foreign_ratio:.0%})"
+                )
+                ctx.confidence_score = max(ctx.confidence_score, conf)
+                ctx.log(
+                    f"INVESTIGATE: distributed_foreign_traffic "
+                    f"ratio={overall_foreign_ratio:.0%} "
+                    f"countries={n_foreign_countries} conf={conf:.2f}"
+                )
+                self._post_evidence(
+                    f"geo:distributed_foreign:{n_foreign_countries}countries",
+                    {
+                        "total_foreign": total_foreign,
+                        "n_countries": n_foreign_countries,
+                        "ratio": overall_foreign_ratio,
+                    },
+                    conf,
+                    ["geo", "distributed_foreign"],
+                )
+
+        # ── Botnet spatial diversity check ─────────────────────────────────
+        # Distributed botnets (like CTU13) use many unique IPs spanning many
+        # countries, but each country may be <20% individually. Classic
+        # single-country and distributed-foreign checks both miss this because
+        # the home-country (CZ) is still dominant. We catch it by measuring
+        # how many unique IPs are spread across how many distinct countries.
+        # High IP-to-country diversity = coordinated multi-region traffic.
+        ip_country_map: Dict[str, str] = ctx.raw_metrics.get("ip_country", {})
+        n_unique_ips = len(ip_country_map)
+        resolved_countries = {c for c in ip_country_map.values() if c}
+        n_resolved_countries = len(resolved_countries)
+
+        if (
+            n_unique_ips >= self.BOTNET_SPREAD_MIN_UNIQUE_IPS
+            and n_resolved_countries >= self.BOTNET_SPREAD_MIN_COUNTRIES
+        ):
+            diversity_ratio = n_resolved_countries / n_unique_ips
+            if diversity_ratio >= self.BOTNET_SPREAD_DIVERSITY_RATIO:
+                # Scale confidence: more countries per unique IP → more suspicious
+                spread_conf = round(min(0.55 + diversity_ratio * 0.60, 0.80), 2)
+                ctx.indicators.append(
+                    f"botnet_spatial_spread: {n_unique_ips} unique IPs across "
+                    f"{n_resolved_countries} countries "
+                    f"(diversity={diversity_ratio:.2f})"
+                )
+                ctx.confidence_score = max(ctx.confidence_score, spread_conf)
+                ctx.log(
+                    f"INVESTIGATE: botnet_spatial_spread "
+                    f"unique_ips={n_unique_ips} countries={n_resolved_countries} "
+                    f"ratio={diversity_ratio:.2f} conf={spread_conf:.2f}"
+                )
+                self._post_evidence(
+                    f"geo:botnet_spread:{n_resolved_countries}countries",
+                    {
+                        "unique_ips": n_unique_ips,
+                        "n_countries": n_resolved_countries,
+                        "diversity_ratio": diversity_ratio,
+                    },
+                    spread_conf,
+                    ["geo", "botnet", "distributed"],
+                )
 
         # ── Impossible travel detection ───────────────────────────────────
         # Group records by (ip, country) and check if same IP appears in
@@ -243,7 +345,9 @@ class GeoIPAgent(BaseAgent):
         return LoopDecision.CONCLUDE
 
     def conclude(self, ctx: AgentContext) -> AgentFinding:
-        threat_detected = ctx.confidence_score >= 0.60 and bool(ctx.indicators)
+        # Lower gate to 0.50 so MEDIUM-confidence distributed signals survive;
+        # the MetaAgent's fusion layer applies the final high-confidence bar.
+        threat_detected = ctx.confidence_score >= 0.50 and bool(ctx.indicators)
         if threat_detected:
             ctx.log(f"CONCLUDE: GEO_ANOMALY detected (conf={ctx.confidence_score:.2f})")
         else:

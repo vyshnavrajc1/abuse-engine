@@ -234,10 +234,12 @@ class PayloadAgent(BaseAgent):
                 f"with {distinct} distinct endpoints — scan/enumeration suspected"
             )
         elif max_entropy > 0:
-            ctx.hypothesis = "check_entropy"
+            if ctx.hypothesis != "injection_detected":
+                ctx.hypothesis = "check_entropy"
             ctx.log(f"HYPOTHESIZE: entropy={max_entropy:.2f} below threshold — checking")
         else:
-            ctx.hypothesis = "insufficient_endpoint_diversity"
+            if ctx.hypothesis != "injection_detected":
+                ctx.hypothesis = "insufficient_endpoint_diversity"
             ctx.log("HYPOTHESIZE: all IPs targeting same endpoint — no enumeration signal")
 
     def investigate(self, ctx: AgentContext) -> None:
