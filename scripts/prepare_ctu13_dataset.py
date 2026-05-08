@@ -109,7 +109,7 @@ def main(input_path: str, output_path: str) -> None:
     
     # Assign standard labels
     df["label"] = df["is_attack"].apply(lambda x: "BOTNET" if x else "BENIGN")
-    df["attack_category"] = df["is_attack"].apply(lambda x: "Botnet" if x else "None")
+    df["attack_category"] = df["is_attack"].apply(lambda x: "Botnet" if x else "Benign")
 
     # ── tenant_home_country ───────────────────────────────────────────────────
     # The attacks are from CVUT (Czech Republic) so we use 'CZ' as default.

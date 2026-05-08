@@ -27,6 +27,30 @@ logger = logging.getLogger(__name__)
 # Regex: normalise /port_80, /port_443/subpath → /port_{port}
 _ENDPOINT_NORMALISER = re.compile(r"(/port_\d+)(/.*)?")
 
+# Sentinel strings that pandas uses when round-tripping Python None/NaN through CSV
+_NULL_SENTINELS = frozenset({"nan", "none", "nat", ""})
+
+
+def _safe_str(val, default: str = "") -> str:
+    """Convert *val* to str, mapping NaN / None / empty / null-sentinel to *default*.
+
+    pandas.read_csv silently converts the literal string "None" to a floating-point
+    NaN when no explicit ``keep_default_na=False`` is passed.  This helper ensures
+    such values are always normalised to the correct *default* label instead of
+    leaking as the string ``"nan"`` into the evaluator.
+    """
+    if val is None:
+        return default
+    # Numeric NaN check (covers float('nan'))
+    try:
+        import math
+        if math.isnan(float(val)):  # type: ignore[arg-type]
+            return default
+    except (TypeError, ValueError):
+        pass
+    s = str(val).strip()
+    return default if s.lower() in _NULL_SENTINELS else s
+
 
 def _normalise_endpoint(endpoint: str) -> str:
     m = _ENDPOINT_NORMALISER.match(endpoint)
@@ -61,7 +85,7 @@ def _row_to_record(row: pd.Series) -> Optional[LogRecord]:
             latency=float(row.get("latency", 0.0)),
             user_agent=str(row.get("user_agent", "")),
             label=str(row.get("label", "BENIGN")),
-            attack_category=str(row.get("attack_category", "Benign")),
+            attack_category=_safe_str(row.get("attack_category"), default="Benign"),
             is_attack=str(row.get("label", "BENIGN")).upper() != "BENIGN",
             session_id=_make_session_id(
                 str(row["ip"]),
